@@ -29,7 +29,7 @@ public class Blibioteca_V_1_1 {
 
         //Adicionar usuários com diferentes papéis, incluindo administradores
         //Users.AddUser("Joao Silva", "+5511987654321", "123456", "senha123", true);
-        //Users.AddUser("Mari Oliveira", "+5511998765432", "789012", "minha senha", false);
+        Users.AddUser("Mari Oliveira", "+5511998765432", "789012", "minha senha", false);
         //Users.AddUser("Carlo Santos", "+5511976543210", "345678", "12345678", false);
         //remove user
         //Users.RemvUser("Joao Silva");

@@ -158,8 +158,10 @@ public class Users {
             // Criar um novo usuario
             JSONObject newUser = new JSONObject();
             newUser.put("name", name);
+            newUser.put("num_identification", identification);
             newUser.put("Phone", phone_number);
             newUser.put("permission", permission);
+            
             //newUser.put("titles_lends", new String[]{"a", "b"});
             try {
                 String passCrip = crip(password);
