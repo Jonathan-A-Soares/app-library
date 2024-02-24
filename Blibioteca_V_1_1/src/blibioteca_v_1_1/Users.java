@@ -11,6 +11,7 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
@@ -46,6 +47,10 @@ public class Users {
         this.identification = identification;
         this.password = password;
         this.permission = permission;
+
+        Users.CheckJsons();//verifica se os arquivos estao disponiveis
+        Users.AddUser(name, phone_number, identification, password, permission);// cria usuario guarda no arquivo
+
     }
 
     public static void CheckJsons() { // verifica se arquivs de usuarios esta disponiviel se nao cria-os
@@ -131,8 +136,8 @@ public class Users {
             newUser.put("Phone", phone_number);
             newUser.put("permission", permission);
             try {
-                String senhaCriptografada = crip(password);
-                newUser.put("password", senhaCriptografada);
+                String passCrip = crip(password);
+                newUser.put("password", passCrip);
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -153,53 +158,52 @@ public class Users {
     }
 
     public static void RemvUser(String name) {
-    JSONParser parser = new JSONParser();
+        JSONParser parser = new JSONParser();
 
-    try (FileReader reader = new FileReader(user_directory)) {
-        // Ler o arquivo JSON existente
-        JSONObject json = (JSONObject) parser.parse(reader);
-        List<Object> keysToRemove = new ArrayList<>();
+        try (FileReader reader = new FileReader(user_directory)) {
+            // Ler o arquivo JSON existente
+            JSONObject json = (JSONObject) parser.parse(reader);
+            List<Object> keysToRemove = new ArrayList<>();
 
-        // Verifica se o usuário desejado está presente no JSON
-        boolean userEncontrado = false;
-        for (Object key : json.keySet()) {
-            Object value = json.get(key);
+            // Verifica se o usuário desejado está presente no JSON
+            boolean userEncontrado = false;
+            for (Object key : json.keySet()) {
+                Object value = json.get(key);
 
-            if (value instanceof JSONObject) {
-                JSONObject user = (JSONObject) value;
+                if (value instanceof JSONObject) {
+                    JSONObject user = (JSONObject) value;
 
-                if (user.get("name").equals(name)) { // procura o usuário que vai ser removido
-                    System.out.println("Usuário "+ name +" encontrado");
+                    if (user.get("name").equals(name)) { // procura o usuário que vai ser removido
+                        //System.out.println("Usuário "+ name +" encontrado");
 
-                    // Adiciona a chave do usuário encontrado à lista de chaves para remoção
-                    keysToRemove.add(key);
-                    userEncontrado = true;
+                        keysToRemove.add(key);
+                        userEncontrado = true;
+                    }
                 }
             }
-        }
 
-        if (userEncontrado) {
-            // Remove os usuários encontrados
-            for (Object key : keysToRemove) {
-                json.remove(key);
+            if (userEncontrado) {
+                // Remove os usuários encontrados
+                for (Object key : keysToRemove) {
+                    json.remove(key);
+                    System.out.println("Usuário " + name + " Removido");
+                }
+
+                // Subtrai número de usuários
+                long numUsers = (long) json.get("Numero de Usuarios");
+                json.put("Numero de Usuarios", numUsers - 1);
+
+                try (FileWriter writer = new FileWriter(user_directory)) {
+                    writer.write(json.toJSONString()); // Escrever de volta no arquivo
+                }
+            } else {
+                System.out.println("Usuário " + name + " não encontrado. Nada foi removido.");
             }
 
-            // Subtrai número de usuários
-            long numUsers = (long) json.get("Numero de Usuarios");
-            json.put("Numero de Usuarios", numUsers - 1);
-
-            try (FileWriter writer = new FileWriter(user_directory)) {
-                writer.write(json.toJSONString()); // Escrever de volta no arquivo
-            }
-        } else {
-            System.out.println("Usuário não encontrado. Nada foi removido.");
+        } catch (IOException | ParseException e) {
+            e.printStackTrace();
         }
-
-    } catch (IOException | ParseException e) {
-        e.printStackTrace();
     }
-}
-
 
     private static String crip(String pass) throws Exception {
         Cipher cifra = Cipher.getInstance("AES");
@@ -220,7 +224,119 @@ public class Users {
         byte[] passCripBytes = Base64.getDecoder().decode(passCrip);
         byte[] passDecrip = cifra.doFinal(passCripBytes);
 
-        return new String(passDecrip);
+        String decryptedString = new String(passDecrip, StandardCharsets.UTF_8);
+        //System.out.println(decryptedString);
+        return decryptedString;
+    }
+
+    public static boolean Authentic(String name, String password) {
+
+        String encripPass = null;
+
+        try (FileReader reader = new FileReader(user_directory)) {
+            JSONParser parser = new JSONParser();
+            // Ler o arquivo JSON existente
+            JSONObject json = (JSONObject) parser.parse(reader);
+            List<Object> keysToRemove = new ArrayList<>();
+
+            // Verifica se o usuário já existe e está presente no JSON
+            for (Object key : json.keySet()) {
+                Object value = json.get(key);
+
+                if (value instanceof JSONObject) {
+                    JSONObject users = (JSONObject) value;
+
+                    if (users.get("name").equals(name)) { // procura o usuário 
+                        System.out.println("Usuário " + name + " existe");
+
+                        // Coleta senha
+                        encripPass = (String) users.get("password");
+
+                        try {
+                            String passDecrip = decrip(encripPass);
+                            if (password.equals(passDecrip)) {//caso senha estaja correta
+                                //System.out.println("Senha inserida: " + password);
+                                //System.out.println("Senha correta: " + passDecrip);
+                                System.out.println("Aprovado");
+                                return true;//retorna true quando credencias corresponder co minserida   
+                              
+                              
+                               
+                            }else{System.out.println("Recusado Senha incorreta");
+                                return false;// returna falso pois senha incorreta
+                            }//cas osenha esteja encorreta
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+
+                        break; // Se encontrou o usuário, não precisa continuar procurando
+                    }
+                }
+            }
+
+            System.out.println("Recusado Usuario nao existe");
+            //System.out.println("Senha inserida: " + password);
+
+            return false;
+        } catch (IOException | ParseException e) {
+            e.printStackTrace();
+        }
+
+        return false;
+    }
+
+    public static void Repassword(String name, String newPassword, String phone_number) {
+
+        try (FileReader reader = new FileReader(user_directory)) {
+            JSONParser parser = new JSONParser();
+            // Ler o arquivo JSON existente
+            JSONObject json = (JSONObject) parser.parse(reader);
+            List<Object> keysToRemove = new ArrayList<>();
+
+            // Verifica se o usuário já existe e está presente no JSON
+            for (Object key : json.keySet()) {
+                Object value = json.get(key);
+
+                if (value instanceof JSONObject) {
+                    JSONObject users = (JSONObject) value;
+
+                    if (users.get("name").equals(name)) { // procura o usuário 
+                        System.out.println("Usuário " + name + " existe");
+                        String PassUser = (String) users.get("password");
+                        String phoneUser = (String) users.get("Phone");
+                        if (phone_number.equals(phoneUser)) {
+
+                            try { // criptografa nova senha e a modifca no json
+                                String passCrip = crip(newPassword);
+                                users.put("password", passCrip);
+                            } catch (Exception e) {
+                                e.printStackTrace();
+                            }
+
+                            try ( // Escrever de volta no arquivo
+                                    FileWriter writer = new FileWriter(user_directory)) {
+                                writer.write(json.toJSONString());
+                                System.out.println("Senha Altera com sucesso");
+                            }
+
+                        }else{
+                        
+                            System.out.println("Numero telfone incorreto");
+                        return;}
+
+                        return; // Se encontrou o usuário, não precisa continuar procurando
+                    }
+                }
+
+            }
+
+            System.out.println("Recusado Usuario nao existe");
+            //System.out.println("Senha inserida: " + password);
+
+        } catch (IOException | ParseException e) {
+            e.printStackTrace();
+        }
+
     }
 
 }
