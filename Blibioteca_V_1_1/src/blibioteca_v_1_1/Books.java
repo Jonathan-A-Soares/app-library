@@ -40,13 +40,13 @@ public class Books {
         if (file_books_av.exists()) {// Verificar se o arquivo existe
             System.out.println("O arquivo " + book_directory_available + " existe!!!");
         } else {
-            WriteJsonClearAvailable();
+            WriteJsonClear(book_directory_available);
         } // se nao cham funçao pra cria-lo
         File file_books_un = new File(book_directory_unavailable);
         if (file_books_un.exists()) {// Verificar se o arquivo de livros indisponiveis existe existe
             System.out.println("O arquivo " + book_directory_available + " existe!!!");
         } else {
-            WriteJsonClearUnavailable();
+            WriteJsonClear(book_directory_unavailable);
         } // se nao cham funçao pra cria-lo
 
     }
@@ -62,7 +62,7 @@ public class Books {
             Write_File = new FileWriter(availability);
             Write_File.write(Content_json.toJSONString());
             Write_File.close();
-            System.out.println("Arquivo JSON Livros Disponiveis criado com sucesso!");
+            System.out.println("Arquivo "+availability+"criado com sucesso!");
         } catch (IOException ex) {
             Logger.getLogger(Blibioteca_V_1_1.class.getName()).log(Level.SEVERE, null, ex);
         }
