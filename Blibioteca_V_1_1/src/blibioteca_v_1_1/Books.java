@@ -16,6 +16,10 @@ import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 import java.util.List;
 import java.util.ArrayList;
+import java.util.Date;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 
 /**
  *
@@ -34,6 +38,24 @@ public class Books {
     private String publishing_company; // editora de publicção
     private String date_publishing; // data publicaçao
     private String isbn; // numero de isbn
+
+    private static String getDateTime() {
+        DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+        Date date = new Date();
+        return dateFormat.format(date);
+    }
+
+    private static String getDateTimeLend() {
+
+        DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+        Date date = new Date();
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(date);
+        calendar.add(Calendar.DAY_OF_MONTH, 10);
+        Date dataGiveback = calendar.getTime();
+
+        return dateFormat.format(dataGiveback);
+    }
 
     public static void CheckJsons() { // verifica se todos arqquivos de livros estao disponivie se nao cria-os
         File file_books_av = new File(book_directory_available);
@@ -62,7 +84,7 @@ public class Books {
             Write_File = new FileWriter(availability);
             Write_File.write(Content_json.toJSONString());
             Write_File.close();
-            System.out.println("Arquivo "+availability+"criado com sucesso!");
+            System.out.println("Arquivo " + availability + "criado com sucesso!");
         } catch (IOException ex) {
             Logger.getLogger(Blibioteca_V_1_1.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -215,6 +237,180 @@ public class Books {
         }
     }
 
+    public static void LendBook(String title, String name) { //Empresta o livro para um usuario
+
+        JSONParser parser = new JSONParser();
+
+        try (FileReader reader = new FileReader(book_directory_available)) {
+            // Ler o arquivo jsno existente
+
+            JSONObject json = (JSONObject) parser.parse(reader);
+            List<Object> keysToRemove = new ArrayList<>();
+            // Verifica se o título desejado está presente no JSON
+            boolean livroEncontrado = false;
+            for (Object key : json.keySet()) {
+                Object value = json.get(key);
+
+                if (value instanceof JSONObject) {
+                    JSONObject livro = (JSONObject) value;
+
+                    if (livro.get("title").equals(title)) { // procura o titulo do livro que vai ser removido
+                        System.out.println("Livro encontrado");
+
+                        long quantity = (long) livro.get("quantity");// coleta quantidade de livros com este titulo tem
+                        //coleta todos dados do livro
+                        String genre = (String) livro.get("genre");
+                        String isbn = (String) livro.get("isbn");
+                        String publishing_company = (String) livro.get("publishing_company");
+                        String author = (String) livro.get("author");
+                        String date_publishing = (String) livro.get("date_publishing");
+
+                        //AddBook(title, author, genre, publishing_company, date_publishing, isbn, book_directory_unavailable);
+                        JSONParser pars = new JSONParser();
+
+                        try (FileReader read = new FileReader(book_directory_unavailable)) {
+                            // Ler o arquivo JSON existente
+
+                            JSONObject jsonun = (JSONObject) pars.parse(read);
+
+                            // cria  livro emprestado na lista de n disponiveis
+                            JSONObject lendBook = new JSONObject();
+                            lendBook.put("title", title);
+                            lendBook.put("author", author);
+                            lendBook.put("genre", genre);
+                            lendBook.put("publishing_company", publishing_company);
+                            lendBook.put("date_publishing", date_publishing);
+                            lendBook.put("isbn", isbn);
+                            lendBook.put("gripped", name); //guarda nome do usurio que pegou livro
+                            lendBook.put("quantity", 1);
+
+                            //coleta armazena data que foi feito emprestimo
+                            try {
+                                String date = getDateTime();
+                                lendBook.put("date_land", date);
+                            } catch (Exception e) {
+                                e.printStackTrace();
+                            }
+
+                            //previsao de devoluçao
+                            try {
+                                String date = getDateTimeLend();
+                                lendBook.put("date_give_back", date);
+                            } catch (Exception e) {
+                                e.printStackTrace();
+                            }
+
+                            long numeroLivros = (long) jsonun.get("Numero de Livros");
+                            jsonun.put(numeroLivros + 1, lendBook);
+                            jsonun.put("Numero de Livros", numeroLivros + 1);
+
+                            try ( // Escrever de volta no arquivo
+                                    FileWriter writer = new FileWriter(book_directory_unavailable)) {
+                                writer.write(jsonun.toJSONString());
+                            }
+
+                            System.out.println("Livro Emprestado para"+name+" com sucesso! ");
+                        } catch (IOException | ParseException e) {
+                            e.printStackTrace();
+                        }
+
+                        //fim adição de livro
+                        //System.out.println(genre + isbn + "  " + publishing_company + "  " + author + "  " + date_publishing + "  " + title);
+
+                        if (quantity == 1) {// se qauntidade for apena 1 remove livro
+                            // Remover o livro do JSON existente
+                            keysToRemove.add(key);
+                            System.out.println("Removido o livro");
+                        } else {
+                            System.out.println("Removido um livro da lista de disponiveis");
+                            livro.put("quantity", quantity - 1); // subtrai numeor de livros na pilha
+
+                        }
+
+                        livroEncontrado = true; // econtrar livro deixa verdadeiro
+                        break;
+                    }
+
+                }
+
+            }
+            if (!livroEncontrado) { // se livro nao foi encontrado nao tem como emprestar
+                System.out.println("Livro nao encontrado. livro nao emprestado.");
+                return;
+            }
+
+            // Remover os livro da lista de disponiveis 
+            for (Object key : keysToRemove) {
+                json.remove(key);
+            }
+
+            // subtrai numero de livros disponiveis
+            long numeroLivros = (long) json.get("Numero de Livros");
+            json.put("Numero de Livros", numeroLivros - 1);
+
+            // Escrever de volta no arquivo
+            try (FileWriter writer = new FileWriter(book_directory_available)) {
+                writer.write(json.toJSONString());
+            }
+        } catch (IOException | ParseException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    public static void GiveBackBook(String title, String name) { // devolve livro para blibioteca
+
+        // verificar se titulo esta emprestado para usuario 
+        // se sim ele adciona livro na lista de livros disponiveis 
+        //remove ele da lista de indisponiveis
+        JSONParser parser = new JSONParser();
+
+        try (FileReader reader = new FileReader(book_directory_unavailable)) {
+            // Ler o arquivo jsno existente
+
+            JSONObject json = (JSONObject) parser.parse(reader);
+            List<Object> keysToRemove = new ArrayList<>();
+            // Verifica se o título desejado está presente no JSON
+            boolean livroEncontrado = false;
+            for (Object key : json.keySet()) {
+                Object value = json.get(key);
+
+                if (value instanceof JSONObject) {
+                    JSONObject livro = (JSONObject) value;
+
+                    if (livro.get("title").equals(title) && livro.get("gripped").equals(name)) { // procura o titulo pertence ao usuario no momento
+                        System.out.println("Livro encontrado"+" livro foi emprestado para" + name);
+                        
+
+                        RemvBook(title, book_directory_unavailable);
+
+                        //coleta todos dados do livro
+                        String genre = (String) livro.get("genre");
+                        String isbn = (String) livro.get("isbn");
+                        String publishing_company = (String) livro.get("publishing_company");
+                        String author = (String) livro.get("author");
+                        String date_publishing = (String) livro.get("date_publishing");
+
+                        AddBook(title, author, genre, publishing_company, date_publishing, isbn, book_directory_available);
+
+                        livroEncontrado = true; // econtrar livro deixa verdadeiro
+                        break;
+                    }
+
+                }
+
+            }
+            if (!livroEncontrado) { // se livro nao foi encontrado avisa que livro no foi encontrado n subtrai nada
+                System.out.println("Livro não foi emprestado para" + name);
+                return;
+            }
+
+        } catch (IOException | ParseException e) {
+            e.printStackTrace();
+        }
+
+    }
+
     public Books(String title, String autor, String genre, String publishing_company, String date_publishing, String isbn) {
         this.title = title;
         this.autor = autor;
@@ -223,11 +419,8 @@ public class Books {
         this.date_publishing = date_publishing;
         this.isbn = isbn;
         CheckJsons();
-        AddBook(title,autor,genre,publishing_company,date_publishing,isbn,book_directory_available);
-                
+        AddBook(title, autor, genre, publishing_company, date_publishing, isbn, book_directory_available);
+
     }
 
-    
-    
-    
 }

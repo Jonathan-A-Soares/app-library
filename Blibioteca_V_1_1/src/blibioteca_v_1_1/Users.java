@@ -258,11 +258,10 @@ public class Users {
                                 //System.out.println("Senha inserida: " + password);
                                 //System.out.println("Senha correta: " + passDecrip);
                                 System.out.println("Aprovado");
-                                return true;//retorna true quando credencias corresponder co minserida   
-                              
-                              
-                               
-                            }else{System.out.println("Recusado Senha incorreta");
+                                return true;//retorna true quando credencias corresponder com as inserida   
+
+                            } else {
+                                System.out.println("Recusado Senha incorreta");
                                 return false;// returna falso pois senha incorreta
                             }//cas osenha esteja encorreta
                         } catch (Exception e) {
@@ -319,10 +318,11 @@ public class Users {
                                 System.out.println("Senha Altera com sucesso");
                             }
 
-                        }else{
-                        
+                        } else {
+
                             System.out.println("Numero telfone incorreto");
-                        return;}
+                            return;
+                        }
 
                         return; // Se encontrou o usuário, não precisa continuar procurando
                     }
