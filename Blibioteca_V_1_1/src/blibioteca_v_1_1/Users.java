@@ -12,7 +12,10 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -22,7 +25,11 @@ import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 import javax.crypto.Cipher;
 import java.util.Base64;
+import java.util.Calendar;
+import java.util.Date;
 import javax.crypto.spec.SecretKeySpec;
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
 
 /**
  *
@@ -51,6 +58,24 @@ public class Users {
         Users.CheckJsons();//verifica se os arquivos estao disponiveis
         Users.AddUser(name, phone_number, identification, password, permission);// cria usuario guarda no arquivo
 
+    }
+
+    private static String getDateTime() {
+        DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+        Date date = new Date();
+        return dateFormat.format(date);
+    }
+
+    private static String getDateTimeLend() {
+
+        DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+        Date date = new Date();
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(date);
+        calendar.add(Calendar.DAY_OF_MONTH, 10);
+        Date dataGiveback = calendar.getTime();
+
+        return dateFormat.format(dataGiveback);
     }
 
     public static void CheckJsons() { // verifica se arquivs de usuarios esta disponiviel se nao cria-os
@@ -135,6 +160,7 @@ public class Users {
             newUser.put("name", name);
             newUser.put("Phone", phone_number);
             newUser.put("permission", permission);
+            //newUser.put("titles_lends", new String[]{"a", "b"});
             try {
                 String passCrip = crip(password);
                 newUser.put("password", passCrip);
@@ -142,6 +168,11 @@ public class Users {
                 e.printStackTrace();
             }
 
+            JSONArray titlesArray = new JSONArray(); //cria array que via guarda os livros usurio ja pegou emprestado
+            titlesArray.add("");
+            
+
+            newUser.put("titles_lends", titlesArray);
             long numUsers = (long) json.get("Numero de Usuarios");
             json.put(numUsers + 1, newUser);
             json.put("Numero de Usuarios", numUsers + 1);
@@ -332,6 +363,50 @@ public class Users {
 
             System.out.println("Recusado Usuario nao existe");
             //System.out.println("Senha inserida: " + password);
+
+        } catch (IOException | ParseException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    public static void AddTitleUser(String name, String title) {
+
+        JSONParser parser = new JSONParser();
+
+        try (FileReader reader = new FileReader(user_directory)) {
+            // Ler o arquivo JSON existente
+
+            JSONObject json = (JSONObject) parser.parse(reader);
+
+            // Verifica se o usuario usuario ja existe e está presente no JSON
+            for (Object key : json.keySet()) {
+                Object value = json.get(key);
+
+                if (value instanceof JSONObject) {
+                    JSONObject user = (JSONObject) value;
+
+                    if (user.get("name").equals(name)) { // procura se usuario existe
+                        System.out.println("Usuario Encontrado Livro " + title + " adcionado ao historico do usuario");
+                        
+                        JSONObject bookHistory = new JSONObject();
+                        JSONArray titlesArray = (JSONArray) user.get("titles_lends");
+
+                        titlesArray.add(title);
+                        
+                        bookHistory.put("titles_lends", titlesArray);
+                        
+                        try ( // Escrever de volta no arquivo
+                                FileWriter writer = new FileWriter(user_directory)) {
+                            writer.write(json.toJSONString());
+                        }
+                        return; // Se encontrou o usuario, não precisa continuar procurando
+                    }
+
+                }
+
+            }
+            System.out.println("Usuario nao existe");
 
         } catch (IOException | ParseException e) {
             e.printStackTrace();
