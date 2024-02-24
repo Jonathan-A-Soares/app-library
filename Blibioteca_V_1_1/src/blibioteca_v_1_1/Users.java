@@ -99,7 +99,7 @@ public class Users {
             Write_File = new FileWriter(user_directory);
             Write_File.write(Content_json.toJSONString());
             Write_File.close();
-            System.out.println("Arquivo JSON User criado com sucesso!");
+            System.out.println("Arquivo JSON " + user_directory + " criado com sucesso!");
         } catch (IOException ex) {
             Logger.getLogger(Blibioteca_V_1_1.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -169,7 +169,7 @@ public class Users {
             }
 
             JSONArray titlesArray = new JSONArray(); //cria array que via guarda os livros usurio ja pegou emprestado
-            titlesArray.add("");
+            titlesArray.add("empy");
             
 
             newUser.put("titles_lends", titlesArray);
