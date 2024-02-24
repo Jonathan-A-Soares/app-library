@@ -4,6 +4,7 @@
  */
 package blibioteca_v_1_1;
 
+
 import org.json.simple.JSONObject;
 
 /**
@@ -15,7 +16,7 @@ public class Blibioteca_V_1_1 {
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) {
+    public static void main(String[] args)  {
         //Books.CheckJsons();
         //JSONObject boun = Books.ReadJsonBooksUnavailable();
         //JSONObject boav = Books.ReadJsonBooksAvailable();
@@ -28,7 +29,21 @@ public class Blibioteca_V_1_1 {
         Users.CheckJsons();
         //JSONObject users = Users.ReadJsonBooks();
         //System.out.println(users);
+        //Users.AddUser("Joo","3593598890","0345634","123456789",true);
         
+        //Adicionar usuários com diferentes papéis, incluindo administradores
+        //Users.AddUser("Maria", "987654321", "0456789", "987654321", false);
+        //Users.AddUser("Carlos", "123456789", "0123456", "123456789", true);
+        //Users.AddUser("Ana", "567890123", "0789012", "567890123", false);
+        //Users.AddUser("Pedro", "345678901", "0901234", "345678901", false);
+        //Users.AddUser("Laura", "234567890", "0567890", "234567890", true);
+        
+        Users.RemvUser("Pedro");
+          
+        
+        
+        
+
         
     }
 

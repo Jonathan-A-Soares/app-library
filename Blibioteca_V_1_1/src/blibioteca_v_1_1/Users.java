@@ -15,46 +15,50 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.text.PasswordView;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
+import javax.crypto.Cipher;
+import java.util.Base64;
+import javax.crypto.spec.SecretKeySpec;
 
 /**
  *
  * @author bruxo
  */
 public class Users {
-    
-    
+
     // Variaveis de Diretrio
-    public static String user_directory = "src/blibioteca_v_1_1/data_files/books.json";
-    
+    public static String user_directory = "src/blibioteca_v_1_1/data_files/users.json";
+
     private String name;
     private String phone_number;
     private String identification;
     private String password;
-    private String permission;
+    private boolean permission;
+    //criptografia para senha
+    private static final String chaveSecreta = "Poo20232Jas00013";
 
-    public Users(String name, String phone_number, String identification, String password, String permission) {
+    public Users(String name, String phone_number, String identification, String password, boolean permission) {
         this.name = name;
         this.phone_number = phone_number;
         this.identification = identification;
         this.password = password;
         this.permission = permission;
     }
-    
-    
+
     public static void CheckJsons() { // verifica se arquivs de usuarios esta disponiviel se nao cria-os
         File file_books_av = new File(user_directory);
         if (file_books_av.exists()) {// Verificar se o arquivo existe
             System.out.println("O arquivo " + user_directory + " existe!!!");
         } else {// se nao, cria-o
             WriteJsonClear();
-        } 
+        }
 
     }
 
-    public static void WriteJsonClear() { // Cria usuario de armazenar logins de usuarios disponiveis 
+    public static void WriteJsonClear() { // Cria usuario de armazenar logins de usuarios disponiveis
 
         FileWriter Write_File = null;
         JSONObject Content_json = new JSONObject();
@@ -80,8 +84,9 @@ public class Users {
         try {
             Content_json = (JSONObject) parser.parse(new FileReader(user_directory));
 
-            //System.out.println(Content_json);// Printa o conteudo do json de livros diponiveis
-            return Content_json; //retorna variavel com conteudo do json de livros diponiveis
+            // System.out.println(Content_json);// Printa o conteudo do json de livros
+            // diponiveis
+            return Content_json; // retorna variavel com conteudo do json de livros diponiveis
         } catch (ParseException e) {
             e.printStackTrace();
         } catch (FileNotFoundException e) {
@@ -89,136 +94,133 @@ public class Users {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return null; //retorna null caso de algu erro
+        return null; // retorna null caso de algu erro
 
     }
 
-    public static void AddUser(String title, String author,
-            String genre, String publishingCompany, String datePublishing, String isbn, String availability) {
+    public static void AddUser(String name, String phone_number, String identification, String password,
+            boolean permission) {
 
-        JSONParser parser = new JSONParser();
-
-        try (FileReader reader = new FileReader(availability)) {
-            // Ler o arquivo JSON existente
-
-            JSONObject json = (JSONObject) parser.parse(reader);
-
-            //Implementar quando o livro ja existir ele adicone quatidade +1 ussar title e autor para verificar se livro e igual
-            // Verifica se o título desejado está presente no JSON
-            for (Object key : json.keySet()) {
-                Object value = json.get(key);
-
-                if (value instanceof JSONObject) {
-                    JSONObject livro = (JSONObject) value;
-
-                    if (livro.get("title").equals(title)) { // procura o titulo do livro que vai ser escrito
-                        System.out.println("livro encontrado");
-
-                        // Atualizar a quantidade do livro existente
-                        long quantity = (long) livro.get("quantity");
-                        livro.put("quantity", quantity + 1);
-
-                        // Atualizar o número total de livros
-                        long numeroLivros = (long) json.get("Numero de Livros");
-                        json.put("Numero de Livros", numeroLivros + 1);
-                        try ( // Escrever de volta no arquivo
-                                FileWriter writer = new FileWriter(availability)) {
-                            writer.write(json.toJSONString());
-                        }
-                        return; // Se encontrou o livro, não precisa continuar procurando
-
-                    }
-
-                }
-
-            }
-            System.out.println("Livro Nao encontrado");
-            // Criar um novo livro
-
-            JSONObject novoLivro = new JSONObject();
-            novoLivro.put("title", title);
-            novoLivro.put("author", author);
-            novoLivro.put("genre", genre);
-            novoLivro.put("publishing_company", publishingCompany);
-            novoLivro.put("date_publishing", datePublishing);
-            novoLivro.put("isbn", isbn);
-            novoLivro.put("quantity", 1);
-
-            long numeroLivros = (long) json.get("Numero de Livros");
-            json.put(numeroLivros + 1, novoLivro);
-            json.put("Numero de Livros", numeroLivros + 1);
-
-            try ( // Escrever de volta no arquivo
-                    FileWriter writer = new FileWriter(availability)) {
-                writer.write(json.toJSONString());
-            }
-
-            System.out.println("Livro criado com sucesso!");
-        } catch (IOException | ParseException e) {
-            e.printStackTrace();
-        }
-    }
-
-    public static void RemvUser(String name) {
         JSONParser parser = new JSONParser();
 
         try (FileReader reader = new FileReader(user_directory)) {
             // Ler o arquivo JSON existente
 
             JSONObject json = (JSONObject) parser.parse(reader);
-            List<Object> keysToRemove = new ArrayList<>();
-            // Verifica se o título desejado está presente no JSON
-            boolean livroEncontrado = false;
+
+            // Verifica se o usuario usuario ja existe e está presente no JSON
             for (Object key : json.keySet()) {
                 Object value = json.get(key);
 
                 if (value instanceof JSONObject) {
                     JSONObject livro = (JSONObject) value;
 
-                    if (livro.get("title").equals(name)) { // procura o titulo do livro que vai ser removido
-                        System.out.println("Livro encontrado");
-
-                        long quantity = (long) livro.get("quantity");// coleta quantidade de livros com este titulo tem
-
-                        if (quantity == 1) {// se qauntidade for apena 1 remove livro
-                            // Remover o livro do JSON existente
-                            keysToRemove.add(key);
-                            System.out.println("Removido o livro");
-                        } else {
-                            System.out.println("Removido um livro");
-                            livro.put("quantity", quantity - 1); // subtrai numeor de livros na pilha
-
-                        }
-
-                        livroEncontrado = true; // econtrar livro deixa verdadeiro
-                        break;
+                    if (livro.get("name").equals(name)) { // procura se usuario ja existe
+                        System.out.println("Usuario " + name + " ja existe");
+                        return; // Se encontrou o usuario, não precisa continuar procurando
                     }
 
                 }
 
             }
-            if (!livroEncontrado) { // se livro nao foi encontrado avisa que livro no foi encontrado n subtrai nada
-                System.out.println("Livro não encontrado. Nada foi removido.");
-                return;
+
+            //System.out.println("Usuario " + name + " Nao existe");
+            // Criar um novo usuario
+            JSONObject newUser = new JSONObject();
+            newUser.put("name", name);
+            newUser.put("Phone", phone_number);
+            newUser.put("permission", permission);
+            try {
+                String senhaCriptografada = crip(password);
+                newUser.put("password", senhaCriptografada);
+            } catch (Exception e) {
+                e.printStackTrace();
             }
-            // Remover os livros encontrados 
+
+            long numUsers = (long) json.get("Numero de Usuarios");
+            json.put(numUsers + 1, newUser);
+            json.put("Numero de Usuarios", numUsers + 1);
+
+            try ( // Escrever de volta no arquivo
+                    FileWriter writer = new FileWriter(user_directory)) {
+                writer.write(json.toJSONString());
+            }
+            System.out.println("Usuario " + name + " Criado");
+        } catch (IOException | ParseException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    public static void RemvUser(String name) {
+    JSONParser parser = new JSONParser();
+
+    try (FileReader reader = new FileReader(user_directory)) {
+        // Ler o arquivo JSON existente
+        JSONObject json = (JSONObject) parser.parse(reader);
+        List<Object> keysToRemove = new ArrayList<>();
+
+        // Verifica se o usuário desejado está presente no JSON
+        boolean userEncontrado = false;
+        for (Object key : json.keySet()) {
+            Object value = json.get(key);
+
+            if (value instanceof JSONObject) {
+                JSONObject user = (JSONObject) value;
+
+                if (user.get("name").equals(name)) { // procura o usuário que vai ser removido
+                    System.out.println("Usuário "+ name +" encontrado");
+
+                    // Adiciona a chave do usuário encontrado à lista de chaves para remoção
+                    keysToRemove.add(key);
+                    userEncontrado = true;
+                }
+            }
+        }
+
+        if (userEncontrado) {
+            // Remove os usuários encontrados
             for (Object key : keysToRemove) {
                 json.remove(key);
             }
 
-            // subtrai numero de livros 
-            long numeroLivros = (long) json.get("Numero de Livros");
-            json.put("Numero de Livros", numeroLivros - 1);
+            // Subtrai número de usuários
+            long numUsers = (long) json.get("Numero de Usuarios");
+            json.put("Numero de Usuarios", numUsers - 1);
 
             try (FileWriter writer = new FileWriter(user_directory)) {
-                writer.write(json.toJSONString());// Escrever de volta no arquivo
+                writer.write(json.toJSONString()); // Escrever de volta no arquivo
             }
-        } catch (IOException | ParseException e) {
-            e.printStackTrace();
+        } else {
+            System.out.println("Usuário não encontrado. Nada foi removido.");
         }
+
+    } catch (IOException | ParseException e) {
+        e.printStackTrace();
+    }
+}
+
+
+    private static String crip(String pass) throws Exception {
+        Cipher cifra = Cipher.getInstance("AES");
+        SecretKeySpec key = new SecretKeySpec(chaveSecreta.getBytes(), "AES");
+        cifra.init(Cipher.ENCRYPT_MODE, key);
+
+        byte[] passBytes = pass.getBytes();
+        byte[] passCrip = cifra.doFinal(passBytes);
+
+        return Base64.getEncoder().encodeToString(passCrip);
     }
 
-    
-    
-    
+    private static String decrip(String passCrip) throws Exception {
+        Cipher cifra = Cipher.getInstance("AES");
+        SecretKeySpec key = new SecretKeySpec(chaveSecreta.getBytes(), "AES");
+        cifra.init(Cipher.DECRYPT_MODE, key);
+
+        byte[] passCripBytes = Base64.getDecoder().decode(passCrip);
+        byte[] passDecrip = cifra.doFinal(passCripBytes);
+
+        return new String(passDecrip);
+    }
+
 }
