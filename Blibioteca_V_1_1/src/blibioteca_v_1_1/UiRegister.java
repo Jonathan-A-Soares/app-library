@@ -4,6 +4,8 @@
  */
 package blibioteca_v_1_1;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author bruxo
@@ -15,6 +17,7 @@ public class UiRegister extends javax.swing.JFrame {
      */
     public UiRegister() {
         initComponents();
+        setResizable(false); //desabilitar o redimensionamento
     }
 
     /**
@@ -30,18 +33,19 @@ public class UiRegister extends javax.swing.JFrame {
         jTextField1 = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         jTextField2 = new javax.swing.JTextField();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        jTextField3 = new javax.swing.JTextField();
-        jLabel6 = new javax.swing.JLabel();
-        jTextField4 = new javax.swing.JTextField();
-        jTextField5 = new javax.swing.JTextField();
-        jLabel7 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jTextField6 = new javax.swing.JTextField();
-        jLabel8 = new javax.swing.JLabel();
+        Registrar = new javax.swing.JLabel();
+        Prencha = new javax.swing.JLabel();
+        Nome = new javax.swing.JLabel();
+        inputName = new javax.swing.JTextField();
+        phone = new javax.swing.JLabel();
+        inputPhone = new javax.swing.JTextField();
+        inputIndent = new javax.swing.JTextField();
+        identification = new javax.swing.JLabel();
+        btn_login = new javax.swing.JButton();
+        btn_register = new javax.swing.JButton();
+        inputPassword = new javax.swing.JTextField();
+        password = new javax.swing.JLabel();
+        radioAdm = new javax.swing.JRadioButton();
 
         jLabel2.setText("Nome ");
 
@@ -49,27 +53,34 @@ public class UiRegister extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabel4.setText("Registrar");
+        Registrar.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        Registrar.setText("Registrar");
 
-        jLabel1.setText("Prencha os campos abaixo.");
+        Prencha.setText("Prencha os campos abaixo.");
 
-        jLabel5.setText("Nome :");
+        Nome.setText("Nome :");
 
-        jLabel6.setText("Telefone:");
+        phone.setText("Telefone:");
 
-        jLabel7.setText("NU");
+        identification.setText("Número identificador");
 
-        jButton1.setText("Entrar");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btn_login.setText("Entrar");
+        btn_login.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btn_loginActionPerformed(evt);
             }
         });
 
-        jButton2.setText("Registrar");
+        btn_register.setText("Registrar");
+        btn_register.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_registerActionPerformed(evt);
+            }
+        });
 
-        jLabel8.setText("Senha:");
+        password.setText("Senha:");
+
+        radioAdm.setText("Adminitrador");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -78,59 +89,87 @@ public class UiRegister extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(101, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel8)
-                    .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel7)
-                    .addComponent(jLabel6)
-                    .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel5)
-                    .addComponent(jLabel1)
-                    .addComponent(jLabel4)
-                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(password)
+                    .addComponent(inputPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(identification)
+                    .addComponent(phone)
+                    .addComponent(inputPhone, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Nome)
+                    .addComponent(Prencha)
+                    .addComponent(Registrar)
+                    .addComponent(inputName, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                         .addGroup(layout.createSequentialGroup()
-                            .addComponent(jButton1)
+                            .addComponent(radioAdm)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButton2))
-                        .addComponent(jTextField5, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(btn_register))
+                        .addComponent(inputIndent, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(91, 91, 91))
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(btn_login)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(17, 17, 17)
-                .addComponent(jLabel4)
+                .addComponent(Registrar)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel1)
+                .addComponent(Prencha)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel5)
+                .addComponent(Nome)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(inputName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel6)
+                .addComponent(phone)
                 .addGap(2, 2, 2)
-                .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(inputPhone, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel7)
+                .addComponent(identification)
                 .addGap(2, 2, 2)
-                .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(inputIndent, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
-                .addComponent(jLabel8)
+                .addComponent(password)
                 .addGap(2, 2, 2)
-                .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(inputPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2))
-                .addGap(40, 40, 40))
+                    .addComponent(btn_register)
+                    .addComponent(radioAdm))
+                .addGap(11, 11, 11)
+                .addComponent(btn_login)
+                .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+    private void btn_loginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_loginActionPerformed
+        setVisible(false);
+        new UiLogin().setVisible(true);
+    }//GEN-LAST:event_btn_loginActionPerformed
+
+    private void btn_registerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_registerActionPerformed
+        //System.out.println("Apertou");
+        String name = inputName.getText();
+        String phone = inputPhone.getText();
+        String ident = inputIndent.getText();
+        String pass = inputPassword.getText();
+        boolean adm = radioAdm.isSelected();
+        
+        
+        if(name.isEmpty() | phone.isEmpty() | ident.isEmpty() | pass.isEmpty()){ //trata erro se tiver algun campo vazio
+            System.err.println("Prencha todos os campos");
+            JOptionPane.showMessageDialog(null, "Prencha todos os campos ", "Erro Ao registrar",JOptionPane.ERROR_MESSAGE);
+            return;
+        }else{
+            Users User = new Users(name, phone, ident, pass, adm);
+        }
+        
+        
+        
+    }//GEN-LAST:event_btn_registerActionPerformed
 
     /**
      * @param args the command line arguments
@@ -168,21 +207,22 @@ public class UiRegister extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel Nome;
+    private javax.swing.JLabel Prencha;
+    private javax.swing.JLabel Registrar;
+    private javax.swing.JButton btn_login;
+    private javax.swing.JButton btn_register;
+    private javax.swing.JLabel identification;
+    private javax.swing.JTextField inputIndent;
+    private javax.swing.JTextField inputName;
+    private javax.swing.JTextField inputPassword;
+    private javax.swing.JTextField inputPhone;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField5;
-    private javax.swing.JTextField jTextField6;
+    private javax.swing.JLabel password;
+    private javax.swing.JLabel phone;
+    private javax.swing.JRadioButton radioAdm;
     // End of variables declaration//GEN-END:variables
 }

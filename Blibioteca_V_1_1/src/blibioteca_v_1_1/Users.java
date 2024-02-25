@@ -28,6 +28,7 @@ import java.util.Base64;
 import java.util.Calendar;
 import java.util.Date;
 import javax.crypto.spec.SecretKeySpec;
+import javax.swing.JOptionPane;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
@@ -81,7 +82,7 @@ public class Users {
     public static void CheckJsons() { // verifica se arquivs de usuarios esta disponiviel se nao cria-os
         File file_books_av = new File(user_directory);
         if (file_books_av.exists()) {// Verificar se o arquivo existe
-            System.out.println("O arquivo " + user_directory + " existe!!!");
+            System.out.println("\u001B[33m"+"O arquivo " + user_directory + " existe!!!");
         } else {// se nao, cria-o
             WriteJsonClear();
         }
@@ -146,7 +147,9 @@ public class Users {
                     JSONObject livro = (JSONObject) value;
 
                     if (livro.get("name").equals(name)) { // procura se usuario ja existe
-                        System.out.println("Usuario " + name + " ja existe");
+                        System.out.println("\u001B[31m"+"Usuario " + name + " ja existe");
+                        JOptionPane.showMessageDialog(null, "Usuario " + name + " ja existe ", "Registro",JOptionPane.ERROR_MESSAGE);
+                        
                         return; // Se encontrou o usuario, não precisa continuar procurando
                     }
 
@@ -183,7 +186,7 @@ public class Users {
                     FileWriter writer = new FileWriter(user_directory)) {
                 writer.write(json.toJSONString());
             }
-            System.out.println("Usuario " + name + " Criado");
+            System.out.println("\u001B[32m"+"Usuario " + name + " Criado");
         } catch (IOException | ParseException e) {
             e.printStackTrace();
         }
@@ -280,7 +283,7 @@ public class Users {
                     JSONObject users = (JSONObject) value;
 
                     if (users.get("name").equals(name)) { // procura o usuário 
-                        System.out.println("Usuário " + name + " existe");
+                        //System.out.println("Usuário " + name + " existe");
 
                         // Coleta senha
                         encripPass = (String) users.get("password");
@@ -290,11 +293,12 @@ public class Users {
                             if (password.equals(passDecrip)) {//caso senha estaja correta
                                 //System.out.println("Senha inserida: " + password);
                                 //System.out.println("Senha correta: " + passDecrip);
-                                System.out.println("Aprovado");
+                                System.out.println("\u001B[32m"+"Aprovado");
+                                
                                 return true;//retorna true quando credencias corresponder com as inserida   
 
                             } else {
-                                System.out.println("Recusado Senha incorreta");
+                                System.out.println("\u001B[31m"+"Recusado Senha incorreta");
                                 return false;// returna falso pois senha incorreta
                             }//cas osenha esteja encorreta
                         } catch (Exception e) {
@@ -306,7 +310,7 @@ public class Users {
                 }
             }
 
-            System.out.println("Recusado Usuario nao existe");
+            System.out.println("\u001B[31m"+"Recusado Usuario nao existe");
             //System.out.println("Senha inserida: " + password);
 
             return false;

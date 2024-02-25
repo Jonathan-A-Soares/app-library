@@ -60,13 +60,13 @@ public class Books {
     public static void CheckJsons() { // verifica se todos arqquivos de livros estao disponivie se nao cria-os
         File file_books_av = new File(book_directory_available);
         if (file_books_av.exists()) {// Verificar se o arquivo existe
-            System.out.println("O arquivo " + book_directory_available + " existe!!!");
+            System.out.println("\u001B[33m"+"O arquivo " + book_directory_available + " existe!!!");
         } else {
             WriteJsonClear(book_directory_available);
         } // se nao cham funçao pra cria-lo
         File file_books_un = new File(book_directory_unavailable);
         if (file_books_un.exists()) {// Verificar se o arquivo de livros indisponiveis existe existe
-            System.out.println("O arquivo " + book_directory_unavailable + " existe!!!");
+            System.out.println("\u001B[33m"+"O arquivo " + book_directory_unavailable + " existe!!!");
         } else {
             WriteJsonClear(book_directory_unavailable);
         } // se nao cham funçao pra cria-lo
