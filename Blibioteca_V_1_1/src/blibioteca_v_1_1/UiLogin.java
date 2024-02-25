@@ -158,16 +158,21 @@ public class UiLogin extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Prencha todos os campos ", "Erro ao entrar", JOptionPane.ERROR_MESSAGE);
 
         } else {
-            boolean auth = Users.Authentic(name, pass);// retorna true se autorizado e false se nao autorizado
+            String auth = Users.Authentic(name, pass);// retorna poo_06 se autorizado e poo_007 se nao autorizado
 
             //ACRESENTAr logica quando usuario for autenticado
-            if (auth) {
-                System.out.println("\u001B[32m"+"login efetuado com sucesso!");
+            if (auth.equals("poo_07")) {
+                //System.err.println(auth);
+                Users.verErr(auth);
+                JOptionPane.showMessageDialog(null, "Credeciais Errada", "Erro ao entrar", JOptionPane.ERROR_MESSAGE);
+            } else if (auth.equals("poo_06")) {
+                //System.out.println("\u001B[32m"+"login efetuado com sucesso!");
+                Users.verErr(auth);
                 System.exit(0);
                 
-            } else {
-                System.err.println(auth);
-                JOptionPane.showMessageDialog(null, "Credeciais Errada", "Erro ao entrar", JOptionPane.ERROR_MESSAGE);
+            }else {
+                System.out.println("\u001B[31m"+"Erro inesperado "+auth);
+                Users.verErr(auth);
             }
         }
 
