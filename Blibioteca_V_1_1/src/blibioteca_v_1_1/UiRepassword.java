@@ -4,6 +4,7 @@
  */
 package blibioteca_v_1_1;
 
+import java.awt.Color;
 import javax.swing.JOptionPane;
 
 /**
@@ -40,6 +41,7 @@ public class UiRepassword extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         inputPhone = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
+        event = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -81,7 +83,6 @@ public class UiRepassword extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(0, 111, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(bnt_RedefinirSenha)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(filler2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -92,7 +93,9 @@ public class UiRepassword extends javax.swing.JFrame {
                             .addComponent(jLabel2)
                             .addComponent(jLabel4)
                             .addComponent(jLabel5)
-                            .addComponent(inputPhone, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(inputPhone, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(event)))
+                    .addComponent(bnt_RedefinirSenha))
                 .addGap(133, 133, 133))
         );
         layout.setVerticalGroup(
@@ -126,7 +129,9 @@ public class UiRepassword extends javax.swing.JFrame {
                 .addComponent(inputNewPass, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(bnt_RedefinirSenha)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 42, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
+                .addComponent(event)
+                .addGap(10, 10, 10)
                 .addComponent(jButton1)
                 .addContainerGap())
         );
@@ -138,10 +143,12 @@ public class UiRepassword extends javax.swing.JFrame {
         String name = inputName.getText();
         String phone = inputPhone.getText();
         String newPass = inputNewPass.getText();
+        event.setForeground(Color.red);
 
         if (name.isEmpty() | phone.isEmpty() | newPass.isEmpty()) {
-            System.out.println("\u001B[31m" + "Prencha todos os campos");
-            JOptionPane.showMessageDialog(null, "Prencha todos os campos ", "Erro ao recriar senha", JOptionPane.ERROR_MESSAGE);
+           // System.out.println("\u001B[31m" + "Prencha todos os campos");
+            //JOptionPane.showMessageDialog(null, "Prencha todos os campos ", "Erro ao recriar senha", JOptionPane.ERROR_MESSAGE);
+            event.setText("Prencha todos os campos");
         } else {
            
 
@@ -150,14 +157,17 @@ public class UiRepassword extends javax.swing.JFrame {
             if (rePass.equals("poo_05") | rePass.equals("poo_02")) {
                 //System.err.println(rePass);
                 Users.verErr(rePass); //funçao que printa retorno da funçao
-                JOptionPane.showMessageDialog(null, "Telefone ou nome de usuario nao corresponde com cadastro", "Redefinir senha", JOptionPane.ERROR_MESSAGE);
+                //JOptionPane.showMessageDialog(null, "Telefone ou nome de usuario nao corresponde com cadastro", "Redefinir senha", JOptionPane.ERROR_MESSAGE);
+                event.setText("Telefone ou nome de usuario nao corresponde com cadastro");
             } else if (rePass.equals("poo_04")) {
                 //System.out.println("\u001B[32m"+"login efetuado com sucesso!");
                 Users.verErr(rePass);//funçao que printa retorno da funçao
-                JOptionPane.showMessageDialog(null, "Senha redefinida com sucesso", "Redefinir senha", JOptionPane.PLAIN_MESSAGE);
+               //JOptionPane.showMessageDialog(null, "Senha redefinida com sucesso", "Redefinir senha", JOptionPane.PLAIN_MESSAGE);
+                event.setText("Senha redefinida com sucesso");
 
             } else {
                 //System.out.println("\u001B[31m"+"Erro inesperado "+rePass);
+                event.setText(rePass);
                 Users.verErr(rePass);
             }
 
@@ -207,6 +217,7 @@ public class UiRepassword extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton bnt_RedefinirSenha;
+    private javax.swing.JLabel event;
     private javax.swing.Box.Filler filler1;
     private javax.swing.Box.Filler filler2;
     private javax.swing.JTextField inputName;

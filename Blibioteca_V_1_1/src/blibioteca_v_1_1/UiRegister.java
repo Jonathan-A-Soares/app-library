@@ -4,6 +4,7 @@
  */
 package blibioteca_v_1_1;
 
+import java.awt.Color;
 import javax.swing.JOptionPane;
 
 /**
@@ -46,6 +47,7 @@ public class UiRegister extends javax.swing.JFrame {
         inputPassword = new javax.swing.JTextField();
         password = new javax.swing.JLabel();
         radioAdm = new javax.swing.JRadioButton();
+        event = new javax.swing.JLabel();
 
         jLabel2.setText("Nome ");
 
@@ -87,8 +89,11 @@ public class UiRegister extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(101, Short.MAX_VALUE)
+                .addContainerGap()
+                .addComponent(btn_login)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 23, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(event)
                     .addComponent(password)
                     .addComponent(inputPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(identification)
@@ -105,10 +110,6 @@ public class UiRegister extends javax.swing.JFrame {
                             .addComponent(btn_register))
                         .addComponent(inputIndent, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(91, 91, 91))
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(btn_login)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -137,8 +138,13 @@ public class UiRegister extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btn_register)
                     .addComponent(radioAdm))
-                .addGap(11, 11, 11)
-                .addComponent(btn_login)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(11, 11, 11)
+                        .addComponent(btn_login))
+                    .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(event)))
                 .addContainerGap())
         );
 
@@ -157,11 +163,12 @@ public class UiRegister extends javax.swing.JFrame {
         String ident = inputIndent.getText();
         String pass = inputPassword.getText();
         boolean adm = radioAdm.isSelected();
-        
+        event.setForeground(Color.red);
         
         if(name.isEmpty() | phone.isEmpty() | ident.isEmpty() | pass.isEmpty()){ //trata erro se tiver algun campo vazio
             System.err.println("Prencha todos os campos");
-            JOptionPane.showMessageDialog(null, "Prencha todos os campos ", "Erro Ao registrar",JOptionPane.ERROR_MESSAGE);
+            //JOptionPane.showMessageDialog(null, "Prencha todos os campos ", "Erro Ao registrar",JOptionPane.ERROR_MESSAGE);
+            event.setText("Prencha todos os campos");
             return;
         }else{
             
@@ -170,14 +177,18 @@ public class UiRegister extends javax.swing.JFrame {
         if (reAddUser.equals("poo_09")) {
             //System.err.println(reAddUser);
             Users.verErr(reAddUser); //funçao que printa retorno da funçao
-            JOptionPane.showMessageDialog(null, "Usuario com mesmo nome ja existe", "Registrar novo usuario", JOptionPane.ERROR_MESSAGE);
+            //JOptionPane.showMessageDialog(null, "Usuario com mesmo nome ja existe", "Registrar novo usuario", JOptionPane.ERROR_MESSAGE);
+            
+            event.setText("Usuario com mesmo nome ja existe");
         } else if (reAddUser.equals("poo_10")) {
             //System.out.println("\u001B[32m"+"login efetuado com sucesso!");
             Users.verErr(reAddUser);//funçao que printa retorno da funçao
-            JOptionPane.showMessageDialog(null, "Usuario criado com sucesso", "Registrar novo usuario", JOptionPane.PLAIN_MESSAGE);
-
+            //JOptionPane.showMessageDialog(null, "Usuario criado com sucesso", "Registrar novo usuario", JOptionPane.PLAIN_MESSAGE);
+            
+            event.setText("Usuario criado com sucesso");
         } else {
             //System.out.println("\u001B[31m"+"Erro inesperado "+reAddUser);
+            event.setText(reAddUser);
             Users.verErr(reAddUser);
         }
         }
@@ -227,6 +238,7 @@ public class UiRegister extends javax.swing.JFrame {
     private javax.swing.JLabel Registrar;
     private javax.swing.JButton btn_login;
     private javax.swing.JButton btn_register;
+    private javax.swing.JLabel event;
     private javax.swing.JLabel identification;
     private javax.swing.JTextField inputIndent;
     private javax.swing.JTextField inputName;

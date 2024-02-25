@@ -4,6 +4,7 @@
  */
 package blibioteca_v_1_1;
 
+import java.awt.Color;
 import java.io.Closeable;
 import javax.swing.JOptionPane;
 
@@ -42,6 +43,7 @@ public class UiLogin extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         jLabel7 = new javax.swing.JLabel();
+        event = new javax.swing.JLabel();
 
         jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel5.setText("Bem Vindo");
@@ -57,6 +59,12 @@ public class UiLogin extends javax.swing.JFrame {
 
         login.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         login.setText("Login");
+
+        inputName.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                inputNameActionPerformed(evt);
+            }
+        });
 
         name.setText("Nome :");
 
@@ -87,20 +95,9 @@ public class UiLogin extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+            .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(0, 121, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(bnt_entrar)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(senha)
-                                .addComponent(inputpPass, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(inputName, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(name)
-                                .addComponent(login)))
-                        .addGap(123, 123, 123))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(jButton1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -109,11 +106,25 @@ public class UiLogin extends javax.swing.JFrame {
                         .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel7)
-                        .addGap(9, 9, 9))))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(bemvindo)
-                .addGap(153, 153, 153))
+                        .addGap(9, 9, 9))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(0, 121, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(bemvindo)
+                                .addGap(153, 153, 153))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                        .addComponent(bnt_entrar)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(senha)
+                                            .addComponent(inputpPass, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(inputName, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addComponent(name)
+                                    .addComponent(login)
+                                    .addComponent(event))
+                                .addGap(123, 123, 123))))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -124,25 +135,24 @@ public class UiLogin extends javax.swing.JFrame {
                 .addComponent(login)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(name)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(inputName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(18, 18, 18)
+                .addComponent(senha)
+                .addGap(2, 2, 2)
+                .addComponent(inputpPass, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(bnt_entrar)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
+                .addComponent(event)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(121, 121, 121)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jButton1)
-                            .addComponent(jButton3)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(senha)
-                        .addGap(2, 2, 2)
-                        .addComponent(inputpPass, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(bnt_entrar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel1)
-                            .addComponent(jLabel7))))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jButton1)
+                        .addComponent(jButton3))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel1)
+                        .addComponent(jLabel7)))
                 .addContainerGap())
         );
 
@@ -152,11 +162,12 @@ public class UiLogin extends javax.swing.JFrame {
     private void bnt_entrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bnt_entrarActionPerformed
         String name = inputName.getText();
         String pass = inputpPass.getText();
+        event.setForeground(Color.red);
 
         if (name.isEmpty() | pass.isEmpty()) { // verifica se tem algum campo em branco
-            System.out.println("\u001B[31m" + "Prencha todos os campos");
-            JOptionPane.showMessageDialog(null, "Prencha todos os campos ", "Erro ao entrar", JOptionPane.ERROR_MESSAGE);
-
+            //System.out.println("\u001B[31m" + "Prencha todos os campos");
+            //JOptionPane.showMessageDialog(null, "Prencha todos os campos ", "Erro ao entrar", JOptionPane.ERROR_MESSAGE);
+            event.setText("Prencha todos os campos");
         } else { //todos campos estao prenchidos
             String auth = Users.Authentic(name, pass);// retorna poo_06 se autorizado e poo_007 se nao autorizado
 
@@ -164,7 +175,8 @@ public class UiLogin extends javax.swing.JFrame {
             if (auth.equals("poo_07") | auth.equals("poo_02")) {
                 //System.err.println(auth);
                 Users.verErr(auth); //funçao que printa retorno da funçao
-                JOptionPane.showMessageDialog(null, "Credeciais Errada", "Erro ao entrar", JOptionPane.ERROR_MESSAGE);
+                //JOptionPane.showMessageDialog(null, "Credeciais Errada", "Erro ao entrar", JOptionPane.ERROR_MESSAGE);
+                event.setText("Credeciais Errada");
             } else if (auth.equals("poo_06")) {
                 //System.out.println("\u001B[32m"+"login efetuado com sucesso!");
                 Users.verErr(auth);//funçao que printa retorno da funçao
@@ -172,6 +184,7 @@ public class UiLogin extends javax.swing.JFrame {
 
             } else {
                 //System.out.println("\u001B[31m"+"Erro inesperado "+auth);
+                event.setText(auth);
                 Users.verErr(auth);
             }
         }
@@ -187,6 +200,10 @@ public class UiLogin extends javax.swing.JFrame {
         setVisible(false);
         new UiRepassword().setVisible(true);
     }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void inputNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inputNameActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_inputNameActionPerformed
 
     /**
      * @param args the command line arguments
@@ -226,6 +243,7 @@ public class UiLogin extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel bemvindo;
     private javax.swing.JButton bnt_entrar;
+    private javax.swing.JLabel event;
     private javax.swing.JTextField inputName;
     private javax.swing.JTextField inputpPass;
     private javax.swing.JButton jButton1;

@@ -437,4 +437,38 @@ public class Books {
 
     }
 
+    public static void verErr(String retun_in) {
+
+        switch (retun_in) {
+            case "poo_14":
+                System.out.println("\u001B[33m" + "poo_14: Livro nao encontrado..");
+                break;
+            case "poo_15":
+                System.out.println("\u001B[31m" + "poo_15: Livro foi devolvido.");
+                break;
+            case "poo_16":
+                System.out.println("\u001B[32m" + "poo_16: livro emprestado com sucesso.");
+                break;
+            case "poo_17":
+                System.out.println("\u001B[32m" + "poo_17: Livro removido com sucesso blibioteca.");
+                break;
+            case "poo_18":
+                System.out.println("\u001B[31m" + "poo_18: Livro adicionado a blibioteca.");
+                break;
+            case "poo_19":
+                System.out.println("\u001B[32m" + "poo_19: Arquivo JSON de livros criado com sucesso.");
+                break;
+            case "poo_20":
+                System.out.println("\u001B[31m" + "poo_20: Arquivo JSON de livros disponiveis existe.");
+                break;
+            case "poo_21":
+                System.out.println("\u001B[32m" + "poo_21: Arquivo JSON de livros indisponiveis existe..");
+                break;
+            
+            default:
+                System.out.println("\u001B[31m" + "Código de erro não reconhecido.");
+        }
+    }
+    
+    
 }
