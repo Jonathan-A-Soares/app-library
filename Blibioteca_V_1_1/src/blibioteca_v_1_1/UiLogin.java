@@ -180,7 +180,10 @@ public class UiLogin extends javax.swing.JFrame {
             } else if (auth.equals("poo_06")) {
                 //System.out.println("\u001B[32m"+"login efetuado com sucesso!");
                 Users.verErr(auth);//funçao que printa retorno da funçao
-                System.exit(0); // no momento finaliza progama
+                //System.exit(0); // no momento finaliza progama
+                setVisible(false);
+                new UiHome(name).setVisible(true);
+                
 
             } else {
                 //System.out.println("\u001B[31m"+"Erro inesperado "+auth);

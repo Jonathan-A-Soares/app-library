@@ -48,7 +48,11 @@ public class Blibioteca_V_1_1 {
         
         //Users.AddTitleUser("Carlo Santos", "O Diário de Anne Frank"); // adciona livro historico do usuario
         
-        new UiLogin().setVisible(true);
+        new UiLogin().setVisible(true);//----------------------------------------------------------------------------------------
+        
+        //Users.DateUser("adm");
+        //String re = Users.EspecificDateUser("adm", "Phone");
+        //System.out.println(re);
         
         
     }

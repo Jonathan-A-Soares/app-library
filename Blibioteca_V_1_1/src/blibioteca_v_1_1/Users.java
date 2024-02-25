@@ -59,11 +59,9 @@ public class Users {
         Users.CheckJsons();//verifica se os arquivos estao disponiveis
         String reAddUser = Users.AddUser(name, phone_number, identification, password, permission);// cria usuario guarda no arquivo
 
-        
-
     }
 
-    private static String getDateTime() {
+    public static String getDateTime() {
         DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
         Date date = new Date();
         return dateFormat.format(date);
@@ -478,6 +476,76 @@ public class Users {
             default:
                 System.out.println("\u001B[31m" + "Código de erro não reconhecido.");
         }
+    }
+
+    public static JSONObject DateUser(String name) {
+        JSONParser parser = new JSONParser();
+
+        try (FileReader reader = new FileReader(user_directory)) {
+            // Ler o arquivo JSON existente
+            JSONObject json = (JSONObject) parser.parse(reader);
+            List<Object> keysToRemove = new ArrayList<>();
+
+            // Verifica se o usuário desejado está presente no JSON
+            boolean userEncontrado = false;
+            for (Object key : json.keySet()) {
+                Object value = json.get(key);
+
+                if (value instanceof JSONObject) {
+                    JSONObject DateUser = (JSONObject) value;
+
+                    if (DateUser.get("name").equals(name)) { // procura o usuário que vai ser removido
+                        System.out.println(DateUser);
+
+                        return DateUser;
+                    }
+                }
+            }
+
+            //System.out.println("Usuário " + name + " não encontrado. Nada foi removido.");
+        } catch (IOException | ParseException e) {
+            e.printStackTrace();
+        }
+        return null;
+
+    }
+
+    public static String EspecificDateUser(String name, String especifc) {
+        JSONParser parser = new JSONParser();
+
+        try (FileReader reader = new FileReader(user_directory)) {
+            // Ler o arquivo JSON existente
+            JSONObject json = (JSONObject) parser.parse(reader);
+            List<Object> keysToRemove = new ArrayList<>();
+
+            // Verifica se o usuário desejado está presente no JSON
+            boolean userEncontrado = false;
+            for (Object key : json.keySet()) {
+                Object value = json.get(key);
+
+                if (value instanceof JSONObject) {
+                    JSONObject DateUser = (JSONObject) value;
+
+                    if (DateUser.get("name").equals(name)) { // procura o usuário 
+                        if (especifc.equals("permission")) {
+                            boolean especifDateuser = (boolean) DateUser.get(especifc);
+                            String especifDateuserbolen = Boolean.toString(especifDateuser);
+                            return especifDateuserbolen;
+                        } else {
+                            String especifDateuser = (String) DateUser.get(especifc);//retona a informaçao especifica do usuario solicitada
+                            //System.out.println(DateUser);
+                            return especifDateuser;
+                        }
+                    }
+                }
+            }
+
+            System.out.println("Usuário " + name + " não encontrado.");
+        } catch (IOException | ParseException e) {
+            e.printStackTrace();
+        }
+        return null;
+
     }
 
 }
