@@ -57,23 +57,26 @@ public class Books {
         return dateFormat.format(dataGiveback);
     }
 
-    public static void CheckJsons() { // verifica se todos arqquivos de livros estao disponivie se nao cria-os
+    public static String CheckJsons() { // verifica se todos arqquivos de livros estao disponivie se nao cria-os
         File file_books_av = new File(book_directory_available);
         if (file_books_av.exists()) {// Verificar se o arquivo existe
-            System.out.println("\u001B[33m" + "O arquivo " + book_directory_available + " existe!!!");
+            //System.out.println("\u001B[33m" + "O arquivo " + book_directory_available + " existe!!!");
+            return "poo_20";
         } else {
             WriteJsonClear(book_directory_available);
         } // se nao cham funçao pra cria-lo
         File file_books_un = new File(book_directory_unavailable);
         if (file_books_un.exists()) {// Verificar se o arquivo de livros indisponiveis existe existe
-            System.out.println("\u001B[33m" + "O arquivo " + book_directory_unavailable + " existe!!!");
+            //System.out.println("\u001B[33m" + "O arquivo " + book_directory_unavailable + " existe!!!");
+            return "poo_21";
         } else {
             WriteJsonClear(book_directory_unavailable);
         } // se nao cham funçao pra cria-lo
+        return "poo_13";
 
     }
 
-    public static void WriteJsonClear(String availability) { // Cria Arquivo de armazenar livros disponiveis Com zero livros
+    public static String WriteJsonClear(String availability) { // Cria Arquivo de armazenar livros disponiveis Com zero livros
 
         FileWriter Write_File = null;
         JSONObject Content_json = new JSONObject();
@@ -84,11 +87,13 @@ public class Books {
             Write_File = new FileWriter(availability);
             Write_File.write(Content_json.toJSONString());
             Write_File.close();
-            System.out.println("Arquivo " + availability + "criado com sucesso!");
+            //System.out.println("Arquivo " + availability + "criado com sucesso!");
+            return "poo_19";
         } catch (IOException ex) {
             Logger.getLogger(Blibioteca_V_1_1.class.getName()).log(Level.SEVERE, null, ex);
         }
         System.out.println(Content_json);
+        return "poo_13";
     }
 
     public static JSONObject ReadJsonBooks(String availability) {
@@ -112,7 +117,7 @@ public class Books {
 
     }
 
-    public static void AddBook(String title, String author,
+    public static String AddBook(String title, String author,
             String genre, String publishingCompany, String datePublishing, String isbn, String availability) {
 
         JSONParser parser = new JSONParser();
@@ -131,7 +136,7 @@ public class Books {
                     JSONObject livro = (JSONObject) value;
 
                     if (livro.get("title").equals(title)) { // procura o titulo do livro que vai ser escrito
-                        System.out.println("livro encontrado");
+                        //System.out.println("livro encontrado");
 
                         // Atualizar a quantidade do livro existente
                         long quantity = (long) livro.get("quantity");
@@ -144,14 +149,14 @@ public class Books {
                                 FileWriter writer = new FileWriter(availability)) {
                             writer.write(json.toJSONString());
                         }
-                        return; // Se encontrou o livro, não precisa continuar procurando
+                        return "poo_18"; // Se encontrou o livro, não precisa continuar procurando
 
                     }
 
                 }
 
             }
-            System.out.println("Livro Nao encontrado");
+            //System.out.println("Livro Nao encontrado");
             // Criar um novo livro
 
             JSONObject novoLivro = new JSONObject();
@@ -172,13 +177,15 @@ public class Books {
                 writer.write(json.toJSONString());
             }
 
-            System.out.println("Livro criado com sucesso!");
+            //System.out.println("Livro criado com sucesso!");
+            return "poo_18";
         } catch (IOException | ParseException e) {
             e.printStackTrace();
         }
+        return "poo_13";
     }
 
-    public static void RemvBook(String title, String availability) {
+    public static String RemvBook(String title, String availability) {
         JSONParser parser = new JSONParser();
 
         try (FileReader reader = new FileReader(availability)) {
@@ -195,7 +202,7 @@ public class Books {
                     JSONObject livro = (JSONObject) value;
 
                     if (livro.get("title").equals(title)) { // procura o titulo do livro que vai ser removido
-                        System.out.println("Livro encontrado");
+                        //System.out.println("Livro encontrado");
 
                         long quantity = (long) livro.get("quantity");// coleta quantidade de livros com este titulo tem
 
@@ -217,8 +224,8 @@ public class Books {
 
             }
             if (!livroEncontrado) { // se livro nao foi encontrado avisa que livro no foi encontrado n subtrai nada
-                System.out.println("Livro não encontrado. Nada foi removido.");
-                return;
+                //System.out.println("Livro não encontrado. Nada foi removido.");
+                return "poo_14";
             }
             // Remover os livros encontrados 
             for (Object key : keysToRemove) {
@@ -232,12 +239,15 @@ public class Books {
             try (FileWriter writer = new FileWriter(availability)) {
                 writer.write(json.toJSONString());// Escrever de volta no arquivo
             }
+            return "poo_17";
+            
         } catch (IOException | ParseException e) {
             e.printStackTrace();
         }
+        return "poo_13";
     }
 
-    public static void LendBook(String title, String name) { //Empresta o livro para um usuario
+    public static String LendBook(String title, String name) { //Empresta o livro para um usuario
 
         JSONParser parser = new JSONParser();
 
@@ -255,7 +265,7 @@ public class Books {
                     JSONObject livro = (JSONObject) value;
 
                     if (livro.get("title").equals(title)) { // procura o titulo do livro que vai ser removido
-                        System.out.println("Livro encontrado");
+                        //System.out.println("Livro encontrado");
 
                         long quantity = (long) livro.get("quantity");// coleta quantidade de livros com este titulo tem
                         //coleta todos dados do livro
@@ -320,9 +330,9 @@ public class Books {
                         if (quantity == 1) {// se qauntidade for apena 1 remove livro
                             // Remover o livro do JSON existente
                             keysToRemove.add(key);
-                            System.out.println("Removido o livro");
+                            //System.out.println("Removido o livro");
                         } else {
-                            System.out.println("Removido um livro da lista de disponiveis");
+                            //System.out.println("Removido um livro da lista de disponiveis");
                             livro.put("quantity", quantity - 1); // subtrai numeor de livros na pilha
 
                         }
@@ -336,7 +346,7 @@ public class Books {
             }
             if (!livroEncontrado) { // se livro nao foi encontrado nao tem como emprestar
                 System.out.println("Livro nao encontrado. livro nao emprestado.");
-                return;
+                return "poo_14";
             }
 
             // Remover os livro da lista de disponiveis 
@@ -352,13 +362,15 @@ public class Books {
             try (FileWriter writer = new FileWriter(book_directory_available)) {
                 writer.write(json.toJSONString());
             }
+            return "poo_16"; // livro empretado com sucesso
         } catch (IOException | ParseException e) {
             e.printStackTrace();
         }
+        return "poo_13";
 
     }
 
-    public static void GiveBackBook(String title, String name) { // devolve livro para blibioteca
+    public static String GiveBackBook(String title, String name) { // devolve livro para blibioteca
 
         // verificar se titulo esta emprestado para usuario 
         // se sim ele adciona livro na lista de livros disponiveis 
@@ -379,7 +391,7 @@ public class Books {
                     JSONObject livro = (JSONObject) value;
 
                     if (livro.get("title").equals(title) && livro.get("gripped").equals(name)) { // procura o titulo pertence ao usuario no momento
-                        System.out.println("Livro encontrado" + " livro foi emprestado para" + name);
+                        //System.out.println("Livro encontrado" + " livro foi emprestado para" + name);
 
                         RemvBook(title, book_directory_unavailable);
 
@@ -400,13 +412,16 @@ public class Books {
 
             }
             if (!livroEncontrado) { // se livro nao foi encontrado avisa que livro no foi encontrado n subtrai nada
-                System.out.println("Livro não foi emprestado para" + name);
-                return;
+                //System.out.println("Livro não foi emprestado para" + name);
+                return "poo_14";
+            }else{//else livro foi emprestado entao foi devolvido
+                return "poo_15";
             }
 
         } catch (IOException | ParseException e) {
             e.printStackTrace();
         }
+        return "poo_13";
 
     }
 
