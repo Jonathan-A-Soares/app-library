@@ -139,11 +139,28 @@ public class UiRepassword extends javax.swing.JFrame {
         String phone = inputPhone.getText();
         String newPass = inputNewPass.getText();
 
-        if (name.isEmpty() | phone.isEmpty()) {
-            System.out.println("\u001B[31m"+"Prencha todos os campos");
-            JOptionPane.showMessageDialog(null, "Prencha todos os campos ", "Erro ao recriar senha",JOptionPane.ERROR_MESSAGE);
+        if (name.isEmpty() | phone.isEmpty() | newPass.isEmpty()) {
+            System.out.println("\u001B[31m" + "Prencha todos os campos");
+            JOptionPane.showMessageDialog(null, "Prencha todos os campos ", "Erro ao recriar senha", JOptionPane.ERROR_MESSAGE);
         } else {
-            Users.Repassword(name, newPass, phone);
+           
+
+            String rePass = Users.Repassword(name, newPass, phone);
+
+            if (rePass.equals("poo_05") | rePass.equals("poo_02")) {
+                //System.err.println(rePass);
+                Users.verErr(rePass); //funçao que printa retorno da funçao
+                JOptionPane.showMessageDialog(null, "Telefone ou nome de usuario nao corresponde com cadastro", "Redefinir senha", JOptionPane.ERROR_MESSAGE);
+            } else if (rePass.equals("poo_04")) {
+                //System.out.println("\u001B[32m"+"login efetuado com sucesso!");
+                Users.verErr(rePass);//funçao que printa retorno da funçao
+                JOptionPane.showMessageDialog(null, "Senha redefinida com sucesso", "Redefinir senha", JOptionPane.PLAIN_MESSAGE);
+
+            } else {
+                //System.out.println("\u001B[31m"+"Erro inesperado "+rePass);
+                Users.verErr(rePass);
+            }
+
         }
 
     }//GEN-LAST:event_bnt_RedefinirSenhaActionPerformed

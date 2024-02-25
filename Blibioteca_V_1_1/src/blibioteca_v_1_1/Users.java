@@ -57,7 +57,9 @@ public class Users {
         this.permission = permission;
 
         Users.CheckJsons();//verifica se os arquivos estao disponiveis
-        Users.AddUser(name, phone_number, identification, password, permission);// cria usuario guarda no arquivo
+        String reAddUser = Users.AddUser(name, phone_number, identification, password, permission);// cria usuario guarda no arquivo
+
+        
 
     }
 
@@ -152,7 +154,7 @@ public class Users {
 
                     if (livro.get("name").equals(name)) { // procura se usuario ja existe
                         //System.out.println("\u001B[31m"+"Usuario " + name + " ja existe");
-                        JOptionPane.showMessageDialog(null, "Usuario " + name + " ja existe ", "Registro", JOptionPane.ERROR_MESSAGE);
+                        //JOptionPane.showMessageDialog(null, "Usuario " + name + " ja existe ", "Registro", JOptionPane.ERROR_MESSAGE);
 
                         return "poo_09"; // Se encontrou o usuario, não precisa continuar procurando
                     }
@@ -375,7 +377,7 @@ public class Users {
             }
 
             //System.out.println("\u001B[31m"+"Recusado Usuario nao existe");
-            return "poo_01";
+            return "poo_02";
             //System.out.println("Senha inserida: " + password);
 
         } catch (IOException | ParseException e) {
@@ -435,46 +437,46 @@ public class Users {
 
         switch (retun_in) {
             case "poo_01":
-                System.out.println("\u001B[33m"+"poo_01: Usuário existe.");
+                System.out.println("\u001B[33m" + "poo_01: Usuário existe.");
                 break;
             case "poo_02":
-                System.out.println("\u001B[31m"+"poo_02: Usuário não existe.");
+                System.out.println("\u001B[31m" + "poo_02: Usuário não existe.");
                 break;
             case "poo_03":
-                System.out.println("\u001B[32m"+"poo_03: Usuário existe e livro foi adicionado ao histórico.");
+                System.out.println("\u001B[32m" + "poo_03: Usuário existe e livro foi adicionado ao histórico.");
                 break;
             case "poo_04":
-                System.out.println("\u001B[32m"+"poo_04: Senha do usuário alterada com sucesso.");
+                System.out.println("\u001B[32m" + "poo_04: Senha do usuário alterada com sucesso.");
                 break;
             case "poo_05":
-                System.out.println("\u001B[31m"+"poo_05: Número de telefone incorreto. Não é possível redefinir a senha.");
+                System.out.println("\u001B[31m" + "poo_05: Número de telefone incorreto. Não é possível redefinir a senha.");
                 break;
             case "poo_06":
-                System.out.println("\u001B[32m"+"poo_06: Login autorizado. Usuário autenticado.");
+                System.out.println("\u001B[32m" + "poo_06: Login autorizado. Usuário autenticado.");
                 break;
             case "poo_07":
-                System.out.println("\u001B[31m"+"poo_07: Login não autorizado. Senha incorreta.");
+                System.out.println("\u001B[31m" + "poo_07: Login não autorizado. Senha incorreta.");
                 break;
             case "poo_08":
-                System.out.println("\u001B[32m"+"poo_08: Usuário removido com sucesso.");
+                System.out.println("\u001B[32m" + "poo_08: Usuário removido com sucesso.");
                 break;
             case "poo_09":
-                System.out.println("\u001B[33m"+"poo_09: Usuário já existe.");
+                System.out.println("\u001B[33m" + "poo_09: Usuário já existe.");
                 break;
             case "poo_10":
-                System.out.println("\u001B[32m"+"poo_10: Usuário criado com sucesso.");
+                System.out.println("\u001B[32m" + "poo_10: Usuário criado com sucesso.");
                 break;
             case "poo_11":
-                System.out.println("\u001B[32m"+"poo_11: Arquivo JSON do usuário criado com sucesso.");
+                System.out.println("\u001B[32m" + "poo_11: Arquivo JSON do usuário criado com sucesso.");
                 break;
             case "poo_12":
-                System.out.println("\u001B[33m"+"poo_12: Arquivo JSON do usuário existe.");
+                System.out.println("\u001B[33m" + "poo_12: Arquivo JSON do usuário existe.");
                 break;
             case "poo_13":
-                System.out.println("\u001B[31m"+"poo_13: Erro não reconhecido.");
+                System.out.println("\u001B[31m" + "poo_13: Erro não reconhecido.");
                 break;
             default:
-                System.out.println("\u001B[31m"+"Código de erro não reconhecido.");
+                System.out.println("\u001B[31m" + "Código de erro não reconhecido.");
         }
     }
 

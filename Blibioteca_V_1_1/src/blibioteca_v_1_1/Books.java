@@ -60,13 +60,13 @@ public class Books {
     public static void CheckJsons() { // verifica se todos arqquivos de livros estao disponivie se nao cria-os
         File file_books_av = new File(book_directory_available);
         if (file_books_av.exists()) {// Verificar se o arquivo existe
-            System.out.println("\u001B[33m"+"O arquivo " + book_directory_available + " existe!!!");
+            System.out.println("\u001B[33m" + "O arquivo " + book_directory_available + " existe!!!");
         } else {
             WriteJsonClear(book_directory_available);
         } // se nao cham funçao pra cria-lo
         File file_books_un = new File(book_directory_unavailable);
         if (file_books_un.exists()) {// Verificar se o arquivo de livros indisponiveis existe existe
-            System.out.println("\u001B[33m"+"O arquivo " + book_directory_unavailable + " existe!!!");
+            System.out.println("\u001B[33m" + "O arquivo " + book_directory_unavailable + " existe!!!");
         } else {
             WriteJsonClear(book_directory_unavailable);
         } // se nao cham funçao pra cria-lo
@@ -309,15 +309,14 @@ public class Books {
                                 writer.write(jsonun.toJSONString());
                             }
                             Users.AddTitleUser(name, title);
-                            System.out.println("Livro Emprestado para"+name+" com sucesso! ");
-                            
+                            System.out.println("Livro Emprestado para" + name + " com sucesso! ");
+
                         } catch (IOException | ParseException e) {
                             e.printStackTrace();
                         }
 
                         //fim adição de livro
                         //System.out.println(genre + isbn + "  " + publishing_company + "  " + author + "  " + date_publishing + "  " + title);
-
                         if (quantity == 1) {// se qauntidade for apena 1 remove livro
                             // Remover o livro do JSON existente
                             keysToRemove.add(key);
@@ -380,8 +379,7 @@ public class Books {
                     JSONObject livro = (JSONObject) value;
 
                     if (livro.get("title").equals(title) && livro.get("gripped").equals(name)) { // procura o titulo pertence ao usuario no momento
-                        System.out.println("Livro encontrado"+" livro foi emprestado para" + name);
-                        
+                        System.out.println("Livro encontrado" + " livro foi emprestado para" + name);
 
                         RemvBook(title, book_directory_unavailable);
 

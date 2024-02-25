@@ -164,7 +164,22 @@ public class UiRegister extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Prencha todos os campos ", "Erro Ao registrar",JOptionPane.ERROR_MESSAGE);
             return;
         }else{
-            Users User = new Users(name, phone, ident, pass, adm);
+            
+            String reAddUser = Users.AddUser(name, phone, ident, pass, adm);// cria usuario guarda no arquivo
+
+        if (reAddUser.equals("poo_09")) {
+            //System.err.println(reAddUser);
+            Users.verErr(reAddUser); //funçao que printa retorno da funçao
+            JOptionPane.showMessageDialog(null, "Usuario com mesmo nome ja existe", "Registrar novo usuario", JOptionPane.ERROR_MESSAGE);
+        } else if (reAddUser.equals("poo_10")) {
+            //System.out.println("\u001B[32m"+"login efetuado com sucesso!");
+            Users.verErr(reAddUser);//funçao que printa retorno da funçao
+            JOptionPane.showMessageDialog(null, "Usuario criado com sucesso", "Registrar novo usuario", JOptionPane.PLAIN_MESSAGE);
+
+        } else {
+            //System.out.println("\u001B[31m"+"Erro inesperado "+reAddUser);
+            Users.verErr(reAddUser);
+        }
         }
         
         

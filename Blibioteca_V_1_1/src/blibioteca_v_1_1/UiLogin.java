@@ -153,25 +153,25 @@ public class UiLogin extends javax.swing.JFrame {
         String name = inputName.getText();
         String pass = inputpPass.getText();
 
-        if (name.isEmpty() | pass.isEmpty()) {
-            System.err.println("Prencha todos os campos");
+        if (name.isEmpty() | pass.isEmpty()) { // verifica se tem algum campo em branco
+            System.out.println("\u001B[31m" + "Prencha todos os campos");
             JOptionPane.showMessageDialog(null, "Prencha todos os campos ", "Erro ao entrar", JOptionPane.ERROR_MESSAGE);
 
-        } else {
+        } else { //todos campos estao prenchidos
             String auth = Users.Authentic(name, pass);// retorna poo_06 se autorizado e poo_007 se nao autorizado
 
-            //ACRESENTAr logica quando usuario for autenticado
-            if (auth.equals("poo_07")) {
+            //verificando se usurio vai ser autenticado com credenciais digitadas
+            if (auth.equals("poo_07") | auth.equals("poo_02")) {
                 //System.err.println(auth);
-                Users.verErr(auth);
+                Users.verErr(auth); //funçao que printa retorno da funçao
                 JOptionPane.showMessageDialog(null, "Credeciais Errada", "Erro ao entrar", JOptionPane.ERROR_MESSAGE);
             } else if (auth.equals("poo_06")) {
                 //System.out.println("\u001B[32m"+"login efetuado com sucesso!");
-                Users.verErr(auth);
-                System.exit(0);
-                
-            }else {
-                System.out.println("\u001B[31m"+"Erro inesperado "+auth);
+                Users.verErr(auth);//funçao que printa retorno da funçao
+                System.exit(0); // no momento finaliza progama
+
+            } else {
+                //System.out.println("\u001B[31m"+"Erro inesperado "+auth);
                 Users.verErr(auth);
             }
         }
