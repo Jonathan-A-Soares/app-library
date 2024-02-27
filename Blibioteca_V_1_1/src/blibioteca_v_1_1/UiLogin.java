@@ -182,7 +182,7 @@ public class UiLogin extends javax.swing.JFrame {
                 Users.verErr(auth);//funçao que printa retorno da funçao
                 //System.exit(0); // no momento finaliza progama
                 setVisible(false);
-                new UiHome(name).setVisible(true);
+                new UIPainelAdm(name).setVisible(true);
                 
 
             } else {
