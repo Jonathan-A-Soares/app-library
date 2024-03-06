@@ -49,6 +49,7 @@ public class UiLogin extends javax.swing.JFrame {
         jLabel5.setText("Bem Vindo");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setBackground(new java.awt.Color(255, 255, 255));
 
         bnt_entrar.setText("Entrar");
         bnt_entrar.addActionListener(new java.awt.event.ActionListener() {
@@ -177,7 +178,7 @@ public class UiLogin extends javax.swing.JFrame {
                 Users.verErr(auth); //funçao que printa retorno da funçao
                 //JOptionPane.showMessageDialog(null, "Credeciais Errada", "Erro ao entrar", JOptionPane.ERROR_MESSAGE);
                 event.setText("Credeciais Errada");
-            } else if (auth.equals("poo_06")) {
+            } else if (auth.equals("poo_06")) { //login realizado
                 //System.out.println("\u001B[32m"+"login efetuado com sucesso!");
                 Users.verErr(auth);//funçao que printa retorno da funçao
                 //System.exit(0); // no momento finaliza progama

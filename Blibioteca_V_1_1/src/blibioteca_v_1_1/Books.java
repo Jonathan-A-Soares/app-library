@@ -28,8 +28,8 @@ import java.util.Calendar;
 public class Books {
 
     // Variaveis de Diretrio
-    public static String book_directory_unavailable = "src/blibioteca_v_1_1/data_files/books_unavailable.json";
-    public static String book_directory_available = "src/blibioteca_v_1_1/data_files/books_available.json";
+    public final static String book_directory_unavailable = "src/blibioteca_v_1_1/data_files/books_unavailable.json";
+    public final static String book_directory_available = "src/blibioteca_v_1_1/data_files/books_available.json";
 
     // variaveis dos dados do livro
     private String title; // Titlo
