@@ -179,12 +179,24 @@ public class UiLogin extends javax.swing.JFrame {
                 //JOptionPane.showMessageDialog(null, "Credeciais Errada", "Erro ao entrar", JOptionPane.ERROR_MESSAGE);
                 event.setText("Credeciais Errada");
             } else if (auth.equals("poo_06")) { //login realizado
+
+                String perm = Users.EspecificDateUser(name, "permission");
+                if (perm.equals("true")) {// quando usuario e adm disponibiliza o painel de administrador
+                    
+                    //System.out.println("Usuario e adm");
+                    
+                    setVisible(false);// tira visibilidade do login
+                    new UIPainelAdm(name).setVisible(true); // chama a painel de usuario
+                    
+                    
+                } else {// quando o usuario nao e adm disponibiliza painel de usuario
+                    System.out.println("Usuario n e adm");
+                    System.exit(0); // no momento finaliza progama
+
+                }
+
                 //System.out.println("\u001B[32m"+"login efetuado com sucesso!");
                 Users.verErr(auth);//funçao que printa retorno da funçao
-                //System.exit(0); // no momento finaliza progama
-                setVisible(false);
-                new UIPainelAdm(name).setVisible(true);
-                
 
             } else {
                 //System.out.println("\u001B[31m"+"Erro inesperado "+auth);
