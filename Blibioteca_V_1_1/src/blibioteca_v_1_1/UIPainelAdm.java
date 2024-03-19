@@ -4,6 +4,7 @@
  */
 package blibioteca_v_1_1;
 
+import java.awt.CardLayout;
 import java.awt.Container;
 
 /**
@@ -15,18 +16,20 @@ public class UIPainelAdm extends javax.swing.JFrame {
     /**
      * Creates new form UIPainelAdm
      */
+    //usuario
     private String name;
     private String numIdent;
     private String perm;
 
-    //inicializaçao/criaçao de todas as japnel
-    UiAddBokk AddBookJPanel = new UiAddBokk();// cria novo painel de ad
-    UiLendBook LendBookJPanel = new UiLendBook();// cria novo painel
+    // telas
+    private UiLendBook menu_LendBook;
+    private UiAddBokk menu_AddBok;
+    private UiRegisteri menu_Registeri;
 
     public UIPainelAdm(String name) {
         this.name = name;
         initComponents();
-
+        //tras as informaçoes do usuario que fez login
         numIdent = Users.EspecificDateUser(name, "num_identification");
         perm = Users.EspecificDateUser(name, "permission");
 
@@ -39,6 +42,15 @@ public class UIPainelAdm extends javax.swing.JFrame {
         nameUser.setText(name);
         String dateA = Users.getDateTime();
         dateUserPanel.setText(dateA);
+
+        //menus 
+        menu_LendBook = new UiLendBook();
+        menu_AddBok = new UiAddBokk();
+        menu_Registeri = new UiRegisteri();
+
+        UIWellcomePanel.add(menu_LendBook, "LendBook");
+        UIWellcomePanel.add(menu_AddBok, "AddBok");
+        UIWellcomePanel.add(menu_Registeri, "Registrar");
 
     }
 
@@ -80,7 +92,6 @@ public class UIPainelAdm extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        titlePage = new javax.swing.JLabel();
         titlePageWelcome = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
@@ -262,7 +273,7 @@ public class UIPainelAdm extends javax.swing.JFrame {
                 .addComponent(shearBook)
                 .addGap(18, 18, 18)
                 .addComponent(removBook)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 23, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel2Layout.createSequentialGroup()
@@ -280,6 +291,7 @@ public class UIPainelAdm extends javax.swing.JFrame {
         );
 
         UIWellcomePanel.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
+        UIWellcomePanel.setLayout(new java.awt.CardLayout());
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -298,50 +310,26 @@ public class UIPainelAdm extends javax.swing.JFrame {
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
-                .addContainerGap(46, Short.MAX_VALUE)
+                .addContainerGap(256, Short.MAX_VALUE)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(47, Short.MAX_VALUE))
+                .addContainerGap(256, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
-                .addContainerGap(31, Short.MAX_VALUE)
+                .addContainerGap(153, Short.MAX_VALUE)
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel4)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel2)
-                .addContainerGap(31, Short.MAX_VALUE))
+                .addContainerGap(153, Short.MAX_VALUE))
         );
 
-        titlePage.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
-        titlePage.setText("Painel do Administrador");
-
-        javax.swing.GroupLayout UIWellcomePanelLayout = new javax.swing.GroupLayout(UIWellcomePanel);
-        UIWellcomePanel.setLayout(UIWellcomePanelLayout);
-        UIWellcomePanelLayout.setHorizontalGroup(
-            UIWellcomePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(UIWellcomePanelLayout.createSequentialGroup()
-                .addGap(290, 290, 290)
-                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, UIWellcomePanelLayout.createSequentialGroup()
-                .addContainerGap(215, Short.MAX_VALUE)
-                .addComponent(titlePage)
-                .addGap(193, 193, 193))
-        );
-        UIWellcomePanelLayout.setVerticalGroup(
-            UIWellcomePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, UIWellcomePanelLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(titlePage)
-                .addGap(18, 18, 18)
-                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
+        UIWellcomePanel.add(jPanel4, "card2");
 
         titlePageWelcome.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
         titlePageWelcome.setText("Bem Vindo");
@@ -379,11 +367,11 @@ public class UIPainelAdm extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(31, Short.MAX_VALUE)
+                .addContainerGap(40, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(UIWellcomePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(titlePageWelcome))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(titlePageWelcome)
+                    .addComponent(UIWellcomePanel, javax.swing.GroupLayout.PREFERRED_SIZE, 632, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -392,67 +380,97 @@ public class UIPainelAdm extends javax.swing.JFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(23, 23, 23)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(titlePageWelcome))
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(UIWellcomePanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(15, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 482, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(29, 29, 29)
+                        .addComponent(UIWellcomePanel, javax.swing.GroupLayout.PREFERRED_SIZE, 416, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(16, 16, 16))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void cadBookActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cadBookActionPerformed
-        cadLend.setEnabled(true);
-        cadBook.setEnabled(false);
+
         // Atualiza o título
-        titlePageWelcome.setText("Realizar empréstimos");
+        titlePageWelcome.setText("Cadastrar livro");
+        CardLayout cl = (CardLayout) UIWellcomePanel.getLayout();
+        cl.show(UIWellcomePanel, "AddBok");
+
 
     }//GEN-LAST:event_cadBookActionPerformed
 
     private void cadLendActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cadLendActionPerformed
-        cadLend.setEnabled(false);
-        cadBook.setEnabled(true);
+
         // Atualiza o título
         titlePageWelcome.setText("Realizar empréstimos");
+        CardLayout cl = (CardLayout) UIWellcomePanel.getLayout();
+        cl.show(UIWellcomePanel, "LendBook");
+
 
     }//GEN-LAST:event_cadLendActionPerformed
 
 
     private void shearBookActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_shearBookActionPerformed
-        // TODO add your handling code here:
+        
+        titlePageWelcome.setText("buscar por livros");
+        CardLayout cl = (CardLayout) UIWellcomePanel.getLayout();
+        cl.show(UIWellcomePanel, "LendBook");
     }//GEN-LAST:event_shearBookActionPerformed
 
     private void viweBooksUnavailableActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viweBooksUnavailableActionPerformed
-        // TODO add your handling code here:
+        // Atualiza o título
+        titlePageWelcome.setText("ver empréstimos");
+        CardLayout cl = (CardLayout) UIWellcomePanel.getLayout();
+        cl.show(UIWellcomePanel, "LendBook");
     }//GEN-LAST:event_viweBooksUnavailableActionPerformed
 
     private void viewBooksActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewBooksActionPerformed
-        // TODO add your handling code here:
+        // Atualiza o título
+        titlePageWelcome.setText("Ver Livros");
+        CardLayout cl = (CardLayout) UIWellcomePanel.getLayout();
+        cl.show(UIWellcomePanel, "LendBook");
     }//GEN-LAST:event_viewBooksActionPerformed
 
     private void cadUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cadUserActionPerformed
-        // TODO add your handling code here:
+        // Atualiza o título
+        titlePageWelcome.setText("Cadastrar usuario");
+        CardLayout cl = (CardLayout) UIWellcomePanel.getLayout();
+        cl.show(UIWellcomePanel, "Registrar");
     }//GEN-LAST:event_cadUserActionPerformed
 
     private void viewAllUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewAllUserActionPerformed
-        // TODO add your handling code here:
+        // Atualiza o título
+        titlePageWelcome.setText("Ver Usuarios");
+        CardLayout cl = (CardLayout) UIWellcomePanel.getLayout();
+        cl.show(UIWellcomePanel, "LendBook");
     }//GEN-LAST:event_viewAllUserActionPerformed
 
     private void consultLendUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_consultLendUserActionPerformed
-        // TODO add your handling code here:
+        // Atualiza o título
+        titlePageWelcome.setText("Livros emprestados");
+        CardLayout cl = (CardLayout) UIWellcomePanel.getLayout();
+        cl.show(UIWellcomePanel, "LendBook");
     }//GEN-LAST:event_consultLendUserActionPerformed
 
     private void historyUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_historyUserActionPerformed
-        // TODO add your handling code here:
+        // Atualiza o título
+        titlePageWelcome.setText("Historicos de usuario");
+        CardLayout cl = (CardLayout) UIWellcomePanel.getLayout();
+        cl.show(UIWellcomePanel, "LendBook");
     }//GEN-LAST:event_historyUserActionPerformed
 
     private void removBookActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removBookActionPerformed
-        // TODO add your handling code here:
+        // Atualiza o título
+        titlePageWelcome.setText("remover livros");
+        CardLayout cl = (CardLayout) UIWellcomePanel.getLayout();
+        cl.show(UIWellcomePanel, "LendBook");
     }//GEN-LAST:event_removBookActionPerformed
 
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
@@ -537,7 +555,6 @@ public class UIPainelAdm extends javax.swing.JFrame {
     private javax.swing.JLabel permUser;
     private javax.swing.JButton removBook;
     private javax.swing.JButton shearBook;
-    private javax.swing.JLabel titlePage;
     private javax.swing.JLabel titlePageWelcome;
     private javax.swing.JButton viewAllUser;
     private javax.swing.JButton viewBooks;
