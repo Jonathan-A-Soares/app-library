@@ -16,13 +16,13 @@ public class Blibioteca_V_1_1 {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        Books.CheckJsons();
+        
         //JSONObject boun = Books.ReadJsonBooksUnavailable();
         //JSONObject boav = Books.ReadJsonBooksAvailable();
         //Books.AddBook("O Diário de Anne Frank", "Anne Frank", "Biografia", "Livraria ZYX", "25/06/1947", "11223344", Books.book_directory_available);
         //Books.AddBook("1984", "George Orwell", "Ficção Científica", "Livraria YZ1", "08/06/1949", "33445566", Books.book_directory_available);
-
-        Users.CheckJsons();
+        
+        
         //JSONObject users = Users.ReadJsonBooks();
         //System.out.println(users);
         //Users.AddUser("Joo","3593598890","0345634","123456789",true);
@@ -47,9 +47,16 @@ public class Blibioteca_V_1_1 {
         //Books.GiveBackBook("O Diário de Anne Frank", "Joao Silva"); //devolve livro de joao para blibioteca
         
         //Users.AddTitleUser("Carlo Santos", "O Diário de Anne Frank"); // adciona livro historico do usuario
+        //----------------------------------------------------------------------------------------
         
-        new UiLogin().setVisible(true);//----------------------------------------------------------------------------------------
         
+        Books.CheckJsons();
+        Users.CheckJsons();
+        
+        new UiLogin().setVisible(true);
+        
+        
+        //----------------------------------------------------------------------------------------
         //Users.DateUser("adm");
         //String re = Users.EspecificDateUser("adm", "Phone");
         //System.out.println(re);

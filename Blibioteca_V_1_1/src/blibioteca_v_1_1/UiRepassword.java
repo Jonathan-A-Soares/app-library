@@ -19,6 +19,7 @@ public class UiRepassword extends javax.swing.JFrame {
     public UiRepassword() {
         initComponents();
         setResizable(false); //desabilitar o redimensionamento
+        setLocationRelativeTo(null);
     }
 
     /**

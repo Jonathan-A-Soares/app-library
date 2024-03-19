@@ -103,6 +103,9 @@ public class Users {
             Write_File.write(Content_json.toJSONString());
             Write_File.close();
             //System.out.println("Arquivo JSON " + user_directory + " criado com sucesso!");
+            AddUser("admin", "00000000000", "0001", "admin", true);
+            AddUser("user", "00000000000", "0002", "user", false);
+            
             return "poo_11";
         } catch (IOException ex) {
             Logger.getLogger(Blibioteca_V_1_1.class.getName()).log(Level.SEVERE, null, ex);

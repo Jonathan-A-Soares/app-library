@@ -88,6 +88,13 @@ public class Books {
             Write_File.write(Content_json.toJSONString());
             Write_File.close();
             //System.out.println("Arquivo " + availability + "criado com sucesso!");
+
+            AddBook("A Dança dos Dragões", "George R. R. Martin", "Fantasia", "Bantam Books", "2011-07-12", "9780553801477", book_directory_available);
+            AddBook("A Culpa é das Estrelas", "John Green", "Romance", "Dutton Books", "2012-01-10", "9780525478812", book_directory_available);
+            AddBook("Pai Rico, Pai Pobre", "Robert T. Kiyosaki", "Educação Financeira", "Plata Publishing", "1997-04-01", "9781612680194", book_directory_available);
+            AddBook("O Senhor dos Anéis: A Sociedade do Anel", "J. R. R. Tolkien", "Fantasia", "Allen & Unwin", "1954-07-29", "9780261102385", book_directory_available);
+            AddBook("1984", "George Orwell", "Ficção Distópica", "Secker & Warburg", "1949-06-08", "9780451524935", book_directory_available);
+
             return "poo_19";
         } catch (IOException ex) {
             Logger.getLogger(Blibioteca_V_1_1.class.getName()).log(Level.SEVERE, null, ex);
@@ -240,7 +247,7 @@ public class Books {
                 writer.write(json.toJSONString());// Escrever de volta no arquivo
             }
             return "poo_17";
-            
+
         } catch (IOException | ParseException e) {
             e.printStackTrace();
         }
@@ -414,7 +421,7 @@ public class Books {
             if (!livroEncontrado) { // se livro nao foi encontrado avisa que livro no foi encontrado n subtrai nada
                 //System.out.println("Livro não foi emprestado para" + name);
                 return "poo_14";
-            }else{//else livro foi emprestado entao foi devolvido
+            } else {//else livro foi emprestado entao foi devolvido
                 return "poo_15";
             }
 
@@ -464,11 +471,10 @@ public class Books {
             case "poo_21":
                 System.out.println("\u001B[32m" + "poo_21: Arquivo JSON de livros indisponiveis existe..");
                 break;
-            
+
             default:
                 System.out.println("\u001B[31m" + "Código de erro não reconhecido.");
         }
     }
-    
-    
+
 }

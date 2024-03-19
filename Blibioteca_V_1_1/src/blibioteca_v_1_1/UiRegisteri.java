@@ -41,6 +41,7 @@ public class UiRegisteri extends javax.swing.JPanel {
         btn_register = new javax.swing.JButton();
         inputPassword = new javax.swing.JTextField();
         Registrar = new javax.swing.JLabel();
+        event = new javax.swing.JLabel();
 
         password.setText("Senha:");
 
@@ -64,29 +65,31 @@ public class UiRegisteri extends javax.swing.JPanel {
         Registrar.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         Registrar.setText("Registrar");
 
+        event.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(54, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addContainerGap(49, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(password)
                     .addComponent(identification)
                     .addComponent(phone)
-                    .addComponent(inputPhone, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(inputPhone, javax.swing.GroupLayout.DEFAULT_SIZE, 208, Short.MAX_VALUE)
                     .addComponent(Nome)
                     .addComponent(Prencha)
                     .addComponent(Registrar)
-                    .addComponent(inputName, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(inputIndent, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                            .addComponent(radioAdm)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btn_register))
-                        .addComponent(inputPassword, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(44, Short.MAX_VALUE))
+                    .addComponent(inputName, javax.swing.GroupLayout.DEFAULT_SIZE, 208, Short.MAX_VALUE)
+                    .addComponent(inputIndent, javax.swing.GroupLayout.DEFAULT_SIZE, 208, Short.MAX_VALUE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(radioAdm)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btn_register))
+                    .addComponent(inputPassword, javax.swing.GroupLayout.DEFAULT_SIZE, 208, Short.MAX_VALUE)
+                    .addComponent(event, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(49, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -115,7 +118,9 @@ public class UiRegisteri extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btn_register)
                     .addComponent(radioAdm))
-                .addContainerGap(26, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(event, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -126,12 +131,12 @@ public class UiRegisteri extends javax.swing.JPanel {
         String ident = inputIndent.getText();
         String pass = inputPassword.getText();
         boolean adm = radioAdm.isSelected();
-        //event.setForeground(Color.red);
+        event.setForeground(Color.red);
 
         if(name.isEmpty() | phone.isEmpty() | ident.isEmpty() | pass.isEmpty()){ //trata erro se tiver algun campo vazio
             System.err.println("Prencha todos os campos");
             //JOptionPane.showMessageDialog(null, "Prencha todos os campos ", "Erro Ao registrar",JOptionPane.ERROR_MESSAGE);
-            //event.setText("Prencha todos os campos");
+            event.setText("Prencha todos os campos");
             return;
         }else{
 
@@ -148,10 +153,10 @@ public class UiRegisteri extends javax.swing.JPanel {
                 Users.verErr(reAddUser);//funçao que printa retorno da funçao
                 //JOptionPane.showMessageDialog(null, "Usuario criado com sucesso", "Registrar novo usuario", JOptionPane.PLAIN_MESSAGE);
 
-                //event.setText("Usuario criado com sucesso");
+                event.setText("Usuario criado com sucesso");
             } else {
                 //System.out.println("\u001B[31m"+"Erro inesperado "+reAddUser);
-                //event.setText(reAddUser);
+                event.setText(reAddUser);
                 Users.verErr(reAddUser);
             }
         }
@@ -164,6 +169,7 @@ public class UiRegisteri extends javax.swing.JPanel {
     private javax.swing.JLabel Prencha;
     private javax.swing.JLabel Registrar;
     private javax.swing.JButton btn_register;
+    private javax.swing.JLabel event;
     private javax.swing.JLabel identification;
     private javax.swing.JTextField inputIndent;
     private javax.swing.JTextField inputName;

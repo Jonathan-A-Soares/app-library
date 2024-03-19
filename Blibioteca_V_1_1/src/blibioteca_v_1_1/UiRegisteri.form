@@ -16,28 +16,27 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" alignment="0" attributes="0">
-              <EmptySpace pref="54" max="32767" attributes="0"/>
-              <Group type="103" groupAlignment="0" attributes="0">
+          <Group type="102" attributes="0">
+              <EmptySpace pref="49" max="32767" attributes="0"/>
+              <Group type="103" groupAlignment="0" max="-2" attributes="0">
                   <Component id="password" alignment="0" min="-2" max="-2" attributes="0"/>
                   <Component id="identification" alignment="0" min="-2" max="-2" attributes="0"/>
                   <Component id="phone" alignment="0" min="-2" max="-2" attributes="0"/>
-                  <Component id="inputPhone" alignment="0" min="-2" pref="208" max="-2" attributes="0"/>
+                  <Component id="inputPhone" alignment="0" pref="208" max="32767" attributes="0"/>
                   <Component id="Nome" alignment="0" min="-2" max="-2" attributes="0"/>
                   <Component id="Prencha" alignment="0" min="-2" max="-2" attributes="0"/>
                   <Component id="Registrar" alignment="0" min="-2" max="-2" attributes="0"/>
-                  <Component id="inputName" alignment="0" min="-2" pref="208" max="-2" attributes="0"/>
-                  <Component id="inputIndent" alignment="0" min="-2" pref="208" max="-2" attributes="0"/>
-                  <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
-                      <Group type="102" alignment="0" attributes="0">
-                          <Component id="radioAdm" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace max="32767" attributes="0"/>
-                          <Component id="btn_register" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <Component id="inputPassword" alignment="0" min="-2" pref="208" max="-2" attributes="0"/>
+                  <Component id="inputName" alignment="0" pref="208" max="32767" attributes="0"/>
+                  <Component id="inputIndent" alignment="0" pref="208" max="32767" attributes="0"/>
+                  <Group type="102" alignment="0" attributes="0">
+                      <Component id="radioAdm" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
+                      <Component id="btn_register" min="-2" max="-2" attributes="0"/>
                   </Group>
+                  <Component id="inputPassword" alignment="0" pref="208" max="32767" attributes="0"/>
+                  <Component id="event" alignment="0" max="32767" attributes="0"/>
               </Group>
-              <EmptySpace pref="44" max="32767" attributes="0"/>
+              <EmptySpace pref="49" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -69,7 +68,9 @@
                   <Component id="btn_register" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="radioAdm" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="26" max="32767" attributes="0"/>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Component id="event" min="-2" pref="18" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -127,6 +128,11 @@
           <Font name="Segoe UI" size="18" style="1"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Registrar"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="event">
+      <Properties>
+        <Property name="horizontalAlignment" type="int" value="0"/>
       </Properties>
     </Component>
   </SubComponents>

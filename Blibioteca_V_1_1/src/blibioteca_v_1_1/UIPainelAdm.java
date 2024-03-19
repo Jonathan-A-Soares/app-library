@@ -27,28 +27,32 @@ public class UIPainelAdm extends javax.swing.JFrame {
     private UiRegisteri menu_Registeri;
 
     public UIPainelAdm(String name) {
+        setResizable(false); //desabilitar o redimensionamento
+        
+        
         this.name = name;
         initComponents();
         //tras as informaçoes do usuario que fez login
         numIdent = Users.EspecificDateUser(name, "num_identification");
         perm = Users.EspecificDateUser(name, "permission");
 
-        if (perm.equals("true")) {
+        if (perm.equals("true")) { // verifica se uusuario e visitante ou adm coloca na tela 
             permUser.setText("Adm");
         } else {
             permUser.setText("Visitante");
         }
+        
         identNumUser.setText(numIdent);
         nameUser.setText(name);
-        String dateA = Users.getDateTime();
-        dateUserPanel.setText(dateA);
+        String dateA = Users.getDateTime(); // coleta data
+        dateUserPanel.setText(dateA); // coloca a data na tela
 
-        //menus 
+         // iinicialização dos menus
         menu_LendBook = new UiLendBook();
         menu_AddBok = new UiAddBokk();
         menu_Registeri = new UiRegisteri();
-
-        UIWellcomePanel.add(menu_LendBook, "LendBook");
+        // adciona dos menus ao painel principal a interface
+        UIWellcomePanel.add(menu_LendBook, "LendBook"); 
         UIWellcomePanel.add(menu_AddBok, "AddBok");
         UIWellcomePanel.add(menu_Registeri, "Registrar");
 
@@ -515,9 +519,10 @@ public class UIPainelAdm extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
+        
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new UIPainelAdm("adm").setVisible(true);//volta usuario somente para testes (usuario tem que exitir)
+                new UIPainelAdm("admin").setVisible(true);//volta usuario somente para testes (usuario tem que exitir)
             }
         });
     }
