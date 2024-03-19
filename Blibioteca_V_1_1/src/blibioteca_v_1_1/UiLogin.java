@@ -186,7 +186,7 @@ public class UiLogin extends javax.swing.JFrame {
                     //System.out.println("Usuario e adm");
                     
                     setVisible(false);// tira visibilidade do login
-                    new UIPainelAdm(name).setVisible(true); // chama a painel de usuario
+                    new UIPainelAdm(name).setVisible(true); // chama a painel de usuario deixa visivel
                     
                     
                 } else {// quando o usuario nao e adm disponibiliza painel de usuario

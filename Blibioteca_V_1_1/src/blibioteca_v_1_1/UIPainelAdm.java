@@ -5,7 +5,6 @@
 package blibioteca_v_1_1;
 
 import java.awt.Container;
-import javax.swing.UIManager;
 
 /**
  *
@@ -19,6 +18,10 @@ public class UIPainelAdm extends javax.swing.JFrame {
     private String name;
     private String numIdent;
     private String perm;
+
+    //inicializaçao/criaçao de todas as japnel
+    UiAddBokk AddBookJPanel = new UiAddBokk();// cria novo painel de ad
+    UiLendBook LendBookJPanel = new UiLendBook();// cria novo painel
 
     public UIPainelAdm(String name) {
         this.name = name;
@@ -404,35 +407,21 @@ public class UIPainelAdm extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void cadBookActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cadBookActionPerformed
+        cadLend.setEnabled(true);
         cadBook.setEnabled(false);
-        UIWellcomePanel.setVisible(false);// deixa painel bem vindo invisível
+        // Atualiza o título
+        titlePageWelcome.setText("Realizar empréstimos");
 
-        UiAddBokk newPanel = new UiAddBokk();// crian ovo painel
-        newPanel.setBounds(UIWellcomePanel.getBounds()); // Adiciona a painel ao mesmo local do home
-        Container parent = UIWellcomePanel.getParent(); // Obtém o painel pai de jPanel3
-        parent.remove(UIWellcomePanel); // remove painel bem vindo do painel pai
-        parent.add(newPanel);// Adiciona o novo painel ao painel pai 
-        parent.revalidate(); // Atualiza o contêiner para refletir as mudanças
-        parent.repaint();
-        newPanel.setVisible(true);// Torna o novo painel visível
-        titlePageWelcome.setText("Adicionar um novo Livro"); // muda titulo 
-        
     }//GEN-LAST:event_cadBookActionPerformed
 
     private void cadLendActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cadLendActionPerformed
         cadLend.setEnabled(false);
-        UIWellcomePanel.setVisible(false);// deixa painel bem vindo invisível
+        cadBook.setEnabled(true);
+        // Atualiza o título
+        titlePageWelcome.setText("Realizar empréstimos");
 
-        UiLendBook newPanel = new UiLendBook();// crian ovo painel
-        newPanel.setBounds(UIWellcomePanel.getBounds()); // Adiciona a painel ao mesmo local do home
-        Container parent = UIWellcomePanel.getParent(); // Obtém o painel pai de jPanel3
-        parent.remove(UIWellcomePanel); // remove painel bem vindo do painel pai
-        parent.add(newPanel);// Adiciona o novo painel ao painel pai 
-        parent.revalidate(); // Atualiza o contêiner para refletir as mudanças
-        parent.repaint();
-        newPanel.setVisible(true);// Torna o novo painel visível
-        titlePageWelcome.setText("Realizar emprestimos"); // muda titulo
     }//GEN-LAST:event_cadLendActionPerformed
+
 
     private void shearBookActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_shearBookActionPerformed
         // TODO add your handling code here:
