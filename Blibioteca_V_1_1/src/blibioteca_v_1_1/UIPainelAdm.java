@@ -48,6 +48,7 @@ public class UIPainelAdm extends javax.swing.JFrame {
         dateUserPanel.setText(dateA); // coloca a data na tela
 
          // iinicialização dos menus
+        
         menu_LendBook = new UiLendBook();
         menu_AddBok = new UiAddBokk();
         menu_Registeri = new UiRegisteri();
@@ -101,8 +102,9 @@ public class UIPainelAdm extends javax.swing.JFrame {
         jMenu1 = new javax.swing.JMenu();
         jMenuItem2 = new javax.swing.JMenuItem();
         jMenuItem3 = new javax.swing.JMenuItem();
-        jMenu2 = new javax.swing.JMenu();
-        jMenu3 = new javax.swing.JMenu();
+        about = new javax.swing.JMenu();
+        jMenuItem4 = new javax.swing.JMenuItem();
+        jMenuItem5 = new javax.swing.JMenuItem();
 
         jButton5.setText("jButton1");
 
@@ -358,11 +360,30 @@ public class UIPainelAdm extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenu1);
 
-        jMenu2.setText("Sobre");
-        jMenuBar1.add(jMenu2);
+        about.setText("Outros");
+        about.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                aboutActionPerformed(evt);
+            }
+        });
 
-        jMenu3.setText("Tarifas");
-        jMenuBar1.add(jMenu3);
+        jMenuItem4.setText("Tarifas");
+        jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem4ActionPerformed(evt);
+            }
+        });
+        about.add(jMenuItem4);
+
+        jMenuItem5.setText("Sobre");
+        jMenuItem5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem5ActionPerformed(evt);
+            }
+        });
+        about.add(jMenuItem5);
+
+        jMenuBar1.add(about);
 
         setJMenuBar(jMenuBar1);
 
@@ -489,6 +510,18 @@ public class UIPainelAdm extends javax.swing.JFrame {
         new UiLogin().setVisible(true); // chama a interface de login
     }//GEN-LAST:event_jMenuItem3ActionPerformed
 
+    private void aboutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aboutActionPerformed
+        
+    }//GEN-LAST:event_aboutActionPerformed
+
+    private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jMenuItem4ActionPerformed
+
+    private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
+        new UIAbout().setVisible(true);
+    }//GEN-LAST:event_jMenuItem5ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -529,6 +562,7 @@ public class UIPainelAdm extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel UIWellcomePanel;
+    private javax.swing.JMenu about;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.ButtonGroup buttonGroup2;
     private javax.swing.JButton cadBook;
@@ -546,12 +580,12 @@ public class UIPainelAdm extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JMenu jMenu1;
-    private javax.swing.JMenu jMenu2;
-    private javax.swing.JMenu jMenu3;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
+    private javax.swing.JMenuItem jMenuItem4;
+    private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel4;
