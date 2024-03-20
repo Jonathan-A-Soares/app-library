@@ -200,7 +200,7 @@ public class Users {
         return "poo_13";
     }
 
-    public static String RemvUser(String name) {
+    public static String RemvUser(String name, String ident) {
         JSONParser parser = new JSONParser();
 
         try (FileReader reader = new FileReader(user_directory)) {
@@ -216,7 +216,7 @@ public class Users {
                 if (value instanceof JSONObject) {
                     JSONObject user = (JSONObject) value;
 
-                    if (user.get("name").equals(name)) { // procura o usuário que vai ser removido
+                    if (user.get("name").equals(name) && user.get("num_identification").equals(ident)) { // procura o usuário que vai ser removido
                         //System.out.println("Usuário "+ name +" encontrado");
 
                         keysToRemove.add(key);

@@ -27,6 +27,7 @@ public class UIPainelAdm extends javax.swing.JFrame {
     private UiRegisteri menu_Registeri;
     private UiViewBooks menu_Uiview;
     private UiViewUsers menu_ViewUser;
+    private UiRemoveUsers menu_removeUser;
 
     public UIPainelAdm(String name) {
         setResizable(false); //desabilitar o redimensionamento
@@ -56,12 +57,14 @@ public class UIPainelAdm extends javax.swing.JFrame {
         menu_Registeri = new UiRegisteri();
         menu_Uiview = new UiViewBooks();
         menu_ViewUser = new UiViewUsers();
+        menu_removeUser = new UiRemoveUsers();
         // adciona dos menus ao painel principal a interface
         UIWellcomePanel.add(menu_LendBook, "LendBook"); 
         UIWellcomePanel.add(menu_AddBok, "AddBok");
         UIWellcomePanel.add(menu_Registeri, "Registrar");
         UIWellcomePanel.add(menu_Uiview, "viewBooks");
         UIWellcomePanel.add(menu_ViewUser, "viewUsers");
+        UIWellcomePanel.add(menu_removeUser, "removeUser");
         
 
     }
@@ -98,6 +101,7 @@ public class UIPainelAdm extends javax.swing.JFrame {
         historyUser = new javax.swing.JButton();
         jSeparator1 = new javax.swing.JSeparator();
         removBook = new javax.swing.JButton();
+        removeUser = new javax.swing.JButton();
         UIWellcomePanel = new javax.swing.JPanel();
         jPanel4 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
@@ -232,6 +236,13 @@ public class UIPainelAdm extends javax.swing.JFrame {
             }
         });
 
+        removeUser.setText("remover user");
+        removeUser.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                removeUserActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -249,7 +260,8 @@ public class UIPainelAdm extends javax.swing.JFrame {
                         .addComponent(viweBooksUnavailable, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(cadBook, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(cadLend, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(removBook, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(removBook, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(removeUser, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                         .addGroup(jPanel2Layout.createSequentialGroup()
                             .addGap(59, 59, 59)
@@ -273,7 +285,9 @@ public class UIPainelAdm extends javax.swing.JFrame {
                 .addComponent(cadLend)
                 .addGap(18, 18, 18)
                 .addComponent(viweBooksUnavailable)
-                .addGap(59, 59, 59)
+                .addGap(18, 18, 18)
+                .addComponent(removeUser)
+                .addGap(18, 18, 18)
                 .addComponent(removBook)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -509,6 +523,12 @@ public class UIPainelAdm extends javax.swing.JFrame {
         cl.show(UIWellcomePanel, "LendBook");
     }//GEN-LAST:event_consultLendUserActionPerformed
 
+    private void removeUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeUserActionPerformed
+        titlePageWelcome.setText("Livros emprestados");
+        CardLayout cl = (CardLayout) UIWellcomePanel.getLayout();
+        cl.show(UIWellcomePanel, "removeUser");
+    }//GEN-LAST:event_removeUserActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -580,6 +600,7 @@ public class UIPainelAdm extends javax.swing.JFrame {
     private javax.swing.JLabel nameUser;
     private javax.swing.JLabel permUser;
     private javax.swing.JButton removBook;
+    private javax.swing.JButton removeUser;
     private javax.swing.JLabel titlePageWelcome;
     private javax.swing.JButton viewAllUser;
     private javax.swing.JButton viewBooks;

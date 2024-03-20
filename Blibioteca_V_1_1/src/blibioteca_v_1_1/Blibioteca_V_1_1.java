@@ -46,12 +46,11 @@ public class Blibioteca_V_1_1 {
         //----------------------------------------------------------------------------------------
         Books.CheckJsons();
         Users.CheckJsons();
-
-        new UiLogin().setVisible(true);
-       //Books.AddBook("Treasure Island", "Robert Louis Stevenson", "Adventure Fiction", "Cassell & Co.", "November 14, 1883", "9780143107569", Books.book_directory_available);
-       //Books.AddBook("Treasure Island", "Robert Louis Stevenson", "Adventure Fiction", "Cassell & Co.", "November 14, 1883", "9780143107569", Books.book_directory_available);
-       //Books.LendBook("Treasure Island", "Robert Louis Stevenson", "Adventure Fiction", "Cassell & Co.", "November 14, 1883", "9780143107569", Books.book_directory_available);
-       //Books.LendBook("Treasure Island", "user");
+        String a = Users.RemvUser("user","0002"); 
+        System.out.println(a);
+        
+        //new UiLogin().setVisible(true);
+       
         //----------------------------------------------------------------------------------------
         //Users.DateUser("adm");
         //String re = Users.EspecificDateUser("adm", "Phone");
