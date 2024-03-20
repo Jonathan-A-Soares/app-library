@@ -177,8 +177,8 @@ public class UiLogin extends javax.swing.JFrame {
                     
                     
                 } else {// quando o usuario nao e adm disponibiliza painel de usuario
-                    System.out.println("Usuario n e adm");
-                    System.exit(0); // no momento finaliza progama
+                    //System.exit(0); // no momento finaliza progama
+                    new UiPainelUser(name).setVisible(true);//chama o painel de usuario
 
                 }
 

@@ -16,17 +16,14 @@ public class Blibioteca_V_1_1 {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        
+
         //JSONObject boun = Books.ReadJsonBooksUnavailable();
         //JSONObject boav = Books.ReadJsonBooksAvailable();
         //Books.AddBook("O Diário de Anne Frank", "Anne Frank", "Biografia", "Livraria ZYX", "25/06/1947", "11223344", Books.book_directory_available);
         //Books.AddBook("1984", "George Orwell", "Ficção Científica", "Livraria YZ1", "08/06/1949", "33445566", Books.book_directory_available);
-        
-        
         //JSONObject users = Users.ReadJsonBooks();
         //System.out.println(users);
         //Users.AddUser("Joo","3593598890","0345634","123456789",true);
-
         //Adicionar usuários com diferentes papéis, incluindo administradores
         //Users.AddUser("Joao Silva", "+5511987654321", "123456", "senha123", true);
         //Users.AddUser("Mari Oliveira", "+5511998765432", "789012", "minha senha", false);
@@ -45,23 +42,25 @@ public class Blibioteca_V_1_1 {
         //Books.LendBook("O Diário de Anne Frank", "Joao Silva"); //empresta livro para joao
         //devolve livro
         //Books.GiveBackBook("O Diário de Anne Frank", "Joao Silva"); //devolve livro de joao para blibioteca
-        
         //Users.AddTitleUser("Carlo Santos", "O Diário de Anne Frank"); // adciona livro historico do usuario
         //----------------------------------------------------------------------------------------
-        
-        
         Books.CheckJsons();
         Users.CheckJsons();
-        
+
         new UiLogin().setVisible(true);
-        
-        
+       //Books.AddBook("Treasure Island", "Robert Louis Stevenson", "Adventure Fiction", "Cassell & Co.", "November 14, 1883", "9780143107569", Books.book_directory_available);
+       //Books.AddBook("Treasure Island", "Robert Louis Stevenson", "Adventure Fiction", "Cassell & Co.", "November 14, 1883", "9780143107569", Books.book_directory_available);
+       //Books.LendBook("Treasure Island", "Robert Louis Stevenson", "Adventure Fiction", "Cassell & Co.", "November 14, 1883", "9780143107569", Books.book_directory_available);
+       //Books.LendBook("Treasure Island", "user");
         //----------------------------------------------------------------------------------------
         //Users.DateUser("adm");
         //String re = Users.EspecificDateUser("adm", "Phone");
         //System.out.println(re);
         
         
+
+
+
     }
 
 }

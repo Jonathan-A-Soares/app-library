@@ -103,23 +103,42 @@ public class Books {
         return "poo_13";
     }
 
-    public static JSONObject ReadJsonBooks(String availability) {
+    public static JSONObject ReadJsonBooks(int availability) {
 
         JSONObject Content_json;
         JSONParser parser = new JSONParser();
 
-        try {
-            Content_json = (JSONObject) parser.parse(new FileReader(availability));
+        if (availability == 0) {
 
-            //System.out.println(Content_json);// Printa o conteudo do json de livros diponiveis
-            return Content_json; //retorna variavel com conteudo do json de livros diponiveis
-        } catch (ParseException e) {
-            e.printStackTrace();
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
+            try {
+                Content_json = (JSONObject) parser.parse(new FileReader(book_directory_available));
+
+                //System.out.println(Content_json);// Printa o conteudo do json de livros diponiveis
+                return Content_json; //retorna variavel com conteudo do json de livros diponiveis
+            } catch (ParseException e) {
+                e.printStackTrace();
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+        } else {
+            try {
+                Content_json = (JSONObject) parser.parse(new FileReader(book_directory_unavailable));
+
+                //System.out.println(Content_json);// Printa o conteudo do json de livros diponiveis
+                return Content_json; //retorna variavel com conteudo do json de livros diponiveis
+            } catch (ParseException e) {
+                e.printStackTrace();
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
         }
+
         return null; //retorna null caso de algu erro
 
     }
