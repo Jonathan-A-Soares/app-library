@@ -29,6 +29,7 @@ public class UIPainelAdm extends javax.swing.JFrame {
     private UiViewUsers menu_ViewUser;
     private UiRemoveUsers menu_removeUser;
     private UiRemoveBook menu_removeBook;
+    private UiViewBookLends menu_ViewLendsBook;
 
     public UIPainelAdm(String name) {
         setResizable(false); //desabilitar o redimensionamento
@@ -60,6 +61,7 @@ public class UIPainelAdm extends javax.swing.JFrame {
         menu_ViewUser = new UiViewUsers();
         menu_removeUser = new UiRemoveUsers();
         menu_removeBook = new UiRemoveBook();
+        menu_ViewLendsBook = new UiViewBookLends();
         // adciona dos menus ao painel principal a interface
         UIWellcomePanel.add(menu_LendBook, "LendBook"); 
         UIWellcomePanel.add(menu_AddBok, "AddBok");
@@ -68,6 +70,7 @@ public class UIPainelAdm extends javax.swing.JFrame {
         UIWellcomePanel.add(menu_ViewUser, "viewUsers");
         UIWellcomePanel.add(menu_removeUser, "removeUser");
         UIWellcomePanel.add(menu_removeBook, "removeBook");
+        UIWellcomePanel.add(menu_ViewLendsBook, "LendsBook");
         
         
 
@@ -440,7 +443,7 @@ public class UIPainelAdm extends javax.swing.JFrame {
         // Atualiza o título
         titlePageWelcome.setText("ver empréstimos");
         CardLayout cl = (CardLayout) UIWellcomePanel.getLayout();
-        cl.show(UIWellcomePanel, "LendBook");
+        cl.show(UIWellcomePanel, "LendsBook");
     }//GEN-LAST:event_viweBooksUnavailableActionPerformed
 
     private void viewBooksActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewBooksActionPerformed

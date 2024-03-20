@@ -4,6 +4,7 @@
  */
 package blibioteca_v_1_1;
 
+import java.awt.print.Book;
 import org.json.simple.JSONObject;
 
 /**
@@ -46,19 +47,15 @@ public class Blibioteca_V_1_1 {
         //----------------------------------------------------------------------------------------
         Books.CheckJsons();
         Users.CheckJsons();
-        
-        
+
         new UiLogin().setVisible(true);
        
+        
+
         //----------------------------------------------------------------------------------------
         //Users.DateUser("adm");
         //String re = Users.EspecificDateUser("adm", "Phone");
         //System.out.println(re);
-        
-        
-
-
-
     }
 
 }

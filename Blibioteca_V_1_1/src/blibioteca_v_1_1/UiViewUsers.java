@@ -54,10 +54,7 @@ public class UiViewUsers extends javax.swing.JPanel {
 
         table_users.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
                 "Usuario", "Identificador", "Telefone", "Permisão"

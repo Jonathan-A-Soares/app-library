@@ -39,13 +39,13 @@ public class Books {
     private String date_publishing; // data publicaçao
     private String isbn; // numero de isbn
 
-    private static String getDateTime() {
+    public static String getDateTime() {
         DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
         Date date = new Date();
         return dateFormat.format(date);
     }
 
-    private static String getDateTimeLend() {
+    public static String getDateTimeLend() {
 
         DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
         Date date = new Date();
