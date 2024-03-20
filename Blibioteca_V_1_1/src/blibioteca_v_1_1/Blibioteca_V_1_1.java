@@ -46,10 +46,9 @@ public class Blibioteca_V_1_1 {
         //----------------------------------------------------------------------------------------
         Books.CheckJsons();
         Users.CheckJsons();
-        String a = Users.RemvUser("user","0002"); 
-        System.out.println(a);
         
-        //new UiLogin().setVisible(true);
+        
+        new UiLogin().setVisible(true);
        
         //----------------------------------------------------------------------------------------
         //Users.DateUser("adm");

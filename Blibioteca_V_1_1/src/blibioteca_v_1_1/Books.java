@@ -235,9 +235,9 @@ public class Books {
                         if (quantity == 1) {// se qauntidade for apena 1 remove livro
                             // Remover o livro do JSON existente
                             keysToRemove.add(key);
-                            System.out.println("Removido o livro");
+                            //System.out.println("Removido o livro");
                         } else {
-                            System.out.println("Removido um livro");
+                            //System.out.println("Removido um livro");
                             livro.put("quantity", quantity - 1); // subtrai numeor de livros na pilha
 
                         }

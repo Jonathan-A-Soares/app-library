@@ -41,7 +41,7 @@ public class UiRemoveUsers extends javax.swing.JPanel {
 
         jLabel2.setText("Nome:");
 
-        jButton1.setText("jButton1");
+        jButton1.setText("Remover Usuario");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);

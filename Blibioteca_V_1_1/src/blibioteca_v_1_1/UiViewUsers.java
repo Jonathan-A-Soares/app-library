@@ -200,9 +200,9 @@ public class UiViewUsers extends javax.swing.JPanel {
         table_users.setRowSorter(sorter);
 
         if (view.equals("Todos")) {// carrega todos usuarios
-            
+
         } else if (view.equals("Administrador")) { // carrega administradores
-            
+
             // Verifica se o usuário administradores
             boolean userEncontrado = false;
             List<Object> keysToRemove = new ArrayList<>();
@@ -213,42 +213,6 @@ public class UiViewUsers extends javax.swing.JPanel {
                     JSONObject user = (JSONObject) value;
                     boolean perm = (boolean) user.get("permission");
                     if (!perm) { // procura o usuário que vai ser removido da lista no momento
-                       
-
-                        keysToRemove.add(key);
-                        userEncontrado = true;
-                    }
-                }
-            }
-
-            if (userEncontrado) {
-                // Remove os usuários visitantes encontrados
-                for (Object key : keysToRemove) {
-                    usersLoads.remove(key);
-                    //System.out.println("Usuário " + name + " Removido");
-                long numUsers = (long) usersLoads.get("Numero de Usuarios");
-                usersLoads.put("Numero de Usuarios", numUsers - 1);
-                num_users.setText(Long.toString(numUsers));
-                }
-
-                // Subtrai número de usuários
-                
-                
-            }
-            
-            
-        } else { //carrega usuario visitante
-            // Verifica se o usuário administradores
-            boolean userEncontrado = false;
-            List<Object> keysToRemove = new ArrayList<>();
-            for (Object key : usersLoads.keySet()) {
-                Object value = usersLoads.get(key);
-
-                if (value instanceof JSONObject) {
-                    JSONObject user = (JSONObject) value;
-                    boolean perm = (boolean) user.get("permission");
-                    if (perm) { // procura o usuário que vai ser removido da lista no momento
-                       
 
                         keysToRemove.add(key);
                         userEncontrado = true;
@@ -267,12 +231,39 @@ public class UiViewUsers extends javax.swing.JPanel {
                 }
 
                 // Subtrai número de usuários
-                
-               
-            
             }
-            
-                
+
+        } else { //carrega usuario visitante
+            // Verifica se o usuário administradores
+            boolean userEncontrado = false;
+            List<Object> keysToRemove = new ArrayList<>();
+            for (Object key : usersLoads.keySet()) {
+                Object value = usersLoads.get(key);
+
+                if (value instanceof JSONObject) {
+                    JSONObject user = (JSONObject) value;
+                    boolean perm = (boolean) user.get("permission");
+                    if (perm) { // procura o usuário que vai ser removido da lista no momento
+
+                        keysToRemove.add(key);
+                        userEncontrado = true;
+                    }
+                }
+            }
+
+            if (userEncontrado) {
+                // Remove os usuários visitantes encontrados
+                for (Object key : keysToRemove) {
+                    usersLoads.remove(key);
+                    //System.out.println("Usuário " + name + " Removido");
+                    long numUsers = (long) usersLoads.get("Numero de Usuarios");
+                    usersLoads.put("Numero de Usuarios", numUsers - 1);
+                    num_users.setText(Long.toString(numUsers));
+                }
+
+                // Subtrai número de usuários
+            }
+
         }
 
         String filter_op = filter_textfield.getText();
@@ -310,9 +301,9 @@ public class UiViewUsers extends javax.swing.JPanel {
                         model.addRow(new Object[]{Name, idente, phone, a}); //adciona dados a tabela por usuuario ver
                     }
                 }
+
                 long numUsers = (long) usersLoads.get("Numero de Usuarios");
                 num_users.setText(Long.toString(numUsers));
-                
             }
 
         } else { //se na tiver filtro nenhum, plota tuudo que achar

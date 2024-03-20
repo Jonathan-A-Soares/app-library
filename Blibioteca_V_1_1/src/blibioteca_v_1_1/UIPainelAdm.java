@@ -28,6 +28,7 @@ public class UIPainelAdm extends javax.swing.JFrame {
     private UiViewBooks menu_Uiview;
     private UiViewUsers menu_ViewUser;
     private UiRemoveUsers menu_removeUser;
+    private UiRemoveBook menu_removeBook;
 
     public UIPainelAdm(String name) {
         setResizable(false); //desabilitar o redimensionamento
@@ -58,6 +59,7 @@ public class UIPainelAdm extends javax.swing.JFrame {
         menu_Uiview = new UiViewBooks();
         menu_ViewUser = new UiViewUsers();
         menu_removeUser = new UiRemoveUsers();
+        menu_removeBook = new UiRemoveBook();
         // adciona dos menus ao painel principal a interface
         UIWellcomePanel.add(menu_LendBook, "LendBook"); 
         UIWellcomePanel.add(menu_AddBok, "AddBok");
@@ -65,6 +67,8 @@ public class UIPainelAdm extends javax.swing.JFrame {
         UIWellcomePanel.add(menu_Uiview, "viewBooks");
         UIWellcomePanel.add(menu_ViewUser, "viewUsers");
         UIWellcomePanel.add(menu_removeUser, "removeUser");
+        UIWellcomePanel.add(menu_removeBook, "removeBook");
+        
         
 
     }
@@ -506,7 +510,7 @@ public class UIPainelAdm extends javax.swing.JFrame {
         // Atualiza o título
         titlePageWelcome.setText("remover livros");
         CardLayout cl = (CardLayout) UIWellcomePanel.getLayout();
-        cl.show(UIWellcomePanel, "LendBook");
+        cl.show(UIWellcomePanel, "removeBook");
     }//GEN-LAST:event_removBookActionPerformed
 
     private void historyUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_historyUserActionPerformed
