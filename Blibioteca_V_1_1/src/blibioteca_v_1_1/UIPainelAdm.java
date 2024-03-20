@@ -26,6 +26,7 @@ public class UIPainelAdm extends javax.swing.JFrame {
     private UiAddBokk menu_AddBok;
     private UiRegisteri menu_Registeri;
     private UiViewBooks menu_Uiview;
+    private UiViewUsers menu_ViewUser;
 
     public UIPainelAdm(String name) {
         setResizable(false); //desabilitar o redimensionamento
@@ -54,11 +55,14 @@ public class UIPainelAdm extends javax.swing.JFrame {
         menu_AddBok = new UiAddBokk();
         menu_Registeri = new UiRegisteri();
         menu_Uiview = new UiViewBooks();
+        menu_ViewUser = new UiViewUsers();
         // adciona dos menus ao painel principal a interface
         UIWellcomePanel.add(menu_LendBook, "LendBook"); 
         UIWellcomePanel.add(menu_AddBok, "AddBok");
         UIWellcomePanel.add(menu_Registeri, "Registrar");
-        UIWellcomePanel.add(menu_Uiview, "view");
+        UIWellcomePanel.add(menu_Uiview, "viewBooks");
+        UIWellcomePanel.add(menu_ViewUser, "viewUsers");
+        
 
     }
 
@@ -425,7 +429,7 @@ public class UIPainelAdm extends javax.swing.JFrame {
         
         titlePageWelcome.setText("buscar por livros");
         CardLayout cl = (CardLayout) UIWellcomePanel.getLayout();
-        cl.show(UIWellcomePanel, "view");
+        cl.show(UIWellcomePanel, "viewBooks");
     }//GEN-LAST:event_viewBooksActionPerformed
 
     private void cadUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cadUserActionPerformed
@@ -439,7 +443,7 @@ public class UIPainelAdm extends javax.swing.JFrame {
         // Atualiza o título
         titlePageWelcome.setText("Ver Usuarios");
         CardLayout cl = (CardLayout) UIWellcomePanel.getLayout();
-        cl.show(UIWellcomePanel, "LendBook");
+        cl.show(UIWellcomePanel, "viewUsers");
     }//GEN-LAST:event_viewAllUserActionPerformed
 
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
