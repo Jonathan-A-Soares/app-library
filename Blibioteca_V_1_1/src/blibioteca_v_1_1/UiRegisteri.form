@@ -34,9 +34,13 @@
                       <Component id="btn_register" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <Component id="inputPassword" alignment="0" pref="208" max="32767" attributes="0"/>
-                  <Component id="event" alignment="0" max="32767" attributes="0"/>
               </Group>
               <EmptySpace pref="49" max="32767" attributes="0"/>
+          </Group>
+          <Group type="102" alignment="0" attributes="0">
+              <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
+              <Component id="event" min="-2" pref="266" max="-2" attributes="0"/>
+              <EmptySpace max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>

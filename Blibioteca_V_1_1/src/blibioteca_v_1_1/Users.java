@@ -153,11 +153,16 @@ public class Users {
                 if (value instanceof JSONObject) {
                     JSONObject livro = (JSONObject) value;
 
-                    if (livro.get("name").equals(name)) { // procura se usuario ja existe
+                    if (livro.get("name").equals(name) ) { // procura se usuario ja existe
                         //System.out.println("\u001B[31m"+"Usuario " + name + " ja existe");
                         //JOptionPane.showMessageDialog(null, "Usuario " + name + " ja existe ", "Registro", JOptionPane.ERROR_MESSAGE);
 
                         return "poo_09"; // Se encontrou o usuario, não precisa continuar procurando
+                    } else if (livro.get("num_identification").equals(identification) ) { // procura se usuario ja existe
+                        //System.out.println("\u001B[31m"+"Usuario " + name + " ja existe");
+                        //JOptionPane.showMessageDialog(null, "Usuario " + name + " ja existe ", "Registro", JOptionPane.ERROR_MESSAGE);
+
+                        return "poo_22"; // Se encontrou o usuario, não precisa continuar procurando
                     }
 
                 }
@@ -475,6 +480,9 @@ public class Users {
                 break;
             case "poo_13":
                 System.out.println("\u001B[31m" + "poo_13: Erro não reconhecido.");
+                break;
+           case "poo_22":
+                System.out.println("\u001B[33m" + "poo_22: Numero idetificador pertence outro usuario.");
                 break;
             default:
                 System.out.println("\u001B[31m" + "Código de erro não reconhecido.");

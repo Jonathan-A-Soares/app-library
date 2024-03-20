@@ -105,7 +105,6 @@ public class UIPainelAdm extends javax.swing.JFrame {
         cadUser = new javax.swing.JButton();
         viewAllUser = new javax.swing.JButton();
         consultLendUser = new javax.swing.JButton();
-        historyUser = new javax.swing.JButton();
         jSeparator1 = new javax.swing.JSeparator();
         removBook = new javax.swing.JButton();
         removeUser = new javax.swing.JButton();
@@ -183,7 +182,7 @@ public class UIPainelAdm extends javax.swing.JFrame {
             }
         });
 
-        cadLend.setText("Cadastrar emprestimos");
+        cadLend.setText("Emprestar / Devolver");
         cadLend.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cadLendActionPerformed(evt);
@@ -222,17 +221,10 @@ public class UIPainelAdm extends javax.swing.JFrame {
             }
         });
 
-        consultLendUser.setText("Consulta emprestimo");
+        consultLendUser.setText("Hsitorico Emprestimos");
         consultLendUser.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 consultLendUserActionPerformed(evt);
-            }
-        });
-
-        historyUser.setText("Historico");
-        historyUser.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                historyUserActionPerformed(evt);
             }
         });
 
@@ -275,8 +267,7 @@ public class UIPainelAdm extends javax.swing.JFrame {
                             .addComponent(jLabel5))
                         .addComponent(cadUser, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(viewAllUser, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(consultLendUser, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(historyUser, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addComponent(consultLendUser, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addGap(17, 17, 17))
         );
         jPanel2Layout.setVerticalGroup(
@@ -308,9 +299,7 @@ public class UIPainelAdm extends javax.swing.JFrame {
                         .addComponent(viewAllUser)
                         .addGap(18, 18, 18)
                         .addComponent(consultLendUser)))
-                .addGap(18, 18, 18)
-                .addComponent(historyUser)
-                .addGap(56, 56, 56))
+                .addGap(97, 97, 97))
         );
 
         UIWellcomePanel.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
@@ -426,13 +415,14 @@ public class UIPainelAdm extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(titlePageWelcome))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 482, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(29, 29, 29)
-                        .addComponent(UIWellcomePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(16, 16, 16))
+                        .addGap(47, 47, 47)
+                        .addComponent(UIWellcomePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)))
+                .addGap(23, 23, 23))
         );
 
         pack();
@@ -516,13 +506,6 @@ public class UIPainelAdm extends javax.swing.JFrame {
         cl.show(UIWellcomePanel, "removeBook");
     }//GEN-LAST:event_removBookActionPerformed
 
-    private void historyUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_historyUserActionPerformed
-        // Atualiza o título
-        titlePageWelcome.setText("Historicos de usuario");
-        CardLayout cl = (CardLayout) UIWellcomePanel.getLayout();
-        cl.show(UIWellcomePanel, "LendBook");
-    }//GEN-LAST:event_historyUserActionPerformed
-
     private void consultLendUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_consultLendUserActionPerformed
         // Atualiza o título
         titlePageWelcome.setText("Livros emprestados");
@@ -584,7 +567,6 @@ public class UIPainelAdm extends javax.swing.JFrame {
     private javax.swing.JButton cadUser;
     private javax.swing.JButton consultLendUser;
     private javax.swing.JLabel dateUserPanel;
-    private javax.swing.JButton historyUser;
     private javax.swing.JLabel identNumUser;
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;

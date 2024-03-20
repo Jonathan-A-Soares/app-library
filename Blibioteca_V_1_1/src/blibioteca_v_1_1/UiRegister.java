@@ -84,6 +84,8 @@ public class UiRegister extends javax.swing.JFrame {
 
         radioAdm.setText("Adminitrador");
 
+        event.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -91,25 +93,29 @@ public class UiRegister extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(btn_login)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 23, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(event)
-                    .addComponent(password)
-                    .addComponent(inputPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(identification)
-                    .addComponent(phone)
-                    .addComponent(inputPhone, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(Nome)
-                    .addComponent(Prencha)
-                    .addComponent(Registrar)
-                    .addComponent(inputName, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addGroup(layout.createSequentialGroup()
-                            .addComponent(radioAdm)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btn_register))
-                        .addComponent(inputIndent, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(91, 91, 91))
+                    .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 23, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(password)
+                            .addComponent(inputPassword, javax.swing.GroupLayout.DEFAULT_SIZE, 208, Short.MAX_VALUE)
+                            .addComponent(identification)
+                            .addComponent(phone)
+                            .addComponent(inputPhone, javax.swing.GroupLayout.DEFAULT_SIZE, 208, Short.MAX_VALUE)
+                            .addComponent(Nome)
+                            .addComponent(Prencha)
+                            .addComponent(Registrar)
+                            .addComponent(inputName, javax.swing.GroupLayout.DEFAULT_SIZE, 208, Short.MAX_VALUE)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(radioAdm)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(btn_register))
+                            .addComponent(inputIndent, javax.swing.GroupLayout.DEFAULT_SIZE, 208, Short.MAX_VALUE))
+                        .addGap(91, 91, 91))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(event, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -138,13 +144,10 @@ public class UiRegister extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btn_register)
                     .addComponent(radioAdm))
+                .addGap(11, 11, 11)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(11, 11, 11)
-                        .addComponent(btn_login))
-                    .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(event)))
+                    .addComponent(btn_login)
+                    .addComponent(event, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
 
@@ -164,37 +167,39 @@ public class UiRegister extends javax.swing.JFrame {
         String pass = inputPassword.getText();
         boolean adm = radioAdm.isSelected();
         event.setForeground(Color.red);
-        
-        if(name.isEmpty() | phone.isEmpty() | ident.isEmpty() | pass.isEmpty()){ //trata erro se tiver algun campo vazio
+
+        if (name.isEmpty() | phone.isEmpty() | ident.isEmpty() | pass.isEmpty()) { //trata erro se tiver algun campo vazio
             System.err.println("Prencha todos os campos");
             //JOptionPane.showMessageDialog(null, "Prencha todos os campos ", "Erro Ao registrar",JOptionPane.ERROR_MESSAGE);
             event.setText("Prencha todos os campos");
             return;
-        }else{
-            
+        } else {
+
             String reAddUser = Users.AddUser(name, phone, ident, pass, adm);// cria usuario guarda no arquivo
 
-        if (reAddUser.equals("poo_09")) {
-            //System.err.println(reAddUser);
-            Users.verErr(reAddUser); //funçao que printa retorno da funçao
-            //JOptionPane.showMessageDialog(null, "Usuario com mesmo nome ja existe", "Registrar novo usuario", JOptionPane.ERROR_MESSAGE);
-            
-            event.setText("Usuario com mesmo nome ja existe");
-        } else if (reAddUser.equals("poo_10")) {
-            //System.out.println("\u001B[32m"+"login efetuado com sucesso!");
-            Users.verErr(reAddUser);//funçao que printa retorno da funçao
-            //JOptionPane.showMessageDialog(null, "Usuario criado com sucesso", "Registrar novo usuario", JOptionPane.PLAIN_MESSAGE);
-            
-            event.setText("Usuario criado com sucesso");
-        } else {
-            //System.out.println("\u001B[31m"+"Erro inesperado "+reAddUser);
-            event.setText(reAddUser);
-            Users.verErr(reAddUser);
+            if (reAddUser.equals("poo_09")) {
+                //System.err.println(reAddUser);
+                Users.verErr(reAddUser); //funçao que printa retorno da funçao
+                //JOptionPane.showMessageDialog(null, "Usuario com mesmo nome ja existe", "Registrar novo usuario", JOptionPane.ERROR_MESSAGE);
+
+                event.setText("Usuario com mesmo nome ja existe");
+            } else if (reAddUser.equals("poo_10")) {
+                //System.out.println("\u001B[32m"+"login efetuado com sucesso!");
+                Users.verErr(reAddUser);//funçao que printa retorno da funçao
+                //JOptionPane.showMessageDialog(null, "Usuario criado com sucesso", "Registrar novo usuario", JOptionPane.PLAIN_MESSAGE);
+
+                event.setText("Usuario criado com sucesso");
+            } else if (reAddUser.equals("poo_22")) {
+                Users.verErr(reAddUser);//funçao que printa retorno da funçao
+                event.setText("Numero idetificador pertence outro usuario.");
+            } else {
+                //System.out.println("\u001B[31m"+"Erro inesperado "+reAddUser);
+                event.setText(reAddUser);
+                Users.verErr(reAddUser);
+            }
         }
-        }
-        
-        
-        
+
+
     }//GEN-LAST:event_btn_registerActionPerformed
 
     /**

@@ -87,9 +87,12 @@ public class UiRegisteri extends javax.swing.JPanel {
                         .addComponent(radioAdm)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btn_register))
-                    .addComponent(inputPassword, javax.swing.GroupLayout.DEFAULT_SIZE, 208, Short.MAX_VALUE)
-                    .addComponent(event, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(inputPassword, javax.swing.GroupLayout.DEFAULT_SIZE, 208, Short.MAX_VALUE))
                 .addContainerGap(49, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(21, 21, 21)
+                .addComponent(event, javax.swing.GroupLayout.PREFERRED_SIZE, 266, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -138,7 +141,7 @@ public class UiRegisteri extends javax.swing.JPanel {
             //JOptionPane.showMessageDialog(null, "Prencha todos os campos ", "Erro Ao registrar",JOptionPane.ERROR_MESSAGE);
             event.setText("Prencha todos os campos");
             return;
-        }else{
+        }else {
 
             String reAddUser = Users.AddUser(name, phone, ident, pass, adm);// cria usuario guarda no arquivo
 
@@ -154,6 +157,9 @@ public class UiRegisteri extends javax.swing.JPanel {
                 //JOptionPane.showMessageDialog(null, "Usuario criado com sucesso", "Registrar novo usuario", JOptionPane.PLAIN_MESSAGE);
 
                 event.setText("Usuario criado com sucesso");
+            } else if (reAddUser.equals("poo_22")) {
+                Users.verErr(reAddUser);//funçao que printa retorno da funçao
+                event.setText("Numero idetificador pertence outro usuario.");
             } else {
                 //System.out.println("\u001B[31m"+"Erro inesperado "+reAddUser);
                 event.setText(reAddUser);

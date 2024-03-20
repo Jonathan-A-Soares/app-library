@@ -42,28 +42,34 @@
           <Group type="102" alignment="1" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
               <Component id="btn_login" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="23" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="event" min="-2" max="-2" attributes="0"/>
-                  <Component id="password" alignment="0" min="-2" max="-2" attributes="0"/>
-                  <Component id="inputPassword" alignment="0" min="-2" pref="208" max="-2" attributes="0"/>
-                  <Component id="identification" alignment="0" min="-2" max="-2" attributes="0"/>
-                  <Component id="phone" alignment="0" min="-2" max="-2" attributes="0"/>
-                  <Component id="inputPhone" alignment="0" min="-2" pref="208" max="-2" attributes="0"/>
-                  <Component id="Nome" alignment="0" min="-2" max="-2" attributes="0"/>
-                  <Component id="Prencha" min="-2" max="-2" attributes="0"/>
-                  <Component id="Registrar" min="-2" max="-2" attributes="0"/>
-                  <Component id="inputName" alignment="0" min="-2" pref="208" max="-2" attributes="0"/>
-                  <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
-                      <Group type="102" alignment="1" attributes="0">
-                          <Component id="radioAdm" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace max="32767" attributes="0"/>
-                          <Component id="btn_register" min="-2" max="-2" attributes="0"/>
+                  <Group type="102" attributes="0">
+                      <EmptySpace pref="23" max="32767" attributes="0"/>
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Component id="password" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="inputPassword" alignment="0" pref="208" max="32767" attributes="0"/>
+                          <Component id="identification" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="phone" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="inputPhone" alignment="0" pref="208" max="32767" attributes="0"/>
+                          <Component id="Nome" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="Prencha" min="-2" max="-2" attributes="0"/>
+                          <Component id="Registrar" min="-2" max="-2" attributes="0"/>
+                          <Component id="inputName" alignment="0" pref="208" max="32767" attributes="0"/>
+                          <Group type="102" alignment="1" attributes="0">
+                              <Component id="radioAdm" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="32767" attributes="0"/>
+                              <Component id="btn_register" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <Component id="inputIndent" alignment="0" pref="208" max="32767" attributes="0"/>
                       </Group>
-                      <Component id="inputIndent" alignment="0" min="-2" pref="208" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="91" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Component id="event" min="-2" pref="275" max="-2" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
                   </Group>
               </Group>
-              <EmptySpace min="-2" pref="91" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -95,15 +101,10 @@
                   <Component id="btn_register" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="radioAdm" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
+              <EmptySpace min="-2" pref="11" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" attributes="0">
-                      <EmptySpace min="-2" pref="11" max="-2" attributes="0"/>
-                      <Component id="btn_login" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="event" min="-2" max="-2" attributes="0"/>
-                  </Group>
+                  <Component id="btn_login" min="-2" max="-2" attributes="0"/>
+                  <Component id="event" min="-2" pref="17" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
@@ -174,6 +175,9 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="event">
+      <Properties>
+        <Property name="horizontalAlignment" type="int" value="0"/>
+      </Properties>
     </Component>
   </SubComponents>
 </Form>

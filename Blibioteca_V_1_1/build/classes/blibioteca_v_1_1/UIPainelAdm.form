@@ -122,15 +122,17 @@
                   <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
                   <Component id="titlePageWelcome" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="jPanel2" min="-2" pref="482" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" max="-2" attributes="0">
                   <Group type="102" attributes="0">
-                      <EmptySpace min="29" pref="29" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="47" max="-2" attributes="0"/>
                       <Component id="UIWellcomePanel" min="-2" max="-2" attributes="0"/>
                   </Group>
+                  <Group type="102" attributes="0">
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Component id="jPanel2" pref="0" max="32767" attributes="0"/>
+                  </Group>
               </Group>
-              <EmptySpace min="-2" pref="16" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -247,7 +249,6 @@
                           <Component id="cadUser" max="32767" attributes="0"/>
                           <Component id="viewAllUser" alignment="0" max="32767" attributes="0"/>
                           <Component id="consultLendUser" alignment="0" max="32767" attributes="0"/>
-                          <Component id="historyUser" alignment="0" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                   <EmptySpace min="17" pref="17" max="-2" attributes="0"/>
@@ -285,9 +286,7 @@
                           <Component id="consultLendUser" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
-                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Component id="historyUser" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="56" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="97" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -303,7 +302,7 @@
         </Component>
         <Component class="javax.swing.JButton" name="cadLend">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Cadastrar emprestimos"/>
+            <Property name="text" type="java.lang.String" value="Emprestar / Devolver"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cadLendActionPerformed"/>
@@ -353,18 +352,10 @@
         </Component>
         <Component class="javax.swing.JButton" name="consultLendUser">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Consulta emprestimo"/>
+            <Property name="text" type="java.lang.String" value="Hsitorico Emprestimos"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="consultLendUserActionPerformed"/>
-          </Events>
-        </Component>
-        <Component class="javax.swing.JButton" name="historyUser">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Historico"/>
-          </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="historyUserActionPerformed"/>
           </Events>
         </Component>
         <Component class="javax.swing.JSeparator" name="jSeparator1">
