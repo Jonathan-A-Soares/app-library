@@ -393,7 +393,7 @@ public class Users {
 
     }
 
-    public static String AddTitleUser(String name, String title) {
+    public static String AddTitleUser(String ident, String title) {
 
         JSONParser parser = new JSONParser();
 
@@ -409,15 +409,15 @@ public class Users {
                 if (value instanceof JSONObject) {
                     JSONObject user = (JSONObject) value;
 
-                    if (user.get("name").equals(name)) { // procura se usuario existe
+                    if (user.get("num_identification").equals(ident)) { // procura se usuario existe
                         //System.out.println("Usuario Encontrado Livro " + title + " adcionado ao historico do usuario");
 
                         JSONObject bookHistory = new JSONObject();
                         JSONArray titlesArray = (JSONArray) user.get("titles_lends");
 
                         titlesArray.add(title);
-
-                        bookHistory.put("titles_lends", titlesArray);
+                        
+                        bookHistory.put("titles_lends"+getDateTime(), titlesArray);
 
                         try ( // Escrever de volta no arquivo
                                 FileWriter writer = new FileWriter(user_directory)) {
@@ -558,5 +558,42 @@ public class Users {
         return null;
 
     }
+
+    public static boolean UserExist(String ident){
+
+        JSONParser parser = new JSONParser();
+
+        try (FileReader reader = new FileReader(user_directory)) {
+            // Ler o arquivo JSON existente
+
+            JSONObject json = (JSONObject) parser.parse(reader);
+
+            // Verifica se o usuario usuario ja existe e está presente no JSON
+            for (Object key : json.keySet()) {
+                Object value = json.get(key);
+
+                if (value instanceof JSONObject) {
+                    JSONObject user = (JSONObject) value;
+
+                    if (user.get("num_identification").equals(ident)) { // procura se usuario existe
+                        return true; // Se usuario existe
+                    }
+
+                }
+
+            }
+            //System.out.println("Usuario nao existe");
+            return false; //caso usuruario n exista
+
+        } catch (IOException | ParseException e) {
+            e.printStackTrace();
+        }
+        return false; // erro inesperado retorna false
+
+    }
+    
+    
+    
+    
 
 }

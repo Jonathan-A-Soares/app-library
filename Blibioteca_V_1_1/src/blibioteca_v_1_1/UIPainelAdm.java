@@ -30,6 +30,7 @@ public class UIPainelAdm extends javax.swing.JFrame {
     private UiRemoveUsers menu_removeUser;
     private UiRemoveBook menu_removeBook;
     private UiViewBookLends menu_ViewLendsBook;
+    private UiHistoryBooksUsers menu_HistoryLendsBooks;
 
     public UIPainelAdm(String name) {
         setResizable(false); //desabilitar o redimensionamento
@@ -62,6 +63,7 @@ public class UIPainelAdm extends javax.swing.JFrame {
         menu_removeUser = new UiRemoveUsers();
         menu_removeBook = new UiRemoveBook();
         menu_ViewLendsBook = new UiViewBookLends();
+        menu_HistoryLendsBooks = new UiHistoryBooksUsers();
         // adciona dos menus ao painel principal a interface
         UIWellcomePanel.add(menu_LendBook, "LendBook"); 
         UIWellcomePanel.add(menu_AddBok, "AddBok");
@@ -71,6 +73,7 @@ public class UIPainelAdm extends javax.swing.JFrame {
         UIWellcomePanel.add(menu_removeUser, "removeUser");
         UIWellcomePanel.add(menu_removeBook, "removeBook");
         UIWellcomePanel.add(menu_ViewLendsBook, "LendsBook");
+        UIWellcomePanel.add(menu_HistoryLendsBooks, "History");
         
         
 
@@ -332,13 +335,13 @@ public class UIPainelAdm extends javax.swing.JFrame {
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
-                .addContainerGap(153, Short.MAX_VALUE)
+                .addContainerGap(156, Short.MAX_VALUE)
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel4)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel2)
-                .addContainerGap(153, Short.MAX_VALUE))
+                .addContainerGap(156, Short.MAX_VALUE))
         );
 
         UIWellcomePanel.add(jPanel4, "card2");
@@ -508,9 +511,9 @@ public class UIPainelAdm extends javax.swing.JFrame {
 
     private void consultLendUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_consultLendUserActionPerformed
         // Atualiza o título
-        titlePageWelcome.setText("Livros emprestados");
+        titlePageWelcome.setText("Historico emprestimos de livros");
         CardLayout cl = (CardLayout) UIWellcomePanel.getLayout();
-        cl.show(UIWellcomePanel, "LendBook");
+        cl.show(UIWellcomePanel, "History");
     }//GEN-LAST:event_consultLendUserActionPerformed
 
     private void removeUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeUserActionPerformed

@@ -48,8 +48,8 @@ public class Blibioteca_V_1_1 {
         Books.CheckJsons();
         Users.CheckJsons();
 
-        new UiLogin().setVisible(true);
-       
+        //new UiLogin().setVisible(true);
+        new UIPainelAdm("admin").setVisible(true);
         
 
         //----------------------------------------------------------------------------------------

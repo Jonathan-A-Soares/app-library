@@ -187,40 +187,62 @@ public class UiLendBook extends javax.swing.JPanel {
         // TODO add your handling code here:
         ident = indet_input.getText();
         title = title_input.getText();
-        String err = Books.LendBook(title, ident);
-       
-        
-        if (err.equals("poo_16")) {
-            Books.verErr(err);
-            errMsg.setText("Livro Emprestado");
-            
-        } else if (err.equals("poo_14")) {
-            Books.verErr(err);
-            errMsg.setText("Livro nao encontrado");
-        }else{
-        
-            Books.verErr(err);
-            errMsg.setText("Erro inesperado");
+
+        if (title.isEmpty() | ident.isEmpty()) { // verifica se tem algum campo em branco
+            //System.out.println("\u001B[31m" + "Prencha todos os campos");
+            //JOptionPane.showMessageDialog(null, "Prencha todos os campos ", "Erro ao entrar", JOptionPane.ERROR_MESSAGE);
+            errMsg.setText("Prencha todos os campos");
+        } else {
+            String err = Books.LendBook(title, ident);
+
+            if (err.equals("poo_16")) {
+                Books.verErr(err);
+                errMsg.setText("Livro Emprestado");
+
+            } else if (err.equals("poo_14")) {
+                Books.verErr(err);
+                errMsg.setText("Livro nao encontrado");
+            } else if (err.equals("poo_02")) {
+                Users.verErr(err);
+                errMsg.setText("Usuario nao encontrado");
+
+            } else {
+                Books.verErr(err);
+                errMsg.setText("Erro inesperado: " + err);
+            }
         }
+
 
     }//GEN-LAST:event_bnt_lendActionPerformed
 
     private void bnt_give_backActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bnt_give_backActionPerformed
         ident = indet_input_back.getText();
         title = title_input_back.getText();
-        String err = Books.GiveBackBook(title, ident);
 
-        if (err.equals("poo_15")) {
-            Books.verErr(err);
-            errMsg.setText("Livro Devolvido");
-        } else if (err.equals("poo_14")) {
-            Books.verErr(err);
-            errMsg.setText("Livro nao encontrado");
-        }else{
-        
-            Books.verErr(err);
-            errMsg.setText("Erro inesperado");
+        if (title.isEmpty() | ident.isEmpty()) { // verifica se tem algum campo em branco
+            //System.out.println("\u001B[31m" + "Prencha todos os campos");
+            //JOptionPane.showMessageDialog(null, "Prencha todos os campos ", "Erro ao entrar", JOptionPane.ERROR_MESSAGE);
+            errMsg.setText("Prencha todos os campos");
+        } else {
+            String err = Books.GiveBackBook(title, ident);
+            if (err.equals("poo_15")) {
+                Books.verErr(err);
+                errMsg.setText("Livro Devolvido");
+            } else if (err.equals("poo_14")) {
+                Books.verErr(err);
+                errMsg.setText("Livro nao encontrado ");
+            } else if (err.equals("poo_02")) {
+                Users.verErr(err);
+                errMsg.setText("Usuario nao encontrado");
+
+            } else {
+
+                Books.verErr(err);
+                errMsg.setText("Erro inesperado: "+ err);
+            }
         }
+
+
     }//GEN-LAST:event_bnt_give_backActionPerformed
 
 

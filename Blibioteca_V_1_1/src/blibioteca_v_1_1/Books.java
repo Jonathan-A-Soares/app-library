@@ -69,9 +69,9 @@ public class Books {
         if (file_books_un.exists()) {// Verificar se o arquivo de livros indisponiveis existe existe
             //System.out.println("\u001B[33m" + "O arquivo " + book_directory_unavailable + " existe!!!");
             return "poo_21";
-        } else {
+        } else {// se nao cham funçao pra cria-lo
             WriteJsonClear(book_directory_unavailable);
-        } // se nao cham funçao pra cria-lo
+        } 
         return "poo_13";
 
     }
@@ -273,8 +273,12 @@ public class Books {
         return "poo_13";
     }
 
-    public static String LendBook(String title, String name) { //Empresta o livro para um usuario
+    public static String LendBook(String title, String ident) { //Empresta o livro para um usuario
 
+        if (!Users.UserExist(ident)){//verifica se usuario existe true se sim false se nao
+            return "poo_02";
+        }
+        
         JSONParser parser = new JSONParser();
 
         try (FileReader reader = new FileReader(book_directory_available)) {
@@ -317,7 +321,7 @@ public class Books {
                             lendBook.put("publishing_company", publishing_company);
                             lendBook.put("date_publishing", date_publishing);
                             lendBook.put("isbn", isbn);
-                            lendBook.put("gripped", name); //guarda nome do usurio que pegou livro
+                            lendBook.put("gripped", ident); //guarda nome do usurio que pegou livro
                             lendBook.put("quantity", 1);
 
                             //coleta armazena data que foi feito emprestimo
@@ -344,8 +348,8 @@ public class Books {
                                     FileWriter writer = new FileWriter(book_directory_unavailable)) {
                                 writer.write(jsonun.toJSONString());
                             }
-                            Users.AddTitleUser(name, title);
-                            System.out.println("Livro Emprestado para" + name + " com sucesso! ");
+                            Users.AddTitleUser(ident, title);
+                            System.out.println("Livro Emprestado para" + ident + " com sucesso! ");
 
                         } catch (IOException | ParseException e) {
                             e.printStackTrace();
@@ -388,6 +392,7 @@ public class Books {
             try (FileWriter writer = new FileWriter(book_directory_available)) {
                 writer.write(json.toJSONString());
             }
+            
             return "poo_16"; // livro empretado com sucesso
         } catch (IOException | ParseException e) {
             e.printStackTrace();
@@ -396,11 +401,17 @@ public class Books {
 
     }
 
-    public static String GiveBackBook(String title, String name) { // devolve livro para blibioteca
+    public static String GiveBackBook(String title, String ident) { // devolve livro para blibioteca
 
         // verificar se titulo esta emprestado para usuario 
         // se sim ele adciona livro na lista de livros disponiveis 
         //remove ele da lista de indisponiveis
+        
+        
+        if (!Users.UserExist(ident)){ //verifica se usuario existe true se sim false se nao
+            return "poo_02";
+        }
+        
         JSONParser parser = new JSONParser();
 
         try (FileReader reader = new FileReader(book_directory_unavailable)) {
@@ -416,8 +427,8 @@ public class Books {
                 if (value instanceof JSONObject) {
                     JSONObject livro = (JSONObject) value;
 
-                    if (livro.get("title").equals(title) && livro.get("gripped").equals(name)) { // procura o titulo pertence ao usuario no momento
-                        //System.out.println("Livro encontrado" + " livro foi emprestado para" + name);
+                    if (livro.get("title").equals(title) && livro.get("gripped").equals(ident)) { // procura o titulo pertence ao usuario no momento
+                        //System.out.println("Livro encontrado" + " livro foi emprestado para" + ident);
 
                         RemvBook(title, book_directory_unavailable);
 
@@ -438,7 +449,7 @@ public class Books {
 
             }
             if (!livroEncontrado) { // se livro nao foi encontrado avisa que livro no foi encontrado n subtrai nada
-                //System.out.println("Livro não foi emprestado para" + name);
+                //System.out.println("Livro não foi emprestado para" + ident);
                 return "poo_14";
             } else {//else livro foi emprestado entao foi devolvido
                 return "poo_15";
