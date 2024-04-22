@@ -45,9 +45,14 @@ public class Blibioteca_V_1_1 {
         //Books.GiveBackBook("O Diário de Anne Frank", "Joao Silva"); //devolve livro de joao para blibioteca
         //Users.AddTitleUser("Carlo Santos", "O Diário de Anne Frank"); // adciona livro historico do usuario
         //----------------------------------------------------------------------------------------
-        Books.CheckJsons();
-        Users.CheckJsons();
-
+        String a = Books.CheckJsons();
+        //System.err.println(a);
+        //TratErro.verErr(a);
+        a = Users.CheckJsons();
+        //System.err.println(a);
+        
+       // TratErro.verErr(a);
+            
         //new UiLogin().setVisible(true);
         new UIPainelAdm("admin").setVisible(true);
         

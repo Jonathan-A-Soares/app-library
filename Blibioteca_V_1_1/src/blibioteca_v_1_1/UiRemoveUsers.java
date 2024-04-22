@@ -94,16 +94,23 @@ public class UiRemoveUsers extends javax.swing.JPanel {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         ident = input_ident.getText();
         name = input_name.getText();
-        
+
         String err = Users.RemvUser(name, ident);
-        if (err.equals("poo_08")) {
-            errMsg.setText("Usuario removido");
-            Users.verErr(err);
+        if (name.isEmpty() | ident.isEmpty()) {
+            errMsg.setText("Prencha todos Campos");
         } else {
-            errMsg.setText(err);
-            Users.verErr(err);
+            if (err.equals("poo_08")) {
+                errMsg.setText("Usuario removido");
+                Users.verErr(err);
+            }else if(err.equals("poo_02")){
+            errMsg.setText("Usuario não encontrado");
+                Users.verErr(err);
+            } else {
+                errMsg.setText(err);
+                Users.verErr(err);
+            }
         }
-        
+
     }//GEN-LAST:event_jButton1ActionPerformed
 
 

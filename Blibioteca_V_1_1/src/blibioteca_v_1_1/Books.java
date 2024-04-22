@@ -59,20 +59,36 @@ public class Books {
 
     public static String CheckJsons() { // verifica se todos arqquivos de livros estao disponivie se nao cria-os
         File file_books_av = new File(book_directory_available);
-        if (file_books_av.exists()) {// Verificar se o arquivo existe
-            //System.out.println("\u001B[33m" + "O arquivo " + book_directory_available + " existe!!!");
-            return "poo_20";
-        } else {
-            WriteJsonClear(book_directory_available);
-        } // se nao cham funçao pra cria-lo
         File file_books_un = new File(book_directory_unavailable);
-        if (file_books_un.exists()) {// Verificar se o arquivo de livros indisponiveis existe existe
-            //System.out.println("\u001B[33m" + "O arquivo " + book_directory_unavailable + " existe!!!");
-            return "poo_21";
-        } else {// se nao cham funçao pra cria-lo
+
+        
+        // Verifica se ambos os arquivos existem agora
+        if (!file_books_av.exists() && !file_books_un.exists()) {
+            // Ambos os arquivos existem, operação bem-sucedida
+            WriteJsonClear(book_directory_available);
             WriteJsonClear(book_directory_unavailable);
+             return "poo_21";
         } 
-        return "poo_13";
+        
+        // Verifica se o arquivo de livros disponíveis não existe
+        if (!file_books_av.exists()) {
+            WriteJsonClear(book_directory_available);
+             return "poo_21";
+        }
+
+        // Verifica se o arquivo de livros indisponíveis não existe
+        if (!file_books_un.exists()) {
+            WriteJsonClear(book_directory_unavailable);
+             return "poo_21";
+        }
+
+        // Verifica se ambos os arquivos existem agora
+        if (file_books_av.exists() && file_books_un.exists()) {
+            // Ambos os arquivos existem, operação bem-sucedida
+             return "poo_20";
+        } 
+
+         return "poo_13";
 
     }
 
@@ -104,7 +120,7 @@ public class Books {
     }
 
     public static JSONObject ReadJsonBooks(int availability) {
-
+        CheckJsons();
         JSONObject Content_json;
         JSONParser parser = new JSONParser();
 
@@ -275,10 +291,10 @@ public class Books {
 
     public static String LendBook(String title, String ident) { //Empresta o livro para um usuario
 
-        if (!Users.UserExist(ident)){//verifica se usuario existe true se sim false se nao
+        if (!Users.UserExist(ident)) {//verifica se usuario existe true se sim false se nao
             return "poo_02";
         }
-        
+
         JSONParser parser = new JSONParser();
 
         try (FileReader reader = new FileReader(book_directory_available)) {
@@ -392,7 +408,7 @@ public class Books {
             try (FileWriter writer = new FileWriter(book_directory_available)) {
                 writer.write(json.toJSONString());
             }
-            
+
             return "poo_16"; // livro empretado com sucesso
         } catch (IOException | ParseException e) {
             e.printStackTrace();
@@ -406,12 +422,10 @@ public class Books {
         // verificar se titulo esta emprestado para usuario 
         // se sim ele adciona livro na lista de livros disponiveis 
         //remove ele da lista de indisponiveis
-        
-        
-        if (!Users.UserExist(ident)){ //verifica se usuario existe true se sim false se nao
+        if (!Users.UserExist(ident)) { //verifica se usuario existe true se sim false se nao
             return "poo_02";
         }
-        
+
         JSONParser parser = new JSONParser();
 
         try (FileReader reader = new FileReader(book_directory_unavailable)) {
@@ -496,10 +510,10 @@ public class Books {
                 System.out.println("\u001B[32m" + "poo_19: Arquivo JSON de livros criado com sucesso.");
                 break;
             case "poo_20":
-                System.out.println("\u001B[31m" + "poo_20: Arquivo JSON de livros disponiveis existe.");
+                System.out.println("\u001B[31m" + "poo_20: Arquivos JSON de livros existem.");
                 break;
             case "poo_21":
-                System.out.println("\u001B[32m" + "poo_21: Arquivo JSON de livros indisponiveis existe..");
+                System.out.println("\u001B[32m" + "poo_21: Um dos ou os dois arquivo JSON de livros não existe(m).");
                 break;
 
             default:
