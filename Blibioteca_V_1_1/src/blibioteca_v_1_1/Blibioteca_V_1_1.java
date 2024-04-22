@@ -53,8 +53,9 @@ public class Blibioteca_V_1_1 {
         
        // TratErro.verErr(a);
             
-        //new UiLogin().setVisible(true);
-        new UIPainelAdm("admin").setVisible(true);
+        new UiLogin().setVisible(true);
+        //new UIPainelAdm("admin").setVisible(true);
+        //new UiPainelUser("user").setVisible(true);
         
 
         //----------------------------------------------------------------------------------------

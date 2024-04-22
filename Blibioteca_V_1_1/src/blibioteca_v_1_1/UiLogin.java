@@ -5,6 +5,10 @@
 package blibioteca_v_1_1;
 
 import java.awt.Color;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.io.Closeable;
 import javax.swing.JOptionPane;
 
@@ -21,6 +25,7 @@ public class UiLogin extends javax.swing.JFrame {
         initComponents();
         setResizable(false); //desabilitar o redimensionamento
         setLocationRelativeTo(null);
+        addListeners();
     }
 
     /**
@@ -151,7 +156,7 @@ public class UiLogin extends javax.swing.JFrame {
         String name = inputName.getText();
         String pass = inputpPass.getText();
         event.setForeground(Color.red);
-
+        
         if (name.isEmpty() | pass.isEmpty()) { // verifica se tem algum campo em branco
             //System.out.println("\u001B[31m" + "Prencha todos os campos");
             //JOptionPane.showMessageDialog(null, "Prencha todos os campos ", "Erro ao entrar", JOptionPane.ERROR_MESSAGE);
@@ -199,6 +204,29 @@ public class UiLogin extends javax.swing.JFrame {
         new UiRepassword().setVisible(true);
     }//GEN-LAST:event_jButton3ActionPerformed
 
+    
+    private void addListeners() {
+        bnt_entrar.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                // Aqui vai o código que você quer executar quando o botão é clicado
+                bnt_entrarActionPerformed(e);
+            }
+        });
+        
+        // Adicionando um KeyListener ao campo de entrada de senha
+        inputpPass.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyPressed(KeyEvent e) {
+                if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+                    // Disparando o evento do botão quando a tecla Enter é pressionada no campo de senha
+                    bnt_entrar.doClick();
+                }
+            }
+        });
+    }
+    
+    
     private void inputNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inputNameActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_inputNameActionPerformed

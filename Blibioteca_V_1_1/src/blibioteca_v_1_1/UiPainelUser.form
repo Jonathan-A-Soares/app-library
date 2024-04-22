@@ -83,7 +83,7 @@
               <EmptySpace min="-2" pref="42" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="titlePageWelcome" min="-2" max="-2" attributes="0"/>
-                  <Component id="jPanel4" min="-2" max="-2" attributes="0"/>
+                  <Component id="UIWellcomePanel" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace pref="56" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="0" max="-2" attributes="0">
@@ -104,8 +104,8 @@
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="jPanel2" min="-2" pref="396" max="-2" attributes="0"/>
-                  <Component id="jPanel4" min="-2" pref="415" max="-2" attributes="0"/>
+                  <Component id="jPanel2" min="-2" max="-2" attributes="0"/>
+                  <Component id="UIWellcomePanel" min="-2" pref="415" max="-2" attributes="0"/>
               </Group>
               <EmptySpace pref="72" max="32767" attributes="0"/>
           </Group>
@@ -113,7 +113,7 @@
     </DimensionLayout>
   </Layout>
   <SubComponents>
-    <Container class="javax.swing.JPanel" name="jPanel4">
+    <Container class="javax.swing.JPanel" name="UIWellcomePanel">
 
       <Layout class="org.netbeans.modules.form.compat2.layouts.DesignCardLayout"/>
       <SubComponents>
@@ -208,8 +208,11 @@
               <Group type="102" attributes="0">
                   <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="jLabel5" alignment="0" min="-2" max="-2" attributes="0"/>
-                      <Component id="jLabel1" alignment="0" min="-2" max="-2" attributes="0"/>
+                      <Component id="jLabel5" min="-2" max="-2" attributes="0"/>
+                      <Group type="102" alignment="1" attributes="0">
+                          <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="2" max="-2" attributes="0"/>
+                      </Group>
                   </Group>
                   <EmptySpace max="32767" attributes="0"/>
               </Group>
@@ -218,8 +221,6 @@
                   <Group type="103" groupAlignment="1" max="-2" attributes="0">
                       <Component id="cadUser" alignment="0" pref="144" max="32767" attributes="0"/>
                       <Component id="viewAllUser" alignment="0" max="32767" attributes="0"/>
-                      <Component id="viweBooksUnavailable" max="32767" attributes="0"/>
-                      <Component id="cadLend" alignment="1" max="32767" attributes="0"/>
                       <Component id="viweBooksLendsUser" alignment="1" max="32767" attributes="0"/>
                       <Component id="viewBooks" alignment="1" max="32767" attributes="0"/>
                   </Group>
@@ -236,11 +237,7 @@
                   <Component id="viewBooks" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Component id="viweBooksLendsUser" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Component id="cadLend" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Component id="viweBooksUnavailable" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace max="32767" attributes="0"/>
+                  <EmptySpace pref="52" max="32767" attributes="0"/>
                   <Component id="jSeparator1" min="-2" pref="10" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="1" max="-2" attributes="0"/>
                   <Component id="jLabel5" min="-2" max="-2" attributes="0"/>
@@ -262,28 +259,18 @@
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="viweBooksLendsUserActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JButton" name="cadLend">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Pesquisas livro"/>
-          </Properties>
-        </Component>
         <Component class="javax.swing.JLabel" name="jLabel1">
           <Properties>
             <Property name="text" type="java.lang.String" value="Livro"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JButton" name="viweBooksUnavailable">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="aaaaaaaaaaaaa"/>
-          </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="viweBooksUnavailableActionPerformed"/>
-          </Events>
-        </Component>
         <Component class="javax.swing.JButton" name="viewBooks">
           <Properties>
             <Property name="text" type="java.lang.String" value="Ver todos livros"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="viewBooksActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel5">
           <Properties>
@@ -294,11 +281,17 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="Trocar senha"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cadUserActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="viewAllUser">
           <Properties>
             <Property name="text" type="java.lang.String" value="Historico"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="viewAllUserActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JSeparator" name="jSeparator1">
         </Component>

@@ -22,7 +22,7 @@ public class UIPainelAdm extends javax.swing.JFrame {
     private String perm;
 
     // telas
-    private UiLendBook menu_LendBook;
+    private UiLendBook menu_lendBook;
     private UiAddBokk menu_AddBok;
     private UiRegisteri menu_Registeri;
     private UiViewBooks menu_Uiview;
@@ -33,6 +33,9 @@ public class UIPainelAdm extends javax.swing.JFrame {
     private UiHistoryBooksUsers menu_HistoryLendsBooks;
 
     public UIPainelAdm(String name) {
+       
+            
+        
         setResizable(false); //desabilitar o redimensionamento
         
         
@@ -55,7 +58,7 @@ public class UIPainelAdm extends javax.swing.JFrame {
 
          // iinicialização dos menus
         
-        menu_LendBook = new UiLendBook();
+        menu_lendBook = new UiLendBook();
         menu_AddBok = new UiAddBokk();
         menu_Registeri = new UiRegisteri();
         menu_Uiview = new UiViewBooks();
@@ -65,7 +68,7 @@ public class UIPainelAdm extends javax.swing.JFrame {
         menu_ViewLendsBook = new UiViewBookLends();
         menu_HistoryLendsBooks = new UiHistoryBooksUsers();
         // adciona dos menus ao painel principal a interface
-        UIWellcomePanel.add(menu_LendBook, "LendBook"); 
+        
         UIWellcomePanel.add(menu_AddBok, "AddBok");
         UIWellcomePanel.add(menu_Registeri, "Registrar");
         UIWellcomePanel.add(menu_Uiview, "viewBooks");
@@ -74,6 +77,7 @@ public class UIPainelAdm extends javax.swing.JFrame {
         UIWellcomePanel.add(menu_removeBook, "removeBook");
         UIWellcomePanel.add(menu_ViewLendsBook, "LendsBook");
         UIWellcomePanel.add(menu_HistoryLendsBooks, "History");
+        UIWellcomePanel.add(menu_lendBook, "LendBook");
         
         
 
@@ -434,14 +438,14 @@ public class UIPainelAdm extends javax.swing.JFrame {
 
     private void viweBooksUnavailableActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viweBooksUnavailableActionPerformed
         // Atualiza o título
-        titlePageWelcome.setText("ver empréstimos");
+        titlePageWelcome.setText("Ver Empréstimos");
         CardLayout cl = (CardLayout) UIWellcomePanel.getLayout();
         cl.show(UIWellcomePanel, "LendsBook");
     }//GEN-LAST:event_viweBooksUnavailableActionPerformed
 
     private void viewBooksActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewBooksActionPerformed
         
-        titlePageWelcome.setText("buscar por livros");
+        titlePageWelcome.setText("Buscar por livros");
         CardLayout cl = (CardLayout) UIWellcomePanel.getLayout();
         cl.show(UIWellcomePanel, "viewBooks");
     }//GEN-LAST:event_viewBooksActionPerformed
@@ -504,7 +508,7 @@ public class UIPainelAdm extends javax.swing.JFrame {
 
     private void removBookActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removBookActionPerformed
         // Atualiza o título
-        titlePageWelcome.setText("remover livros");
+        titlePageWelcome.setText("Remover Livro");
         CardLayout cl = (CardLayout) UIWellcomePanel.getLayout();
         cl.show(UIWellcomePanel, "removeBook");
     }//GEN-LAST:event_removBookActionPerformed
@@ -517,7 +521,7 @@ public class UIPainelAdm extends javax.swing.JFrame {
     }//GEN-LAST:event_consultLendUserActionPerformed
 
     private void removeUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeUserActionPerformed
-        titlePageWelcome.setText("Livros emprestados");
+        titlePageWelcome.setText("Remover Usuario");
         CardLayout cl = (CardLayout) UIWellcomePanel.getLayout();
         cl.show(UIWellcomePanel, "removeUser");
     }//GEN-LAST:event_removeUserActionPerformed

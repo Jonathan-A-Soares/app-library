@@ -186,7 +186,7 @@ public class Users {
             }
 
             JSONArray titlesArray = new JSONArray(); //cria array que via guarda os livros usurio ja pegou emprestado
-            titlesArray.add("empy");
+            titlesArray.add("empy_000");
 
             newUser.put("titles_lends", titlesArray);
             long numUsers = (long) json.get("Numero de Usuarios");

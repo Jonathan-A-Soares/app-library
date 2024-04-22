@@ -199,6 +199,8 @@ public class UiRegister extends javax.swing.JFrame {
             }
         }
 
+        
+        
 
     }//GEN-LAST:event_btn_registerActionPerformed
 

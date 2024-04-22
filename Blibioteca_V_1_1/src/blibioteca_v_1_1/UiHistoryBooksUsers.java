@@ -148,7 +148,7 @@ public class UiHistoryBooksUsers extends javax.swing.JPanel {
         // Criaa umnm classifidor de linhas
         DefaultRowSorter sorter = new TableRowSorter(model);
         books_table.setRowSorter(sorter);
-
+        int Qnt_livros = 0;
         //varre tudo que tem no json
         for (Object key : usersLoads.keySet()) { //plota todo os usuarios
             Object value = usersLoads.get(key);
@@ -162,14 +162,18 @@ public class UiHistoryBooksUsers extends javax.swing.JPanel {
 
                 for (Object title : titlesArray) {
                     String dte = Users.getDateTime();
-                    model.addRow(new Object[]{ title,dte,Name}); 
-                    
+
+                    if (!title.equals("empy_000")) { //remove os titlos de empy de controle de historicos
+                        model.addRow(new Object[]{title, dte, Name});
+                        Qnt_livros += 1;
+                    }
+
                 }
 
             }
         }
-        long numUsers = (long) usersLoads.get("Numero de Usuarios");
-        num_books.setText(Long.toString(numUsers));
+
+        num_books.setText(Long.toString(Qnt_livros));
         sorter.toggleSortOrder(0);
 
 

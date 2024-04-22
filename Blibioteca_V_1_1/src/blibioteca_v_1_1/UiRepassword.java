@@ -224,10 +224,11 @@ public class UiRepassword extends javax.swing.JFrame {
     private javax.swing.JTextField inputName;
     private javax.swing.JTextField inputNewPass;
     private javax.swing.JTextField inputPhone;
-    private javax.swing.JButton jButton1;
+    public static javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     // End of variables declaration//GEN-END:variables
+
 }
