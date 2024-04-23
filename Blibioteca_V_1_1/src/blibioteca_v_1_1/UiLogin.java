@@ -25,7 +25,7 @@ public class UiLogin extends javax.swing.JFrame {
         initComponents();
         setResizable(false); //desabilitar o redimensionamento
         setLocationRelativeTo(null);
-        addListeners();
+       
     }
 
     /**
@@ -204,29 +204,6 @@ public class UiLogin extends javax.swing.JFrame {
         new UiRepassword().setVisible(true);
     }//GEN-LAST:event_jButton3ActionPerformed
 
-    
-    private void addListeners() {
-        bnt_entrar.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                // Aqui vai o código que você quer executar quando o botão é clicado
-                bnt_entrarActionPerformed(e);
-            }
-        });
-        
-        // Adicionando um KeyListener ao campo de entrada de senha
-        inputpPass.addKeyListener(new KeyAdapter() {
-            @Override
-            public void keyPressed(KeyEvent e) {
-                if (e.getKeyCode() == KeyEvent.VK_ENTER) {
-                    // Disparando o evento do botão quando a tecla Enter é pressionada no campo de senha
-                    bnt_entrar.doClick();
-                }
-            }
-        });
-    }
-    
-    
     private void inputNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inputNameActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_inputNameActionPerformed

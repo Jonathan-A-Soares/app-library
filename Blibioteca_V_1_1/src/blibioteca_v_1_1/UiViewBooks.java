@@ -209,18 +209,29 @@ public class UiViewBooks extends javax.swing.JPanel {
 
             // Mescla os dois objetos JSON
             for (Object key : Bookunv.keySet()) {
-                Booksava.put(key, Bookunv.get(key));
+                String keyStr = (String) key;
+                // Ignora a chave "Numero de Livros"
+                if (!keyStr.equals("Numero de Livros")) {
+                    // Adiciona o livro emprestado ao objeto de livros disponíveis, 
+                    // se ele ainda não existir lá
+                    if (!Booksava.containsKey(keyStr)) {
+                        Booksava.put(keyStr, Bookunv.get(keyStr));
+                    }
+                }
             }
             BooksLoads = Booksava;// livro carregado igual a os 2 jason de livros
+            System.err.println(BooksLoads);
         } else if (view.equals("Disponiveis")) { // carrega livros disponiveis
             System.out.println("Disponiveis");
             BooksLoads = Books.ReadJsonBooks(0); //carrega livros disponiveis
             long numeroLivros = (long) BooksLoads.get("Numero de Livros");
             num_books.setText(Long.toString(numeroLivros));//coloca na tela quantidade de livros
+
         } else { //carrega livros indisponiveis / emprestados
             BooksLoads = Books.ReadJsonBooks(1);//carrega livros indisponiveis
             long numeroLivros = (long) BooksLoads.get("Numero de Livros");
             num_books.setText(Long.toString(numeroLivros)); //coloca na tela quantidade de livros
+
         }
 
         String filter_op = filter_textfield.getText();

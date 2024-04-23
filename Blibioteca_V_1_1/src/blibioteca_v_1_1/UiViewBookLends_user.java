@@ -62,11 +62,11 @@ public class UiViewBookLends_user extends javax.swing.JPanel {
 
             },
             new String [] {
-                "Titulo", "Emprestado", "Devolução", "Usuario", "Qnt"
+                "Titulo", "Emprestado", "Devolução", "Qnt"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false
+                false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -388,7 +388,7 @@ public class UiViewBookLends_user extends javax.swing.JPanel {
                         long quantity = (long) livro.get("quantity");
                         qntBoks = qntBoks + 1;
                         //adciona o titulo a tabela
-                        model.addRow(new Object[]{title, date_land, date_give_back, gripped, quantity});
+                        model.addRow(new Object[]{title, date_land, date_give_back, quantity});
                         check = true; // true se algun livro foi encontrado com filtro aplicado
 
                     }
