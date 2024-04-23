@@ -9,6 +9,7 @@ import org.json.simple.JSONObject;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
+import org.json.simple.parser.ParseException;
 
 /**
  *
@@ -206,21 +207,27 @@ public class UiViewBooks extends javax.swing.JPanel {
             long numeroLivrosAva = (long) Booksava.get("Numero de Livros"); // coleta nuemro de livros disponiveis
             long numeroLivrosun = (long) Bookunv.get("Numero de Livros"); // coleta numero de livros emprestados
             num_books.setText(Long.toString(numeroLivrosun + numeroLivrosAva));//coloca na tela quantidade de livros somandos
-
+            System.out.println(Booksava);
+            System.err.println(Bookunv);
+            
+            
             // Mescla os dois objetos JSON
-            for (Object key : Bookunv.keySet()) {
-                String keyStr = (String) key;
-                // Ignora a chave "Numero de Livros"
-                if (!keyStr.equals("Numero de Livros")) {
-                    // Adiciona o livro emprestado ao objeto de livros disponíveis, 
-                    // se ele ainda não existir lá
-                    if (!Booksava.containsKey(keyStr)) {
-                        Booksava.put(keyStr, Bookunv.get(keyStr));
-                    }
-                }
-            }
+            
+            
+                Booksava.remove("Numero de Livros");
+                Bookunv.remove("Numero de Livros");
+                
+                Booksava.forEach((key,value) -> Bookunv.put(key, value));
+                
+                
+            
+            
+            
+            
             BooksLoads = Booksava;// livro carregado igual a os 2 jason de livros
             System.err.println(BooksLoads);
+            
+            
         } else if (view.equals("Disponiveis")) { // carrega livros disponiveis
             System.out.println("Disponiveis");
             BooksLoads = Books.ReadJsonBooks(0); //carrega livros disponiveis
