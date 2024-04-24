@@ -62,11 +62,11 @@ public class UiViewBookLends_user extends javax.swing.JPanel {
 
             },
             new String [] {
-                "Titulo", "Emprestado", "Devolução", "Qnt"
+                "Titulo", "Emprestado", "Devolução"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false
+                false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -196,8 +196,11 @@ public class UiViewBookLends_user extends javax.swing.JPanel {
         DefaultRowSorter sorter = new TableRowSorter(model);
         table_books.setRowSorter(sorter);
 
-        String nameUser = UiPainelUser.UserName();
         
+        
+        String nameUser = UiPainelUser.UserName();
+        String num_identification = Users.EspecificDateUser(nameUser, "num_identification");
+        //System.err.println(num_identification);
         
         
 
@@ -214,7 +217,7 @@ public class UiViewBookLends_user extends javax.swing.JPanel {
                     String gripped = (String) livro.get("gripped");
 
                     
-                        if (gripped.equals(nameUser)) {
+                        if (gripped.equals(num_identification)) {
                             // Se estiver pose do user, adiciona o livro ao novo objeto JSON
                             livrosDoUserJSON.put(key, livro);
                             qntlivros = qntlivros + 1;
@@ -226,6 +229,7 @@ public class UiViewBookLends_user extends javax.swing.JPanel {
 
             // Atualiza BooksLoads com os livros do usuario
             BooksLoads = livrosDoUserJSON;
+            //System.out.println(BooksLoads);
             num_books.setText(Long.toString(qntlivros));
             // Limpa todas as linhas da tabela
             model.setRowCount(0);
@@ -238,13 +242,15 @@ public class UiViewBookLends_user extends javax.swing.JPanel {
 
 
 
-
+         if(BooksLoads.isEmpty()){
+         num_books.setText("0");
+         }else{
 
         
         if (view.equals("Todos")) {// carrega todos os livros do usuario
-            BooksLoads = Books.ReadJsonBooks(1);
-            long numeroLivros = (long) BooksLoads.get("Numero de Livros");
-            num_books.setText(Long.toString(numeroLivros));
+
+            
+            num_books.setText(Long.toString(qntlivros));
 
         } else if (view.equals("Vencidos")) { // carrega livros vencidos
 
@@ -385,10 +391,10 @@ public class UiViewBookLends_user extends javax.swing.JPanel {
                         String date_land = (String) livro.get("date_land");
                         String date_give_back = (String) livro.get("date_give_back");
                         String gripped = (String) livro.get("gripped");
-                        long quantity = (long) livro.get("quantity");
+                        
                         qntBoks = qntBoks + 1;
                         //adciona o titulo a tabela
-                        model.addRow(new Object[]{title, date_land, date_give_back, quantity});
+                        model.addRow(new Object[]{title, date_land, date_give_back});
                         check = true; // true se algun livro foi encontrado com filtro aplicado
 
                     }
@@ -418,16 +424,16 @@ public class UiViewBookLends_user extends javax.swing.JPanel {
                     String date_land = (String) livro.get("date_land");
                     String date_give_back = (String) livro.get("date_give_back");
                     String gripped = (String) livro.get("gripped");
-                    long quantity = (long) livro.get("quantity");
+                    
                     qntBoks = +1;
                     //adciona o titulo a tabela
-                    model.addRow(new Object[]{title, date_land, date_give_back, gripped, quantity});
+                    model.addRow(new Object[]{title, date_land, date_give_back, gripped});
 
                 }
             }
 
             sorter.toggleSortOrder(0);
-        }
+        }}
 
     }//GEN-LAST:event_bnt_filterActionPerformed
 

@@ -1,6 +1,8 @@
 /*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
+*   LendBook por:
+*   Jonathan Americo Soares -- 42311ETE013
+*   Joaquim Vitor castilho ferreira Pedro -- 42111ETE020
+*
  */
 package blibioteca_v_1_1;
 
@@ -141,6 +143,7 @@ public class UiHistoryBooksUsers extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void bnt_shearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bnt_shearActionPerformed
+        String nameUser = Input_name.getText();
 
         JSONObject usersLoads = Users.ReadJsonUsers();
         DefaultTableModel model = (DefaultTableModel) books_table.getModel();
@@ -149,33 +152,66 @@ public class UiHistoryBooksUsers extends javax.swing.JPanel {
         DefaultRowSorter sorter = new TableRowSorter(model);
         books_table.setRowSorter(sorter);
         int Qnt_livros = 0;
-        //varre tudo que tem no json
-        for (Object key : usersLoads.keySet()) { //plota todo os usuarios
-            Object value = usersLoads.get(key);
 
-            if (value instanceof JSONObject) {
-                JSONObject livro = (JSONObject) value;
+        if (!nameUser.isEmpty()) {
 
-                //coleta as informalçoes dos lusuario
-                String Name = (String) livro.get("name");
-                JSONArray titlesArray = (JSONArray) livro.get("titles_lends");
+            
+            
+            
+            //varre tudo que tem no json
+            for (Object key : usersLoads.keySet()) { //plota somente de um usuario
+                Object value = usersLoads.get(key);
 
-                for (Object title : titlesArray) {
-                    String dte = Users.getDateTime();
+                if (value instanceof JSONObject) {
+                    JSONObject livro = (JSONObject) value;
+                    if(livro.get("name").equals(nameUser)){
+                    //coleta as informalçoes do usuario especificado
+                    String Name = (String) livro.get("name");
+                    JSONArray titlesArray = (JSONArray) livro.get("titles_lends");
+                    JSONArray dateArray = (JSONArray) livro.get("date_lends");
+                    //adciona titlo de acordo com sua data
+                    for (int i = 0; i < titlesArray.size(); i++) {
+                        String title = (String) titlesArray.get(i);
+                        String date = (String) dateArray.get(i);
 
-                    if (!title.equals("empy_000")) { //remove os titlos de empy de controle de historicos
-                        model.addRow(new Object[]{title, dte, Name});
-                        Qnt_livros += 1;
+                        if (!title.equals("empy_000") && !date.equals("empy_000")) {
+                            model.addRow(new Object[]{title, date, Name});
+                            Qnt_livros += 1;
+                        }
+                    }}
+
+                }
+            
+        }} else {
+
+            //varre tudo que tem no json
+            for (Object key : usersLoads.keySet()) { //plota todo os usuarios
+                Object value = usersLoads.get(key);
+
+                if (value instanceof JSONObject) {
+                    JSONObject livro = (JSONObject) value;
+
+                    //coleta as informalçoes dos lusuario
+                    String Name = (String) livro.get("name");
+                    JSONArray titlesArray = (JSONArray) livro.get("titles_lends");
+                    JSONArray dateArray = (JSONArray) livro.get("date_lends");
+
+                    for (int i = 0; i < titlesArray.size(); i++) {
+                        String title = (String) titlesArray.get(i);
+                        String date = (String) dateArray.get(i);
+
+                        if (!title.equals("empy_000") && !date.equals("empy_000")) {
+                            model.addRow(new Object[]{title, date, Name});
+                            Qnt_livros += 1;
+                        }
                     }
 
                 }
-
             }
+
+            num_books.setText(Long.toString(Qnt_livros));
+            sorter.toggleSortOrder(0);
         }
-
-        num_books.setText(Long.toString(Qnt_livros));
-        sorter.toggleSortOrder(0);
-
 
     }//GEN-LAST:event_bnt_shearActionPerformed
 

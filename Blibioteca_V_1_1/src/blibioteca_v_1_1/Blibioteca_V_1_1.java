@@ -1,7 +1,12 @@
 /*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Main.java to edit this template
- */
+*   LendBook por:
+*   Jonathan Americo Soares -- 42311ETE013
+*   Joaquim Vitor castilho ferreira Pedro -- 42111ETE020
+*
+*/
+
+
+
 package blibioteca_v_1_1;
 
 import java.awt.print.Book;
@@ -17,7 +22,7 @@ public class Blibioteca_V_1_1 {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-
+        if (true){ // testes a parte
         //JSONObject boun = Books.ReadJsonBooksUnavailable();
         //JSONObject boav = Books.ReadJsonBooksAvailable();
         //Books.AddBook("O Diário de Anne Frank", "Anne Frank", "Biografia", "Livraria ZYX", "25/06/1947", "11223344", Books.book_directory_available);
@@ -44,6 +49,7 @@ public class Blibioteca_V_1_1 {
         //devolve livro
         //Books.GiveBackBook("O Diário de Anne Frank", "Joao Silva"); //devolve livro de joao para blibioteca
         //Users.AddTitleUser("Carlo Santos", "O Diário de Anne Frank"); // adciona livro historico do usuario
+        }
         //----------------------------------------------------------------------------------------
         String a = Books.CheckJsons();
         //System.err.println(a);
@@ -53,15 +59,16 @@ public class Blibioteca_V_1_1 {
         
        // TratErro.verErr(a);
             
-        new UiLogin().setVisible(true);
-        //new UIPainelAdm("admin").setVisible(true);
-        //new UiPainelUser("user").setVisible(true);
+        //new UiLogin().setVisible(true);
+        new UIPainelAdm("admin").setVisible(true);
+        new UiPainelUser("user").setVisible(true);
         
 
         //----------------------------------------------------------------------------------------
         //Users.DateUser("adm");
-        //String re = Users.EspecificDateUser("adm", "Phone");
-        //System.out.println(re);
+        //String re = Users.EspecificDateUser("admin", "Phone");
+        //JSONObject aaaa = Users.DateUser("admin");
+        //System.out.println(aaaa);
     }
 
 }

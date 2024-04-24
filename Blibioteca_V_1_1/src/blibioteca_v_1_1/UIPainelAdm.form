@@ -231,17 +231,17 @@
               </Group>
               <Component id="jSeparator1" alignment="0" max="32767" attributes="0"/>
               <Group type="102" alignment="1" attributes="0">
-                  <EmptySpace pref="16" max="32767" attributes="0"/>
-                  <Group type="103" groupAlignment="0" attributes="0">
+                  <EmptySpace max="32767" attributes="0"/>
+                  <Group type="103" groupAlignment="1" attributes="0">
                       <Group type="103" alignment="1" groupAlignment="0" max="-2" attributes="0">
                           <Component id="viewBooks" alignment="1" max="32767" attributes="0"/>
                           <Component id="viweBooksUnavailable" alignment="1" max="32767" attributes="0"/>
                           <Component id="cadBook" alignment="0" max="32767" attributes="0"/>
                           <Component id="cadLend" alignment="0" max="32767" attributes="0"/>
                           <Component id="removBook" alignment="0" max="32767" attributes="0"/>
-                          <Component id="removeUser" alignment="0" max="32767" attributes="0"/>
                       </Group>
                       <Group type="103" alignment="1" groupAlignment="0" max="-2" attributes="0">
+                          <Component id="removeUser" alignment="1" max="32767" attributes="0"/>
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace min="-2" pref="59" max="-2" attributes="0"/>
                               <Component id="jLabel5" min="-2" max="-2" attributes="0"/>
@@ -251,7 +251,7 @@
                           <Component id="consultLendUser" alignment="0" max="32767" attributes="0"/>
                       </Group>
                   </Group>
-                  <EmptySpace min="17" pref="17" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="17" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -268,8 +268,6 @@
                   <Component id="cadLend" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Component id="viweBooksUnavailable" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
-                  <Component id="removeUser" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Component id="removBook" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="32767" attributes="0"/>
@@ -280,13 +278,15 @@
                           <Component id="jLabel5" min="-2" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
                           <Component id="cadUser" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace type="separate" max="-2" attributes="0"/>
-                          <Component id="viewAllUser" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace type="separate" max="-2" attributes="0"/>
-                          <Component id="consultLendUser" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
-                  <EmptySpace min="-2" pref="97" max="-2" attributes="0"/>
+                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <Component id="removeUser" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="16" max="-2" attributes="0"/>
+                  <Component id="viewAllUser" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <Component id="consultLendUser" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="58" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -323,7 +323,7 @@
         </Component>
         <Component class="javax.swing.JButton" name="viewBooks">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Ver todos livros"/>
+            <Property name="text" type="java.lang.String" value="Ver todos Livros"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="viewBooksActionPerformed"/>
@@ -344,7 +344,7 @@
         </Component>
         <Component class="javax.swing.JButton" name="viewAllUser">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Ver todos usuarios"/>
+            <Property name="text" type="java.lang.String" value="Ver Todos Usuarios"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="viewAllUserActionPerformed"/>
@@ -352,7 +352,7 @@
         </Component>
         <Component class="javax.swing.JButton" name="consultLendUser">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Hsitorico Emprestimos"/>
+            <Property name="text" type="java.lang.String" value="Historico Emprestimos"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="consultLendUserActionPerformed"/>
@@ -370,7 +370,7 @@
         </Component>
         <Component class="javax.swing.JButton" name="removeUser">
           <Properties>
-            <Property name="text" type="java.lang.String" value="remover user"/>
+            <Property name="text" type="java.lang.String" value="Remover Usuario"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="removeUserActionPerformed"/>

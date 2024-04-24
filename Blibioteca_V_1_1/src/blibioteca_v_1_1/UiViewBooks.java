@@ -4,11 +4,15 @@
  */
 package blibioteca_v_1_1;
 
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
 import javax.swing.DefaultRowSorter;
 import org.json.simple.JSONObject;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
+import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
 /**
@@ -204,30 +208,83 @@ public class UiViewBooks extends javax.swing.JPanel {
             System.out.println("Todos");
             JSONObject Booksava = Books.ReadJsonBooks(0);
             JSONObject Bookunv = Books.ReadJsonBooks(1);
-            long numeroLivrosAva = (long) Booksava.get("Numero de Livros"); // coleta nuemro de livros disponiveis
-            long numeroLivrosun = (long) Bookunv.get("Numero de Livros"); // coleta numero de livros emprestados
+            long numeroLivrosAva = ((Number) Booksava.get("Numero de Livros")).longValue();
+            long numeroLivrosun = ((Number) Bookunv.get("Numero de Livros")).longValue();
+
             num_books.setText(Long.toString(numeroLivrosun + numeroLivrosAva));//coloca na tela quantidade de livros somandos
-            System.out.println(Booksava);
-            System.err.println(Bookunv);
-            
-            
+            //System.out.println(Booksava);
+            //System.err.println(Bookunv);
+
             // Mescla os dois objetos JSON
+            /*  JSONObject allBooks = new JSONObject();
+            
+                Booksava.remove("Numero de Livros");// remove finalizador do json
+                Bookunv.remove("Numero de Livros");// remove finalizador do json
+                allBooks.putAll(Booksava); // add a variavel guardar todos os livros
+                allBooks.putAll(Bookunv);// add a variavel guardar todos os livros
+             */
+            for (Object key : Bookunv.keySet()) { // iterate over all unavailable books
+                Object value = Bookunv.get(key);
+                Boolean bookcontrol = true; // variavel de controle false se livro n exitir que precisocriar novo
+                if (value instanceof JSONObject) {
+                    JSONObject livroun = (JSONObject) value;
+                    // get information of the book
+                    long quantity = ((Number) livroun.get("quantity")).longValue();
+                    String title = (String) livroun.get("title");
+                    String author = (String) livroun.get("author");
+                    String genre = (String) livroun.get("genre");
+                    String isbn = (String) livroun.get("isbn");
+                    String publishingCompany = (String) livroun.get("publishing_company");
+                    String datePublishing = (String) livroun.get("date_publishing");
+
+                    // move JSON parsing outside of this block for efficiency
+                    JSONParser parser = new JSONParser();
+                    JSONObject json = Booksava;
+
+                    // Check if the desired title is present in the JSON
+                    for (Object innerkey : json.keySet()) {
+                        Object valuea = json.get(innerkey);
+
+                        if (valuea instanceof JSONObject) {
+                            JSONObject livro = (JSONObject) valuea;
+
+                            if (livro.get("title").equals(title)) { // find the book title to be written
+                                // Update the quantity of the existing book
+                                quantity = (long) livro.get("quantity");
+                                livro.put("quantity", quantity + 1);
+
+                                // Update the total number of books
+                                long numeroLivros = (long) json.get("Numero de Livros");
+                                json.put("Numero de Livros", numeroLivros + 1);
+                                BooksLoads = json; // loaded book equal to the two JSON books
+                                bookcontrol = false;
+                            }
+                        }
+                    }
+                    if(bookcontrol){
+                    // Cria novo livro se ele n exitir
+                     
+                        JSONObject novoLivro = new JSONObject();
+                        novoLivro.put("title", title);
+                        novoLivro.put("author", author);
+                        novoLivro.put("genre", genre);
+                        novoLivro.put("publishing_company", publishingCompany);
+                        novoLivro.put("date_publishing", datePublishing);
+                        novoLivro.put("isbn", isbn);
+                        novoLivro.put("quantity", 1);
+
+                        long numeroLivros = (long) json.get("Numero de Livros");
+                        json.put(numeroLivros + 1, novoLivro);
+                        json.put("Numero de Livros", numeroLivros + 1);
+                        BooksLoads = json; // loaded book equal to the two JSON books
+                        System.out.println(json);
+                    }
+                }
+            }
+
             
             
-                Booksava.remove("Numero de Livros");
-                Bookunv.remove("Numero de Livros");
-                
-                Booksava.forEach((key,value) -> Bookunv.put(key, value));
-                
-                
-            
-            
-            
-            
-            BooksLoads = Booksava;// livro carregado igual a os 2 jason de livros
-            System.err.println(BooksLoads);
-            
-            
+            //System.err.println(BooksLoads);
         } else if (view.equals("Disponiveis")) { // carrega livros disponiveis
             System.out.println("Disponiveis");
             BooksLoads = Books.ReadJsonBooks(0); //carrega livros disponiveis
@@ -289,14 +346,15 @@ public class UiViewBooks extends javax.swing.JPanel {
             sorter.toggleSortOrder(0);
         } else { //se na tiver filtro nenhum plota tuudo que achar
 
-            //varre tudo que etem no json
-            for (Object key : BooksLoads.keySet()) { //plota todo os livros disponiveis
+            //varre tudo que item no json
+            for (Object key : BooksLoads.keySet()) {
                 Object value = BooksLoads.get(key);
 
                 if (value instanceof JSONObject) {
                     JSONObject livro = (JSONObject) value;
+
                     //coleta as informalçoes dos livros
-                    long quantity = (long) livro.get("quantity");
+                    Object quantity = livro.get("quantity");
                     String title = (String) livro.get("title");
                     String author = (String) livro.get("author");
                     String genre = (String) livro.get("genre");

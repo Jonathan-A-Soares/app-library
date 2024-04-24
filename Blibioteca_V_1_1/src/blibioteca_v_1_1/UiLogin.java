@@ -1,7 +1,9 @@
 /*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
+*   LendBook por:
+*   Jonathan Americo Soares -- 42311ETE013
+*   Joaquim Vitor castilho ferreira Pedro -- 42111ETE020
+*
+*/
 package blibioteca_v_1_1;
 
 import java.awt.Color;
@@ -183,6 +185,7 @@ public class UiLogin extends javax.swing.JFrame {
                     
                 } else {// quando o usuario nao e adm disponibiliza painel de usuario
                     //System.exit(0); // no momento finaliza progama
+                    setVisible(false);// tira visibilidade do login
                     new UiPainelUser(name).setVisible(true);//chama o painel de usuario
 
                 }

@@ -61,11 +61,11 @@ public class UiViewBookLends extends javax.swing.JPanel {
 
             },
             new String [] {
-                "Titulo", "Emprestado", "Devolução", "Usuario", "Qnt"
+                "Titulo", "Emprestado", "Devolução", "Usuario"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false
+                false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -339,10 +339,10 @@ public class UiViewBookLends extends javax.swing.JPanel {
                         String date_land = (String) livro.get("date_land");
                         String date_give_back = (String) livro.get("date_give_back");
                         String gripped = (String) livro.get("gripped");
-                        long quantity = (long) livro.get("quantity");
+                        
                         qntBoks= qntBoks +1;
                         //adciona o titulo a tabela
-                        model.addRow(new Object[]{title, date_land, date_give_back, gripped, quantity});
+                        model.addRow(new Object[]{title, date_land, date_give_back, gripped});
                         check = true; // true se algun livro foi encontrado com filtro aplicado
                         
                         
@@ -374,10 +374,10 @@ public class UiViewBookLends extends javax.swing.JPanel {
                     String date_land = (String) livro.get("date_land");
                     String date_give_back = (String) livro.get("date_give_back");
                     String gripped = (String) livro.get("gripped");
-                    long quantity = (long) livro.get("quantity");
+                    
                     qntBoks =+1;
                     //adciona o titulo a tabela
-                    model.addRow(new Object[]{title, date_land, date_give_back, gripped, quantity});
+                    model.addRow(new Object[]{title, date_land, date_give_back, gripped});
                     
                 }
             }

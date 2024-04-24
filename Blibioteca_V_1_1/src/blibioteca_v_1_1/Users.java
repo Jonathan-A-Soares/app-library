@@ -1,7 +1,9 @@
 /*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+*   LendBook por:
+*   Jonathan Americo Soares -- 42311ETE013
+*   Joaquim Vitor castilho ferreira Pedro -- 42111ETE020
+*
+*/
 package blibioteca_v_1_1;
 
 import static blibioteca_v_1_1.Books.book_directory_available;
@@ -184,11 +186,15 @@ public class Users {
             } catch (Exception e) {
                 e.printStackTrace();
             }
-
+            //adiciona ao hisotrico de usuario quando ele pegou livro e qual livro
             JSONArray titlesArray = new JSONArray(); //cria array que via guarda os livros usurio ja pegou emprestado
             titlesArray.add("empy_000");
-
             newUser.put("titles_lends", titlesArray);
+            
+            JSONArray dateArray = new JSONArray(); //cria array que via guarda os livros usurio ja pegou emprestado
+            dateArray.add("empy_000");
+            newUser.put("date_lends", dateArray);
+            
             long numUsers = (long) json.get("Numero de Usuarios");
             json.put(numUsers + 1, newUser);
             json.put("Numero de Usuarios", numUsers + 1);
@@ -414,10 +420,14 @@ public class Users {
 
                         JSONObject bookHistory = new JSONObject();
                         JSONArray titlesArray = (JSONArray) user.get("titles_lends");
-
                         titlesArray.add(title);
                         
-                        bookHistory.put("titles_lends"+getDateTime(), titlesArray);
+                        JSONArray dateArray = (JSONArray) user.get("date_lends");
+                        dateArray.add(getDateTime());
+                        
+                        bookHistory.put("titles_lends", titlesArray);
+                        bookHistory.put("date_lends", dateArray);
+                        
 
                         try ( // Escrever de volta no arquivo
                                 FileWriter writer = new FileWriter(user_directory)) {
@@ -489,7 +499,7 @@ public class Users {
         }
     }
 
-    public static JSONObject DateUser(String name) {
+    public static JSONObject DateUser(String name) { // retorna todos dados do usuario forma de json
         JSONParser parser = new JSONParser();
 
         try (FileReader reader = new FileReader(user_directory)) {
@@ -521,7 +531,7 @@ public class Users {
 
     }
 
-    public static String EspecificDateUser(String name, String especifc) {
+    public static String EspecificDateUser(String name, String especifc) { // retorna uma informaçao especifica tipo (user, phone) retonar numero telefoen do usuario
         JSONParser parser = new JSONParser();
 
         try (FileReader reader = new FileReader(user_directory)) {

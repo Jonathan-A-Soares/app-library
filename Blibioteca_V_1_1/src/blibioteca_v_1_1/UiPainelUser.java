@@ -1,7 +1,9 @@
 /*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
+*   LendBook por:
+*   Jonathan Americo Soares -- 42311ETE013
+*   Joaquim Vitor castilho ferreira Pedro -- 42111ETE020
+*
+*/
 package blibioteca_v_1_1;
 
 import java.awt.CardLayout;
@@ -378,7 +380,7 @@ public class UiPainelUser extends javax.swing.JFrame {
     }//GEN-LAST:event_viewBooksActionPerformed
 
     private void viweBooksLendsUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viweBooksLendsUserActionPerformed
-        titlePageWelcome.setText("Buscar por livros");
+        titlePageWelcome.setText("Meus emprestimos");
         CardLayout cl = (CardLayout) UIWellcomePanel.getLayout();
         cl.show(UIWellcomePanel, "viewBooksLendsUser");
     }//GEN-LAST:event_viweBooksLendsUserActionPerformed
