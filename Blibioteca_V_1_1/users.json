@@ -1,0 +1,48 @@
+{
+    "1": {
+        "num_identification": "0001",
+        "password": "kiHqBdha+RSJwv4OodCtVQ==",
+        "titles_lends": ["empy_000"],
+        "Phone": "00000000000",
+        "name": "admin",
+        "permission": true,
+        "date_lends": ["empy_000"]
+    },
+    "2": {
+        "num_identification": "0002",
+        "password": "t1NUxt53k6ceotIE7abcZg==",
+        "titles_lends": ["empy_000"],
+        "Phone": "00000000000",
+        "name": "user",
+        "permission": false,
+        "date_lends": ["empy_000"]
+    },
+    "3": {
+        "num_identification": "0013",
+        "password": "t1NUxt53k6ceotIE7abcZg==",
+        "titles_lends": ["empy_000", "Capitães da Areia", "O Cortiço", "O Cortiço", "Vidas Secas"],
+        "Phone": "035992335169",
+        "name": "Jonathan",
+        "permission": false,
+        "date_lends": ["empy_000", "14/03/2024", "04/03/2024", "24/04/2024", "24/04/2024"]
+    },
+    "4": {
+        "num_identification": "171388",
+        "password": "t1NUxt53k6ceotIE7abcZg==",
+        "titles_lends": ["empy_000", "A Hora da Estrela", "Quincas Borba", "A Hora da Estrela", "Claro Enigma"],
+        "Phone": "03597000044",
+        "name": "Natalya",
+        "permission": false,
+        "date_lends": ["empy_000", "14/04/2024", "24/03/2024", "24/04/2024", "24/04/2024"]
+    },
+    "5": {
+        "num_identification": "8030",
+        "password": "t1NUxt53k6ceotIE7abcZg==",
+        "titles_lends": ["empy_000", "Dom Casmurro", "Grande Sertão: Veredas", "A Moreninha", "O Guarani", "O Alienista"],
+        "Phone": "012992000030",
+        "name": "Joaquim",
+        "permission": false,
+        "date_lends": ["empy_000", "24/04/2024", "24/03/2024", "24/04/2024", "24/04/2024", "24/03/2024"]
+    },
+    "Numero de Usuarios": 5
+}

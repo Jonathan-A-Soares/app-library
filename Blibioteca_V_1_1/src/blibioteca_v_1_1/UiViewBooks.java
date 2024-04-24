@@ -333,8 +333,8 @@ public class UiViewBooks extends javax.swing.JPanel {
                         //adciona o titulo a tabela
                         model.addRow(new Object[]{title, author, publishingCompany, datePublishing, genre, isbn, quantity});
                         check = true; // true se algun livro foi encontrado com filtro aplicado
-                        qntBoks = +1;
-                        qntBoks = +quantity;
+                        //qntBoks += 1;
+                        qntBoks += quantity;
                         num_books.setText(Long.toString(qntBoks)); //coloca na tela quantidade de livros encontrados
                     }
                 }

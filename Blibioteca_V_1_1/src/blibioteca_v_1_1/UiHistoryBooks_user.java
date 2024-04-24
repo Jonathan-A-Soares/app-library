@@ -163,6 +163,7 @@ public class UiHistoryBooks_user extends javax.swing.JPanel {
                         if (!title.equals("empy_000") && !date.equals("empy_000")) {
                             model.addRow(new Object[]{title, date, Name});
                             Qnt_livros += 1;
+                            num_books.setText(Long.toString(Qnt_livros));
                         }
                     }}
 

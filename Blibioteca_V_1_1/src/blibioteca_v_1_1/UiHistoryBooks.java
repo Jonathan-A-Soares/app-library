@@ -179,7 +179,7 @@ public class UiHistoryBooks extends javax.swing.JPanel {
                             Qnt_livros += 1;
                         }
                     }}
-
+                    num_books.setText(Long.toString(Qnt_livros));
                 }
             
         }} else {

@@ -107,12 +107,12 @@ public class Books {
             Write_File.close();
             //System.out.println("Arquivo " + availability + "criado com sucesso!");
 
-            AddBook("A Dança dos Dragões", "George R. R. Martin", "Fantasia", "Bantam Books", "2011-07-12", "9780553801477", book_directory_available);
-            AddBook("A Culpa é das Estrelas", "John Green", "Romance", "Dutton Books", "2012-01-10", "9780525478812", book_directory_available);
-            AddBook("Pai Rico, Pai Pobre", "Robert T. Kiyosaki", "Educação Financeira", "Plata Publishing", "1997-04-01", "9781612680194", book_directory_available);
-            AddBook("O Senhor dos Anéis: A Sociedade do Anel", "J. R. R. Tolkien", "Fantasia", "Allen & Unwin", "1954-07-29", "9780261102385", book_directory_available);
-            AddBook("1984", "George Orwell", "Ficção Distópica", "Secker & Warburg", "1949-06-08", "9780451524935", book_directory_available);
-
+            AddBook("A Dança dos Dragões", "George R. R. Martin", "Fantasia", "Bantam Books", "2011/07/12", "9780553801477", book_directory_available);
+            AddBook("A Culpa é das Estrelas", "John Green", "Romance", "Dutton Books", "2012/01/10", "9780525478812", book_directory_available);
+            AddBook("Pai Rico, Pai Pobre", "Robert T. Kiyosaki", "Educação Financeira", "Plata Publishing", "1997/04/01", "9781612680194", book_directory_available);
+            AddBook("O Senhor dos Anéis: A Sociedade do Anel", "J. R. R. Tolkien", "Fantasia", "Allen & Unwin", "1954/07/29", "9780261102385", book_directory_available);
+            AddBook("1984", "George Orwell", "Ficção Distópica", "Secker & Warburg", "1949/06/08", "9780451524935", book_directory_available);
+            
             return "poo_19";
         } catch (IOException ex) {
             Logger.getLogger(Blibioteca_V_1_1.class.getName()).log(Level.SEVERE, null, ex);

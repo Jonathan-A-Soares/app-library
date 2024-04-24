@@ -433,7 +433,7 @@ public class UiViewBookLends_user extends javax.swing.JPanel {
 
                 }
             }
-
+            
             sorter.toggleSortOrder(0);
         }}
 

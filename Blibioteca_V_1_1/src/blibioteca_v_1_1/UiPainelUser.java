@@ -377,7 +377,9 @@ public class UiPainelUser extends javax.swing.JFrame {
     }//GEN-LAST:event_viewBooksActionPerformed
 
     private void viweBooksLendsUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viweBooksLendsUserActionPerformed
-        
+        titlePageWelcome.setText("Emprestimos");
+        CardLayout cl = (CardLayout) UIWellcomePanel.getLayout();
+        cl.show(UIWellcomePanel, "viewBooksLendsUser");
     }//GEN-LAST:event_viweBooksLendsUserActionPerformed
 
     @SuppressWarnings("empty-statement")
