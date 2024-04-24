@@ -1,7 +1,9 @@
 /*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
- */
+*   LendBook por:
+*   Jonathan Americo Soares -- 42311ETE013
+*   Joaquim Vitor castilho ferreira Pedro -- 42111ETE020
+*
+*/
 package blibioteca_v_1_1;
 
 import java.io.FileReader;
@@ -223,12 +225,12 @@ public class UiViewBooks extends javax.swing.JPanel {
                 allBooks.putAll(Booksava); // add a variavel guardar todos os livros
                 allBooks.putAll(Bookunv);// add a variavel guardar todos os livros
              */
-            for (Object key : Bookunv.keySet()) { // iterate over all unavailable books
+            for (Object key : Bookunv.keySet()) { // itera sobre todos os livros indisponíveis
                 Object value = Bookunv.get(key);
                 Boolean bookcontrol = true; // variavel de controle false se livro n exitir que precisocriar novo
                 if (value instanceof JSONObject) {
                     JSONObject livroun = (JSONObject) value;
-                    // get information of the book
+                    // coleta informaçoes do livro
                     long quantity = ((Number) livroun.get("quantity")).longValue();
                     String title = (String) livroun.get("title");
                     String author = (String) livroun.get("author");
@@ -237,21 +239,22 @@ public class UiViewBooks extends javax.swing.JPanel {
                     String publishingCompany = (String) livroun.get("publishing_company");
                     String datePublishing = (String) livroun.get("date_publishing");
 
-                    // move JSON parsing outside of this block for efficiency
+                    //mova a análise JSON para fora deste bloco para eficiência
                     JSONParser parser = new JSONParser();
                     JSONObject json = Booksava;
 
-                    // Check if the desired title is present in the JSON
+                    // Verifique se o título desejado está presente no JSON
                     for (Object innerkey : json.keySet()) {
                         Object valuea = json.get(innerkey);
 
                         if (valuea instanceof JSONObject) {
                             JSONObject livro = (JSONObject) valuea;
 
-                            if (livro.get("title").equals(title)) { // find the book title to be written
-                                // Update the quantity of the existing book
-                                quantity = (long) livro.get("quantity");
-                                livro.put("quantity", quantity + 1);
+                            if (livro.get("title").equals(title)) { // procura titulo
+                                // atulaiza quantidade de livro
+                                Number quanti = (Number) livro.get("quantity"); 
+                                long valorLongo = quanti.longValue();
+                                livro.put("quantity", valorLongo + 1);
 
                                 // Update the total number of books
                                 long numeroLivros = (long) json.get("Numero de Livros");

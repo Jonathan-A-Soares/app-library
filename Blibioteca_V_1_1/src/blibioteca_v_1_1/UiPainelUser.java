@@ -26,6 +26,8 @@ public class UiPainelUser extends javax.swing.JFrame {
     // telas
     private UiViewBooks menu_Uiview;
     private UiViewBookLends_user menu_UiviewBooksLends;
+    private UiHistoryBooks_user menu_uihistory;
+    private UIRepassword_user menu_repass;
     
     
     
@@ -56,11 +58,17 @@ public class UiPainelUser extends javax.swing.JFrame {
         // iinicialização dos menus
         menu_Uiview = new UiViewBooks();
         menu_UiviewBooksLends = new UiViewBookLends_user();
+        menu_uihistory = new UiHistoryBooks_user();
+        menu_repass = new UIRepassword_user();
         
         
         // adciona dos menus ao painel principal a interface
         UIWellcomePanel.add(menu_Uiview, "viewBooks");
         UIWellcomePanel.add(menu_UiviewBooksLends,"viewBooksLendsUser");
+        UIWellcomePanel.add(menu_uihistory,"viewhistory");
+        UIWellcomePanel.add(menu_repass,"repass");
+        
+        
         
         
         
@@ -104,10 +112,10 @@ public class UiPainelUser extends javax.swing.JFrame {
         jMenuItem2 = new javax.swing.JMenuItem();
         jMenuItem3 = new javax.swing.JMenuItem();
         about = new javax.swing.JMenu();
-        jMenuItem4 = new javax.swing.JMenuItem();
         jMenuItem5 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Painel do Usuario");
 
         UIWellcomePanel.setLayout(new java.awt.CardLayout());
 
@@ -297,14 +305,6 @@ public class UiPainelUser extends javax.swing.JFrame {
             }
         });
 
-        jMenuItem4.setText("Tarifas");
-        jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem4ActionPerformed(evt);
-            }
-        });
-        about.add(jMenuItem4);
-
         jMenuItem5.setText("Sobre");
         jMenuItem5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -356,14 +356,11 @@ public class UiPainelUser extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
     private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
-        //System.exit(0);
-        setVisible(false); // desativa a inteface do ususario
-        new UiLogin().setVisible(true); // chama a interface de login
+        
+        setVisible(false);
+        new UiLogin().setVisible(true);
+        
     }//GEN-LAST:event_jMenuItem3ActionPerformed
-
-    private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jMenuItem4ActionPerformed
 
     private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
         new UIAbout().setVisible(true);
@@ -380,21 +377,21 @@ public class UiPainelUser extends javax.swing.JFrame {
     }//GEN-LAST:event_viewBooksActionPerformed
 
     private void viweBooksLendsUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viweBooksLendsUserActionPerformed
-        titlePageWelcome.setText("Meus emprestimos");
-        CardLayout cl = (CardLayout) UIWellcomePanel.getLayout();
-        cl.show(UIWellcomePanel, "viewBooksLendsUser");
+        
     }//GEN-LAST:event_viweBooksLendsUserActionPerformed
 
     @SuppressWarnings("empty-statement")
     private void cadUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cadUserActionPerformed
-       UiRepassword a  = new UiRepassword();
-       a.setVisible(true);
-       a.jButton1.setEnabled(false);
+        titlePageWelcome.setText("Alterar senha");
+        CardLayout cl = (CardLayout) UIWellcomePanel.getLayout();
+        cl.show(UIWellcomePanel, "repass");
         
     }//GEN-LAST:event_cadUserActionPerformed
 
     private void viewAllUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewAllUserActionPerformed
-        // TODO add your handling code here:
+        titlePageWelcome.setText("Buscar por livros");
+        CardLayout cl = (CardLayout) UIWellcomePanel.getLayout();
+        cl.show(UIWellcomePanel, "viewhistory");
     }//GEN-LAST:event_viewAllUserActionPerformed
 
     /**
@@ -447,7 +444,6 @@ public class UiPainelUser extends javax.swing.JFrame {
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
-    private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;

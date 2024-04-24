@@ -17,12 +17,12 @@ import org.json.simple.JSONObject;
  *
  * @author bruxo
  */
-public class UiHistoryBooksUsers extends javax.swing.JPanel {
+public class UiHistoryBooks extends javax.swing.JPanel {
 
     /**
      * Creates new form UiHistoryBooksUsers
      */
-    public UiHistoryBooksUsers() {
+    public UiHistoryBooks() {
         initComponents();
     }
 

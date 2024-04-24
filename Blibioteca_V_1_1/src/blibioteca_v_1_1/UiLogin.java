@@ -90,7 +90,7 @@ public class UiLogin extends javax.swing.JFrame {
             }
         });
 
-        jLabel7.setText("0.1");
+        jLabel7.setText("1.0");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);

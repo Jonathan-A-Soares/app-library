@@ -32,7 +32,7 @@ public class UIPainelAdm extends javax.swing.JFrame {
     private UiRemoveUsers menu_removeUser;
     private UiRemoveBook menu_removeBook;
     private UiViewBookLends menu_ViewLendsBook;
-    private UiHistoryBooksUsers menu_HistoryLendsBooks;
+    private UiHistoryBooks menu_HistoryLendsBooks;
 
     public UIPainelAdm(String name) {
        
@@ -68,7 +68,7 @@ public class UIPainelAdm extends javax.swing.JFrame {
         menu_removeUser = new UiRemoveUsers();
         menu_removeBook = new UiRemoveBook();
         menu_ViewLendsBook = new UiViewBookLends();
-        menu_HistoryLendsBooks = new UiHistoryBooksUsers();
+        menu_HistoryLendsBooks = new UiHistoryBooks();
         // adciona dos menus ao painel principal a interface
         
         UIWellcomePanel.add(menu_AddBok, "AddBok");
@@ -128,7 +128,6 @@ public class UIPainelAdm extends javax.swing.JFrame {
         jMenuItem2 = new javax.swing.JMenuItem();
         jMenuItem3 = new javax.swing.JMenuItem();
         about = new javax.swing.JMenu();
-        jMenuItem4 = new javax.swing.JMenuItem();
         jMenuItem5 = new javax.swing.JMenuItem();
 
         jButton5.setText("jButton1");
@@ -138,6 +137,7 @@ public class UIPainelAdm extends javax.swing.JFrame {
         jMenuItem1.setText("jMenuItem1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Painel do Administrador");
         setResizable(false);
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
@@ -382,14 +382,6 @@ public class UIPainelAdm extends javax.swing.JFrame {
             }
         });
 
-        jMenuItem4.setText("Tarifas");
-        jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem4ActionPerformed(evt);
-            }
-        });
-        about.add(jMenuItem4);
-
         jMenuItem5.setText("Sobre");
         jMenuItem5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -481,10 +473,6 @@ public class UIPainelAdm extends javax.swing.JFrame {
     private void aboutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aboutActionPerformed
         
     }//GEN-LAST:event_aboutActionPerformed
-
-    private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jMenuItem4ActionPerformed
 
     private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
         new UIAbout().setVisible(true);
@@ -589,7 +577,6 @@ public class UIPainelAdm extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
-    private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
