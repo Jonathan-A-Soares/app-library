@@ -41,7 +41,7 @@ import org.json.simple.JSONObject;
 public class Users {
 
     // Variaveis de Diretrio
-    public final static String user_directory = "src/blibioteca_v_1_1/data_files/users.json";
+    public final static String user_directory = "users.json";//  src/blibioteca_v_1_1/data_files/users.json
 
     private String name;
     private String phone_number;
